@@ -54,20 +54,16 @@ a:hover { color: var(--accent-yellow); }
 .logo img { height: 75px; transition: var(--transition); }
 .main-nav ul { display: flex; align-items: center; list-style: none; }
 .main-nav ul li { margin-left: 40px; }
-
-/* Navigation links default to WHITE */
 .main-nav ul li a {
     font-weight: 600;
-    color: var(--white-color); /* <<<< CHANGED TO WHITE */
+    color: var(--white-color);
     position: relative;
     padding: 5px 0;
     transition: color 0.3s ease;
 }
-/* On scroll, links turn back to DARK */
 .main-header.scrolled .main-nav ul li a {
-    color: var(--dark-text); /* <<<< Switches to dark text on scroll */
+    color: var(--dark-text);
 }
-
 .main-nav ul li a::after {
     content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
     width: 0; height: 2px; background-color: var(--accent-yellow); transition: var(--transition);
@@ -85,18 +81,14 @@ a:hover { color: var(--accent-yellow); }
 }
 .btn-nav-quote:hover::after { display: none; }
 .hamburger { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
-
-/* Hamburger bars default to WHITE */
 .hamburger-bar {
     display: block; width: 25px; height: 3px; margin: 5px auto;
-    background-color: var(--white-color); /* <<<< CHANGED TO WHITE */
+    background-color: var(--white-color);
     border-radius: 3px; transition: var(--transition);
 }
-/* On scroll, hamburger bars turn back to DARK */
 .main-header.scrolled .hamburger-bar {
-    background-color: var(--dark-text); /* <<<< Switches to dark text on scroll */
+    background-color: var(--dark-text);
 }
-
 
 /* --- HERO SECTION --- */
 .hero {
@@ -105,14 +97,12 @@ a:hover { color: var(--accent-yellow); }
 }
 .hero-content { position: relative; z-index: 2; animation: fadeIn 1s .5s both; }
 .hero-title { font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-
-/* Hero subtitle (text under title) is now explicitly WHITE */
 .hero-subtitle {
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 2.5rem;
     letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.9); /* <<<< A clean, slightly transparent white */
+    color: rgba(255, 255, 255, 0.9);
 }
 .btn {
     padding: 15px 35px; border-radius: 50px; font-weight: 600; transition: var(--transition);
@@ -123,7 +113,6 @@ a:hover { color: var(--accent-yellow); }
 .btn-secondary { background-color: transparent; border: 2px solid var(--accent-blue); color: var(--white-color); }
 .btn-secondary:hover { background-color: var(--accent-blue); color: var(--white-color); transform: translateY(-3px); }
 
-
 /* --- WELCOME SECTION --- */
 .welcome-section { padding: 120px 0; background-color: var(--white-color); }
 .welcome-container { display: flex; align-items: center; gap: 4rem; }
@@ -131,17 +120,48 @@ a:hover { color: var(--accent-yellow); }
 .welcome-image { flex-basis: 45%; }
 .welcome-image img { width: 100%; height: auto; border-radius: var(--border-radius); box-shadow: var(--shadow); }
 
-/* --- DESTINATIONS SECTION --- */
-.destinations-section { padding: 120px 0; background-color: var(--sand-color); }
-.destinations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
-.destination-card {
-    background: var(--white-color); border-radius: var(--border-radius);
-    box-shadow: var(--shadow); overflow: hidden; transition: var(--transition);
+/* --- VACATION TYPES SECTION (New Section Style) --- */
+.vacation-types-section {
+    padding: 120px 0;
+    background-color: var(--accent-blue); /* Uses the turquoise from your logo */
 }
-.destination-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-.destination-card img { width: 100%; height: 250px; object-fit: cover; }
-.destination-card .card-content { padding: 1.5rem; }
-.destination-card h3 { margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1.4rem;}
+.vacation-types-section .section-title {
+    color: var(--white-color); /* Title text is white */
+    margin-bottom: 4rem;
+}
+.types-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+.category-card {
+    text-align: center;
+    transition: var(--transition);
+}
+.category-card:hover {
+    transform: translateY(-10px); /* Lifts the card on hover */
+}
+.category-card .card-image-container {
+    background-color: var(--dark-text);
+    border-radius: 24px; /* Creates the rounded corners */
+    overflow: hidden;
+    padding: 10px; /* The "frame" around the image */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    margin-bottom: 1.5rem;
+}
+.category-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px; /* Inner radius for the image */
+}
+.category-card h3 {
+    color: var(--white-color);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
 
 /* --- FOOTER --- */
 .main-footer {
@@ -164,8 +184,14 @@ a:hover { color: var(--accent-yellow); }
     }
     .section-title { font-size: 2.5rem; }
     .hero-title { font-size: 4rem; }
-    .destinations-grid { grid-template-columns: repeat(2, 1fr); }
     .welcome-container { flex-direction: column; text-align: center; }
+    
+    .types-grid {
+        grid-template-columns: 1fr; /* Stack on tablets and mobile */
+        gap: 3rem;
+        max-width: 400px; /* Constrain width on mobile for better aesthetics */
+        margin: 0 auto;
+    }
 }
 
 /* --- MOBILE PHONES (Small Devices) --- */
@@ -184,7 +210,7 @@ a:hover { color: var(--accent-yellow); }
     .main-nav ul li a,
     .main-header.scrolled .main-nav ul li a {
         font-size: 1.5rem;
-        color: var(--dark-text) !important; /* Mobile nav links are always dark */
+        color: var(--dark-text) !important;
     }
     .btn-nav-quote { display: none; }
 
@@ -194,7 +220,7 @@ a:hover { color: var(--accent-yellow); }
     .hamburger.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .section-title { font-size: 2rem; }
-    .welcome-section, .destinations-section { padding: 80px 0; }
+    .welcome-section, .vacation-types-section { padding: 80px 0; }
     .hero { height: 90vh; }
     .hero-title { font-size: 2.8rem; }
     .hero-subtitle { font-size: 1.2rem; }
@@ -211,5 +237,4 @@ a:hover { color: var(--accent-yellow); }
         margin-bottom: 1rem;
     }
     .hero-cta-buttons .btn:last-child { margin-bottom: 0; }
-    .destinations-grid { grid-template-columns: 1fr; }
 }
