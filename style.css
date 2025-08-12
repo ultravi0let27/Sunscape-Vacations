@@ -120,43 +120,43 @@ a:hover { color: var(--accent-yellow); }
 .welcome-image { flex-basis: 45%; }
 .welcome-image img { width: 100%; height: auto; border-radius: var(--border-radius); box-shadow: var(--shadow); }
 
-/* --- VACATION TYPES SECTION (New Section Style) --- */
+/* --- VACATION TYPES SECTION --- */
 .vacation-types-section {
     padding: 120px 0;
-    background-color: var(--accent-blue); /* Uses the turquoise from your logo */
+    background-color: var(--sand-color); /* <<<< CHANGED back to sand color */
 }
 .vacation-types-section .section-title {
-    color: var(--white-color); /* Title text is white */
+    color: var(--dark-text); /* <<<< CHANGED to dark text */
     margin-bottom: 4rem;
 }
 .types-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 2.5rem; /* Slightly increased gap for a cleaner look */
 }
 .category-card {
     text-align: center;
     transition: var(--transition);
 }
 .category-card:hover {
-    transform: translateY(-10px); /* Lifts the card on hover */
+    transform: translateY(-10px);
 }
 .category-card .card-image-container {
     background-color: var(--dark-text);
-    border-radius: 24px; /* Creates the rounded corners */
+    border-radius: 24px;
     overflow: hidden;
-    padding: 10px; /* The "frame" around the image */
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    padding: 10px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Slightly stronger shadow for depth */
     margin-bottom: 1.5rem;
 }
 .category-card img {
     width: 100%;
     height: 300px;
     object-fit: cover;
-    border-radius: 16px; /* Inner radius for the image */
+    border-radius: 16px;
 }
 .category-card h3 {
-    color: var(--white-color);
+    color: var(--dark-text); /* <<<< CHANGED to dark text */
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
