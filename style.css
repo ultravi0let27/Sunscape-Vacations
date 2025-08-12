@@ -10,7 +10,7 @@
     --light-text: #7f8c8d;
     --accent-yellow: #fec544;
     --accent-blue: #45c3d2;
-    --header-height: 100px; /* Increased for a more spacious feel */
+    --header-height: 100px;
     --border-radius: 12px;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -26,7 +26,6 @@ body {
     line-height: 1.7;
     overflow-x: hidden;
 }
-/* This is the container for all page sections EXCEPT the header */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
 p { margin-bottom: 1rem; color: var(--light-text); }
@@ -46,19 +45,29 @@ a:hover { color: var(--accent-yellow); }
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
-/* === THIS IS THE KEY CHANGE === */
-/* We override the standard container to make the header full-width */
 .main-header .container {
-    max-width: 100%; /* Remove the width limit */
-    padding: 0 40px;   /* Add padding on the screen edges */
+    max-width: 100%;
+    padding: 0 40px;
 }
 .main-header .container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
 
-.logo img { height: 75px; /* Significantly larger logo */ transition: var(--transition); }
+.logo img { height: 75px; transition: var(--transition); }
 .main-nav ul { display: flex; align-items: center; list-style: none; }
-.main-nav ul li { margin-left: 40px; } /* Increased spacing */
-.main-nav ul li a { font-weight: 600; color: var(--dark-text); position: relative; padding: 5px 0; }
-.main-header.scrolled .main-nav ul li a { color: var(--dark-text); }
+.main-nav ul li { margin-left: 40px; }
+
+/* Navigation links default to WHITE */
+.main-nav ul li a {
+    font-weight: 600;
+    color: var(--white-color); /* <<<< CHANGED TO WHITE */
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+/* On scroll, links turn back to DARK */
+.main-header.scrolled .main-nav ul li a {
+    color: var(--dark-text); /* <<<< Switches to dark text on scroll */
+}
+
 .main-nav ul li a::after {
     content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
     width: 0; height: 2px; background-color: var(--accent-yellow); transition: var(--transition);
@@ -67,8 +76,7 @@ a:hover { color: var(--accent-yellow); }
 
 .btn-nav-quote {
     background-color: var(--accent-yellow); color: var(--dark-text);
-    padding: 15px 35px; /* Larger, more defined button padding */
-    border-radius: 50px; border: 2px solid transparent;
+    padding: 15px 35px; border-radius: 50px; border: 2px solid transparent;
     text-transform: uppercase; font-size: 0.9rem; font-weight: 700;
 }
 .btn-nav-quote:hover {
@@ -77,11 +85,17 @@ a:hover { color: var(--accent-yellow); }
 }
 .btn-nav-quote:hover::after { display: none; }
 .hamburger { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
+
+/* Hamburger bars default to WHITE */
 .hamburger-bar {
     display: block; width: 25px; height: 3px; margin: 5px auto;
-    background-color: var(--dark-text); border-radius: 3px; transition: var(--transition);
+    background-color: var(--white-color); /* <<<< CHANGED TO WHITE */
+    border-radius: 3px; transition: var(--transition);
 }
-.main-header.scrolled .hamburger-bar { background-color: var(--dark-text); }
+/* On scroll, hamburger bars turn back to DARK */
+.main-header.scrolled .hamburger-bar {
+    background-color: var(--dark-text); /* <<<< Switches to dark text on scroll */
+}
 
 
 /* --- HERO SECTION --- */
@@ -91,7 +105,15 @@ a:hover { color: var(--accent-yellow); }
 }
 .hero-content { position: relative; z-index: 2; animation: fadeIn 1s .5s both; }
 .hero-title { font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.hero-subtitle { font-size: 1.5rem; font-weight: 300; margin-bottom: 2.5rem; letter-spacing: 1px; }
+
+/* Hero subtitle (text under title) is now explicitly WHITE */
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.9); /* <<<< A clean, slightly transparent white */
+}
 .btn {
     padding: 15px 35px; border-radius: 50px; font-weight: 600; transition: var(--transition);
     border: 2px solid transparent; display: inline-block; margin: 5px; text-transform: uppercase; letter-spacing: 0.5px;
@@ -137,7 +159,6 @@ a:hover { color: var(--accent-yellow); }
 
 /* --- TABLETS (Medium Devices) --- */
 @media (max-width: 992px) {
-    /* Return header padding to normal for tablets */
     .main-header .container {
         padding: 0 20px;
     }
@@ -160,7 +181,11 @@ a:hover { color: var(--accent-yellow); }
     .main-nav.active { right: 0; }
     .main-nav ul { flex-direction: column; text-align: center; }
     .main-nav ul li { margin: 20px 0; }
-    .main-nav ul li a { font-size: 1.5rem; color: var(--dark-text) !important; }
+    .main-nav ul li a,
+    .main-header.scrolled .main-nav ul li a {
+        font-size: 1.5rem;
+        color: var(--dark-text) !important; /* Mobile nav links are always dark */
+    }
     .btn-nav-quote { display: none; }
 
     .hamburger { display: block; }
