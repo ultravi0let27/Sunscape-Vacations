@@ -3,36 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f2f5;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            padding: 40px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-    </style>
+    <title>Sunscape Vacations - All-Inclusive & Cruise Specialist</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>It's working!</h1>
-        <p>Your GitHub Pages site is all set up and ready to go.</p>
-    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">
+                <!-- Replace with your actual logo file -->
+                <img src="https://ultravi0let27.github.io/Sunscape-Vacations/sunscape-logo-transparent.png" alt="Sunscape Vacations Logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <!-- The background video/image will be set in CSS -->
+            <div class="hero-overlay"></div>
+            <div class="hero-content container">
+                <h1 class="hero-title">Your Gateway to Paradise</h1>
+                <p class="hero-subtitle">Specializing in seamless All-Inclusive and Cruise vacations.</p>
+                <div class="hero-cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Request a Quote: All-Inclusive</a>
+                    <a href="#contact" class="btn btn-secondary">Request a Quote: Cruise</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="welcome-section" id="about">
+            <div class="container welcome-container">
+                <div class="welcome-text">
+                    <h2 class="section-title">Welcome to Your Luxurious Home Away From Home</h2>
+                    <p>Welcome to Sunscape Vacations, your premier destination for unforgettable getaways! We specialize in curating seamless, luxurious vacation experiences that allow you to fully unwind and immerse yourself in the beauty of your destination. Our expertise ensures every detail is perfect.</p>
+                </div>
+                <div class="welcome-image">
+                    <!-- Replace with a high-quality image of a relaxing vacation spot -->
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Luxury resort with palm trees">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
