@@ -10,7 +10,7 @@
     --light-text: #7f8c8d;
     --accent-yellow: #fec544;
     --accent-blue: #45c3d2;
-    --header-height: 80px;
+    --header-height: 90px; /* Increased from 80px for more space */
     --border-radius: 12px;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -46,7 +46,7 @@ a:hover { color: var(--accent-yellow); }
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
 }
 .main-header .container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
-.logo img { height: 60px; transition: var(--transition); }
+.logo img { height: 70px; /* Increased from 60px */ transition: var(--transition); }
 .main-nav ul { display: flex; align-items: center; list-style: none; }
 .main-nav ul li { margin-left: 35px; }
 .main-nav ul li a { font-weight: 600; color: var(--dark-text); position: relative; padding: 5px 0; }
@@ -56,9 +56,17 @@ a:hover { color: var(--accent-yellow); }
     width: 0; height: 2px; background-color: var(--accent-yellow); transition: var(--transition);
 }
 .main-nav ul li a:hover::after { width: 100%; }
+
+/* --- Polished 'Get a Quote' Button --- */
 .btn-nav-quote {
-    background-color: var(--accent-yellow); color: var(--dark-text);
-    padding: 10px 20px; border-radius: 50px; border: 2px solid transparent;
+    background-color: var(--accent-yellow);
+    color: var(--dark-text);
+    padding: 12px 28px; /* Adjusted for better padding */
+    border-radius: 50px;
+    border: 2px solid transparent;
+    text-transform: uppercase; /* Makes text match the reference */
+    font-size: 0.9rem;        /* Gives explicit control over size */
+    font-weight: 700;       /* Makes it bolder */
 }
 .btn-nav-quote:hover {
     background-color: var(--accent-blue); color: var(--white-color) !important;
@@ -160,20 +168,16 @@ a:hover { color: var(--accent-yellow); }
     .hero-subtitle { font-size: 1.2rem; }
     .hero-cta-buttons { display: flex; flex-direction: column; align-items: center; width: 100%; }
     
-    /* --- REFINED MOBILE BUTTON STYLES --- */
     .btn {
-        text-align: center; /* Ensures text is centered */
+        text-align: center;
         width: 85%;
         max-width: 320px;
     }
     .hero-cta-buttons .btn {
-        padding: 16px 20px; /* Slightly taller for a better tap target */
-        font-size: 0.95rem; /* Readjust font for better fit */
-        margin-bottom: 1rem; /* Add clear space between buttons */
+        padding: 16px 20px;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
     }
-    .hero-cta-buttons .btn:last-child {
-        margin-bottom: 0;
-    }
-
+    .hero-cta-buttons .btn:last-child { margin-bottom: 0; }
     .destinations-grid { grid-template-columns: 1fr; }
 }
