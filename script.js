@@ -1,30 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger-menu');
     const mainNav = document.querySelector('.main-nav');
+    const header = document.querySelector('.main-header');
 
-    // Toggle mobile menu
+    // --- Mobile Menu Toggle ---
     hamburger.addEventListener('click', () => {
         mainNav.classList.toggle('active');
         hamburger.classList.toggle('active');
+        // Prevent body from scrolling when mobile menu is open
+        document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('.main-nav ul li a').forEach(link => {
+    // --- Close Mobile Menu When a Link is Clicked ---
+    document.querySelectorAll('.main-nav a').forEach(link => {
         link.addEventListener('click', () => {
             if (mainNav.classList.contains('active')) {
                 mainNav.classList.remove('active');
                 hamburger.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     });
 
-    // Add shadow to header on scroll
-    const header = document.querySelector('.main-header');
+    // --- Add Scrolled Class to Header ---
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.05)';
+            header.classList.add('scrolled');
         } else {
-            header.style.boxShadow = 'none';
+            header.classList.remove('scrolled');
         }
     });
 });
