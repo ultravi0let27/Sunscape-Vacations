@@ -123,16 +123,16 @@ a:hover { color: var(--accent-yellow); }
 /* --- VACATION TYPES SECTION --- */
 .vacation-types-section {
     padding: 120px 0;
-    background-color: var(--sand-color); /* <<<< CHANGED back to sand color */
+    background-color: var(--sand-color);
 }
 .vacation-types-section .section-title {
-    color: var(--dark-text); /* <<<< CHANGED to dark text */
+    color: var(--dark-text);
     margin-bottom: 4rem;
 }
 .types-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem; /* Slightly increased gap for a cleaner look */
+    gap: 2.5rem;
 }
 .category-card {
     text-align: center;
@@ -143,20 +143,20 @@ a:hover { color: var(--accent-yellow); }
 }
 .category-card .card-image-container {
     background-color: var(--dark-text);
-    border-radius: 24px;
-    overflow: hidden;
-    padding: 10px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Slightly stronger shadow for depth */
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(44, 62, 80, 0.1);
     margin-bottom: 1.5rem;
+    height: 150px; /* This creates the wide rectangular shape */
+    position: relative; /* Needed to position the icon */
 }
-.category-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 16px;
+.placeholder-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(255, 255, 255, 0.3); /* Sets the icon color */
 }
 .category-card h3 {
-    color: var(--dark-text); /* <<<< CHANGED to dark text */
+    color: var(--dark-text);
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
