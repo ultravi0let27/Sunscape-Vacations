@@ -119,7 +119,7 @@ a:hover { color: var(--accent-yellow); }
 .welcome-text { flex-basis: 50%; }
 .welcome-image {
     flex-basis: 45%;
-    height: 450px; /* <--- This sets a maximum height for the image container /
+    height: 300px; /* <--- This sets a maximum height for the image container /
 }
 .welcome-image img {
     width: 100%;
