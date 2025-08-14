@@ -558,14 +558,29 @@ a:hover { color: var(--accent-yellow); }
 /* Responsive Adjustments for Footer */
 @media (max-width: 768px) {
     .contact-card {
-        grid-template-columns: 1fr; /* Stack everything in one column */
-        gap: 2.5rem;
+        /* This is the key: stack everything into a single column on mobile */
+        grid-template-columns: 1fr; 
+        gap: 2.5rem; /* Adjusts the vertical space between the items */
     }
-    .contact-portrait, .contact-details, .social-links {
-        grid-column: 1 / -1; /* Each item takes the full width */
-        text-align: center;
+
+    /* We target all three grid items at once */
+    .contact-portrait, 
+    .contact-details, 
+    .social-links {
+        /* Force each item onto its own row and take up the full width */
+        grid-column: 1 / -1; 
+        text-align: center; /* Center-align all the text content */
+    }
+
+    /* We can explicitly set the order for a perfect mobile layout */
+    .contact-portrait {
+        grid-row: 1; /* Portrait image appears first */
+    }
+    .contact-details {
+        grid-row: 2; /* Contact text appears second */
     }
     .social-links {
-        justify-content: center;
+        grid-row: 3; /* Social icons appear third */
+        justify-content: center; /* Ensures the icons themselves are centered */
     }
 }
