@@ -584,3 +584,46 @@ a:hover { color: var(--accent-yellow); }
         justify-content: center; /* Ensures the icons themselves are centered */
     }
 }
+
+/* ====== PRE-LOADER STYLES ====== */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white-color); /* Uses the clean white background */
+    z-index: 9999; /* Ensures it's on top of all other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.7s ease; /* Controls the fade-out animation */
+}
+
+/* The state when the loader is hidden */
+#loader-wrapper.hidden {
+    opacity: 0;
+    pointer-events: none; /* Allows clicks to go through to the page */
+}
+
+#loader-wrapper img {
+    width: 120px; /* Adjust size of logo as needed */
+    height: auto;
+    animation: pulse 1.5s infinite ease-in-out; /* The pulsing animation */
+}
+
+/* Defines the keyframes for the pulse animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
