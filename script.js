@@ -1,3 +1,15 @@
+// ====== PRE-LOADER LOGIC ======
+window.onload = function() {
+    const loader = document.getElementById('loader-wrapper');
+    loader.classList.add('hidden');
+};
+
+// Your existing code follows...
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger-menu');
+    // ... rest of your existing script
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger-menu');
     const mainNav = document.querySelector('.main-nav');
