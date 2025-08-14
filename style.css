@@ -122,13 +122,17 @@ a:hover { color: var(--accent-yellow); }
 .welcome-text { flex-basis: 50%; }
 .welcome-image {
     flex-basis: 45%;
+    /* We set a specific height for the container */
+    height: 420px; 
 }
 .welcome-image img {
     width: 100%;
-    height: auto;
+    /* We make the image fill that container */
+    height: 100%; 
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    object-fit: cover;
+    /* This is the key: it makes the image crop to fit, not stretch or squash */
+    object-fit: cover; 
 }
 
 /* --- VACATION TYPES SECTION --- */
