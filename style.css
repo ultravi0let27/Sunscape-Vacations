@@ -114,7 +114,10 @@ a:hover { color: var(--accent-yellow); }
 .btn-secondary:hover { background-color: var(--accent-blue); color: var(--white-color); transform: translateY(-3px); }
 
 /* --- WELCOME SECTION --- */
-.welcome-section { padding: 120px 0; background-color: var(--white-color); }
+.welcome-section {
+    padding: 120px 0;
+    background-color: var(--white-color); /* This line fixes the overlap */
+}
 .welcome-container { display: flex; align-items: center; gap: 4rem; }
 .welcome-text { flex-basis: 50%; }
 .welcome-image {
