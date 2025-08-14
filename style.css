@@ -254,8 +254,8 @@ a:hover { color: var(--accent-yellow); }
 
 .accreditations-image-wrapper {
     position: relative;
-    max-width: 360px; /* Reduced from 400px to make it less long */
-    height: 460px;    /* Reduced from 500px to make it less high */
+    max-width: 420px; /* Reduced from 400px to make it less long */
+    height: 420px;    /* Reduced from 500px to make it less high */
     margin: 0 auto;   
 }
 
