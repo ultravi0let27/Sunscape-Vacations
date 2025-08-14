@@ -53,7 +53,7 @@ a:hover { color: var(--accent-yellow); }
 
 .logo img { height: 75px; transition: var(--transition); }
 .main-nav ul { display: flex; align-items: center; list-style: none; }
-.main-nav ul li { margin-left: 40px; }
+.main-nav ul li { margin-left: 25px; }
 .main-nav ul li a {
     font-weight: 600;
     color: var(--white-color);
