@@ -254,16 +254,15 @@ a:hover { color: var(--accent-yellow); }
 
 .accreditations-image-wrapper {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 400px; /* Controls the maximum width of the image area */
+    height: 500px;    /* Sets a fixed, taller height for the image area */
+    margin: 0 auto;   /* Ensures it's centered in its grid column */
 }
 
-/* This is the simple, rotated shape behind the image */
 .accreditations-image-wrapper::before {
     content: '';
     position: absolute;
-    width: 90%;
+    width: 100%;   /* The shape will now match the new container dimensions */
     height: 100%;
     background-color: var(--accent-yellow);
     border-radius: 24px;
@@ -271,12 +270,11 @@ a:hover { color: var(--accent-yellow); }
     transition: var(--transition);
 }
 
-/* The main image itself, with no rotation */
 .accreditations-image-wrapper img {
     position: relative;
-    width: 90%;
-    height: auto;
-    object-fit: cover;
+    width: 100%;    /* The image will fill the container horizontally */
+    height: 100%;   /* The image will fill the container vertically */
+    object-fit: cover; /* This is the key: it crops the image to fit, not stretch */
     border-radius: 24px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     transition: var(--transition);
