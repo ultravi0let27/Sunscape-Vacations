@@ -1,28 +1,34 @@
+// ====== NEW: Initialize Lenis Immediately for Instant Response ======
+const lenis = new Lenis({
+    lerp: 0.1, // Tighter, more responsive scroll feel (was 0.07)
+    smoothWheel: true,
+});
+
+// Immediately stop scroll until the pre-loader is gone
+lenis.stop(); 
+
+// The animation loop that makes Lenis work
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+// ==============================================================
+
+
 // ====== PRE-LOADER LOGIC ======
+// This now simply waits for images, then starts the scroll
 window.onload = function() {
     const loader = document.getElementById('loader-wrapper');
     if (loader) {
         loader.classList.add('hidden');
     }
+    lenis.start(); // Start the scroll only when the page is fully ready
 };
 
+
 document.addEventListener('DOMContentLoaded', function() {
-
-    // ====== NEW: INITIALIZE LENIS SMOOTH SCROLL ======
-    const lenis = new Lenis({
-        lerp: 0.07, // Adjust this value for more or less "glide"
-        smoothWheel: true,
-    });
-
-    // This is the animation loop that makes Lenis work
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-    // =================================================
-
-
+    
     // ====== INITIALIZE PARTICLES.JS ======
     if (document.getElementById('particles-js')) {
         particlesJS.load('particles-js', 'particles.json', function() {
@@ -39,24 +45,20 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', () => {
             const isActive = mainNav.classList.toggle('active');
             hamburger.classList.toggle('active');
-            document.body.style.overflow = isActive ? 'hidden' : '';
-            // NEW: Stop and start Lenis when menu opens/closes
-            isActive ? lenis.stop() : lenis.start();
+            isActive ? lenis.stop() : lenis.start(); // Stop/start Lenis
         });
-
         document.querySelectorAll('.main-nav a, .main-nav button').forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     hamburger.classList.remove('active');
-                    document.body.style.overflow = '';
-                    lenis.start(); // NEW: Make sure scroll starts again
+                    lenis.start();
                 }
             });
         });
     }
     
-    // NEW: Use the Lenis scroll event for the header for perfect sync
+    // Use the Lenis scroll event for the header for perfect sync
     if(header) {
         lenis.on('scroll', (e) => {
             if (e.animatedScroll > 50) {
@@ -75,13 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const openModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.add('active');
-            lenis.stop(); // NEW: Stop scroll when modal is open
+            lenis.stop();
         }
     };
     const closeModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.remove('active');
-            lenis.start(); // NEW: Start scroll again when modal closes
+            lenis.start();
         }
     };
 
