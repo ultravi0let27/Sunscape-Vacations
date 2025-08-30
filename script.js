@@ -7,14 +7,15 @@ window.onload = function() {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-
+    
+    // ====== INITIALIZE PARTICLES.JS ======
     if (document.getElementById('particles-js')) {
         particlesJS.load('particles-js', 'particles.json', function() {
             console.log('Particles.js config loaded');
         });
     }
 
-    // --- ORIGINAL INTERACTIVITY (Header Shadow, Mobile Menu) ---
+    // --- HEADER SHADOW & MOBILE MENU ---
     const hamburger = document.getElementById('hamburger-menu');
     const mainNav = document.querySelector('.main-nav');
     const header = document.querySelector('.main-header');
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
         });
 
-        document.querySelectorAll('.main-nav a').forEach(link => {
+        document.querySelectorAll('.main-nav a, .main-nav button').forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
@@ -47,28 +48,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ====== NEW: QUOTE MODAL LOGIC ======
+    // ====== QUOTE MODAL LOGIC ======
     const modalOverlay = document.getElementById('quote-modal-overlay');
     const closeModalBtn = document.getElementById('close-modal-btn');
     const triggerButtons = document.querySelectorAll('.quote-modal-trigger');
 
-    // Function to open the modal
     const openModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevents scrolling while modal is open
+            document.body.style.overflow = 'hidden';
         }
     };
 
-    // Function to close the modal
     const closeModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Re-enables scrolling
+            document.body.style.overflow = '';
         }
     };
 
-    // Attach event listeners
     triggerButtons.forEach(button => {
         button.addEventListener('click', openModal);
     });
@@ -77,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
         closeModalBtn.addEventListener('click', closeModal);
     }
     
-    // Also close modal if user clicks on the dark overlay
     if (modalOverlay) {
         modalOverlay.addEventListener('click', function(event) {
             if (event.target === modalOverlay) {
