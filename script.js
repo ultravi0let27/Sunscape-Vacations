@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
             hamburger.classList.toggle('active');
             document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
         });
-
         document.querySelectorAll('.main-nav a, .main-nav button').forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
@@ -59,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'hidden';
         }
     };
-
     const closeModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.remove('active');
@@ -67,19 +65,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    triggerButtons.forEach(button => {
-        button.addEventListener('click', openModal);
+    triggerButtons.forEach(button => button.addEventListener('click', openModal));
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', (event) => {
+        if (event.target === modalOverlay) closeModal();
     });
-    
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeModal);
-    }
-    
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', function(event) {
-            if (event.target === modalOverlay) {
-                closeModal();
+
+    // ====== NEW: SCROLL REVEAL ANIMATIONS ======
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
+        });
+    }, {
+        threshold: 0.1 // Triggers when 10% of the element is visible
+    });
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el) => observer.observe(el));
+
+    // ====== NEW: INITIALIZE 3D TILT EFFECT ======
+    if (window.VanillaTilt) {
+        VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
+            max: 15,        // Max tilt rotation (degrees)
+            speed: 400,     // Speed of the enter/exit transition
+            glare: true,    // Adds a shiny glare effect
+            "max-glare": 0.3 // The opacity of the glare
         });
     }
 });
