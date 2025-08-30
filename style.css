@@ -642,3 +642,77 @@ a:hover { color: var(--accent-yellow); }
         opacity: 0.8;
     }
 }
+
+/* ====== QUOTE SELECTION MODAL ====== */
+#quote-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(44, 62, 80, 0.7); /* A dark, semi-transparent overlay */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+#quote-modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#quote-modal-content {
+    background: var(--white-color);
+    padding: 3rem 4rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+}
+#quote-modal-overlay.active #quote-modal-content {
+    transform: scale(1);
+}
+
+#close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+#close-modal-btn:hover {
+    color: var(--dark-text);
+}
+
+#quote-modal-content .section-title {
+    margin-bottom: 1rem;
+}
+#quote-modal-content p {
+    margin-bottom: 2rem;
+    color: var(--light-text);
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.modal-buttons .btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
