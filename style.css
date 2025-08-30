@@ -154,21 +154,21 @@ a:hover { color: var(--accent-yellow); }
     transition: var(--transition);
 }
 .category-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(--10px);
 }
 .category-card .card-image-container {
     background-color: var(--dark-text);
-    border-radius: 30px;
-    box-shadow: 0 10px 25px rgba(44, 62, 80, 0.1);
+    border-radius: 24px; /* The outer rounded frame */
+    overflow: hidden;
+    padding: 10px; /* The spacing that creates the "frame" effect */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     margin-bottom: 1.5rem;
-    height: 150px; /* This creates the wide rectangular shape */
-    position: relative; /* Needed to position the icon */
 }
-.placeholder-icon {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    color: rgba(255, 255, 255, 0.3); /* Sets the icon color */
+.category-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px; /* The inner rounded corners for the image itself */
 }
 .category-card h3 {
     color: var(--dark-text);
