@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ====== INITIALIZE LENIS SMOOTH SCROLL (INSTANT & RESPONSIVE) ======
+    // ====== NEW: Initialize Lenis Immediately for Instant Response ======
     const lenis = new Lenis({
-        lerp: 0.1, // This is a tighter, more responsive value.
+        lerp: 0.2, // This value makes the scroll start much faster and feel more responsive.
         smoothWheel: true,
     });
 
