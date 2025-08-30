@@ -40,7 +40,7 @@
                     <li><a href="#destinations">Destinations</a></li>
                     <li><a href="#resorts">Experience</a></li>
                     <li><a href="#accreditations">Credentials</a></li>
-                    <li><a href="#contact" class="btn btn-nav-quote">Get a Quote</a></li>
+                    <li><button class="btn btn-nav-quote quote-modal-trigger">Get a Quote</button></li>
                 </ul>
             </nav>
             <button class="hamburger" id="hamburger-menu">
@@ -58,9 +58,8 @@
                 <h1 class="hero-title">Your Gateway to Paradise</h1>
                 <p class="hero-subtitle">Specializing in seamless All-Inclusive and Cruise vacations.</p>
                 <div class="hero-cta-buttons">
-                    <!-- Text on buttons is slightly shorter for a cleaner mobile view -->
-                    <a href="#" class="btn btn-primary">Request All-Inclusive</a>
-                    <a href="#" class="btn btn-secondary">Request a Cruise</a>
+                    <button class="btn btn-primary quote-modal-trigger">Request All-Inclusive</button>
+                    <button class="btn btn-secondary quote-modal-trigger">Request a Cruise</button>
                 </div>
             </div>
         </section>
@@ -293,5 +292,25 @@
     </footer>
 
     <script src="script.js"></script> <!-- This should already be here -->
+<!-- ====== QUOTE SELECTION MODAL ====== -->
+    <div id="quote-modal-overlay">
+        <div id="quote-modal-content">
+            <button id="close-modal-btn">&times;</button>
+            <h2 class="section-title">Request a Quote</h2>
+            <p>Please select the type of vacation you are interested in.</p>
+            <div class="modal-buttons">
+                <!-- =============================================================== -->
+                <!-- PASTE YOUR "ALL-INCLUSIVE" FORM LINK BELOW                      -->
+                <!-- =============================================================== -->
+                <a href="YOUR_ALL_INCLUSIVE_FORM_LINK" class="btn btn-primary" target="_blank" rel="noopener noreferrer">All-Inclusive Quote</a>
+
+                <!-- =============================================================== -->
+                <!-- PASTE YOUR "CRUISE" FORM LINK BELOW                             -->
+                <!-- =============================================================== -->
+                <a href="YOUR_CRUISE_FORM_LINK" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Cruise Quote</a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
