@@ -1,20 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ====== NEW: Initialize Lenis Immediately for Instant Response ======
-    //const lenis = new Lenis({
-    //    lerp: 0.2, // This value makes the scroll start much faster and feel more responsive.
-    //    smoothWheel: true,
-    //});
-
+    // ====== INITIALIZE LENIS SMOOTH SCROLL ======
+    const lenis = new Lenis({
+        lerp: 0.15, // A balanced, responsive lerp value
+        smoothWheel: true,
+    });
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-    // =============================================================
 
-    // ====== PRE-LOADER (NON-BLOCKING) ======
-    // This now only handles the fade-out and does NOT block scrolling.
+    // ====== PRE-LOADER ======
     window.onload = function() {
         const loader = document.getElementById('loader-wrapper');
         if (loader) {
@@ -38,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', () => {
             const isActive = mainNav.classList.toggle('active');
             hamburger.classList.toggle('active');
-            // Stop/start Lenis when the mobile menu is open/closed
             isActive ? lenis.stop() : lenis.start();
         });
         document.querySelectorAll('.main-nav a, .main-nav button').forEach(link => {
@@ -46,13 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     hamburger.classList.remove('active');
-                    lenis.start(); // Ensure scrolling is re-enabled
+                    lenis.start();
                 }
             });
         });
     }
     
-    // Use the Lenis scroll event for the header shadow
     if(header) {
         lenis.on('scroll', (e) => {
             if (e.animatedScroll > 50) {
@@ -71,13 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const openModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.add('active');
-            lenis.stop(); // Stop scroll when modal is open
+            lenis.stop();
         }
     };
     const closeModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.remove('active');
-            lenis.start(); // Start scroll again when modal closes
+            lenis.start();
         }
     };
 
