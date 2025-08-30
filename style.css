@@ -716,3 +716,8 @@ a:hover { color: var(--accent-yellow); }
     padding: 1rem;
     font-size: 1.1rem;
 }
+
+/* Add this new rule to fix the secondary button's text color inside the modal */
+#quote-modal-content .btn-secondary {
+    color: var(--dark-text);
+}
