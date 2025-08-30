@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // ====== NEW: Initialize Lenis Immediately for Instant Response ======
-    const lenis = new Lenis({
-        lerp: 0.2, // This value makes the scroll start much faster and feel more responsive.
-        smoothWheel: true,
-    });
+    //const lenis = new Lenis({
+    //    lerp: 0.2, // This value makes the scroll start much faster and feel more responsive.
+    //    smoothWheel: true,
+    //});
 
     function raf(time) {
         lenis.raf(time);
