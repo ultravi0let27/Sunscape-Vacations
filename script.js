@@ -8,6 +8,12 @@ window.onload = function() {
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    if (document.getElementById('particles-js')) {
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('Particles.js config loaded');
+        });
+    }
+
     // --- ORIGINAL INTERACTIVITY (Header Shadow, Mobile Menu) ---
     const hamburger = document.getElementById('hamburger-menu');
     const mainNav = document.querySelector('.main-nav');
