@@ -1,34 +1,27 @@
-// ====== NEW: Initialize Lenis Immediately for Instant Response ======
-const lenis = new Lenis({
-    lerp: 0.1, // Tighter, more responsive scroll feel (was 0.07)
-    smoothWheel: true,
-});
-
-// Immediately stop scroll until the pre-loader is gone
-lenis.stop(); 
-
-// The animation loop that makes Lenis work
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-// ==============================================================
-
-
-// ====== PRE-LOADER LOGIC ======
-// This now simply waits for images, then starts the scroll
-window.onload = function() {
-    const loader = document.getElementById('loader-wrapper');
-    if (loader) {
-        loader.classList.add('hidden');
-    }
-    lenis.start(); // Start the scroll only when the page is fully ready
-};
-
-
 document.addEventListener('DOMContentLoaded', function() {
     
+    // ====== INITIALIZE LENIS SMOOTH SCROLL (INSTANT & RESPONSIVE) ======
+    const lenis = new Lenis({
+        lerp: 0.1, // This is a tighter, more responsive value.
+        smoothWheel: true,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    // =============================================================
+
+    // ====== PRE-LOADER (NON-BLOCKING) ======
+    // This now only handles the fade-out and does NOT block scrolling.
+    window.onload = function() {
+        const loader = document.getElementById('loader-wrapper');
+        if (loader) {
+            loader.classList.add('hidden');
+        }
+    };
+
     // ====== INITIALIZE PARTICLES.JS ======
     if (document.getElementById('particles-js')) {
         particlesJS.load('particles-js', 'particles.json', function() {
@@ -45,20 +38,21 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', () => {
             const isActive = mainNav.classList.toggle('active');
             hamburger.classList.toggle('active');
-            isActive ? lenis.stop() : lenis.start(); // Stop/start Lenis
+            // Stop/start Lenis when the mobile menu is open/closed
+            isActive ? lenis.stop() : lenis.start();
         });
         document.querySelectorAll('.main-nav a, .main-nav button').forEach(link => {
             link.addEventListener('click', () => {
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     hamburger.classList.remove('active');
-                    lenis.start();
+                    lenis.start(); // Ensure scrolling is re-enabled
                 }
             });
         });
     }
     
-    // Use the Lenis scroll event for the header for perfect sync
+    // Use the Lenis scroll event for the header shadow
     if(header) {
         lenis.on('scroll', (e) => {
             if (e.animatedScroll > 50) {
@@ -77,13 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const openModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.add('active');
-            lenis.stop();
+            lenis.stop(); // Stop scroll when modal is open
         }
     };
     const closeModal = () => {
         if (modalOverlay) {
             modalOverlay.classList.remove('active');
-            lenis.start();
+            lenis.start(); // Start scroll again when modal closes
         }
     };
 
