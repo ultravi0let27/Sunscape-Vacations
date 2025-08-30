@@ -721,3 +721,84 @@ a:hover { color: var(--accent-yellow); }
 #quote-modal-content .btn-secondary {
     color: var(--dark-text);
 }
+
+/* =================================================================== */
+/* ====== PART 1: ALIVE & INTERACTIVE WEBSITE ENHANCEMENTS ====== */
+/* =================================================================== */
+
+/* --- 1. Silky Smooth Scrolling --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- 2. The Hero Gradient & Particle Canvas --- */
+.hero {
+    position: relative; /* Crucial for positioning the gradient and particles */
+}
+
+/* This is the canvas for our future particle effect */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits below the content */
+}
+
+/* Ensure hero content stays on top */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* The beautiful transparent-to-white gradient */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Prevents a hard line */
+    left: 0;
+    width: 100%;
+    height: 200px; /* Adjust height of the fade as needed */
+    background: linear-gradient(to bottom, rgba(255,255,255,0), var(--white-color) 100%);
+    z-index: 3;
+}
+
+
+/* --- 3. Scroll-Triggered Animation Foundation --- */
+/* This is the initial "hidden" state for elements that will animate in */
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+/* This is the "visible" state that our JS will toggle */
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- 4. Enhanced & Dynamic Button Interactions --- */
+/* Make all buttons have a more "physical" feel */
+.btn {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.btn:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transform: translateY(-4px) scale(1.02);
+}
+
+
+/* --- 5. Invented Effect: Interactive Accordion Hover --- */
+/* Makes the "Resorts Visited" dropdowns more dynamic */
+.accordion-item {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.accordion-item:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transform: translateX(10px);
+}
+.accordion-item[open] {
+    transform: translateX(5px);
+}
