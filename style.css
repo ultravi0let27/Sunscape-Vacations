@@ -802,3 +802,18 @@ html {
 .accordion-item[open] {
     transform: translateX(5px);
 }
+
+/* --- 6. Interactive 3D Tilt Effect --- */
+.tilt-card {
+    transform-style: preserve-3d; /* This enables the 3D effect */
+    will-change: transform; /* Optimizes performance */
+    transform: perspective(1000px); /* Sets the 3D "depth" */
+}
+.tilt-card .card-image-container {
+    /* Adds a subtle, glowing border on hover that matches the brand */
+    box-shadow: 0 0 0px 0px rgba(254, 197, 68, 0); 
+    transition: box-shadow 0.4s ease;
+}
+.tilt-card:hover .card-image-container {
+    box-shadow: 0 0 25px 5px rgba(254, 197, 68, 0.3);
+}
