@@ -1,33 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- START: LENIS SMOOTH SCROLL SETUP (as per the guide) ---
-    const lenis = new Lenis({
-        lerp: 0.07, // The balanced, recommended "ease" factor
-    });
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-
+    // ====== INITIALIZE LENIS SMOOTH SCROLL ======
+    const lenis = new Lenis({ lerp: 0.15, smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-    // --- END: LENIS SMOOTH SCROLL SETUP ---
-
 
     // ====== PRE-LOADER ======
     window.onload = function() {
         const loader = document.getElementById('loader-wrapper');
-        if (loader) {
-            loader.classList.add('hidden');
-        }
+        if (loader) loader.classList.add('hidden');
     };
 
     // ====== PARTICLES.JS ======
     if (document.getElementById('particles-js')) {
-        particlesJS.load('particles-js', 'particles.json', function() {
-            console.log('Particles.js config loaded');
-        });
+        particlesJS.load('particles-js', 'particles.json', console.log.bind(console, 'Particles.js config loaded'));
     }
+
+    // ====== NEW: SVG WAVE COLOR INITIALIZER ======
+    // This makes our new wave colors work
+    document.querySelectorAll('.wave').forEach(wave => {
+        wave.style.fill = getComputedStyle(wave).getPropertyValue('fill');
+    });
 
     // --- HEADER SHADOW & MOBILE MENU ---
     const hamburger = document.getElementById('hamburger-menu');
@@ -38,59 +31,38 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', () => {
             const isActive = mainNav.classList.toggle('active');
             hamburger.classList.toggle('active');
-            // Stop/start Lenis when the mobile menu is open/closed
             isActive ? lenis.stop() : lenis.start();
         });
     }
     
     if(header) {
-        // Use the Lenis scroll event for perfect sync
         lenis.on('scroll', (e) => {
-            if (e.animatedScroll > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            header.classList.toggle('scrolled', e.animatedScroll > 50);
         });
     }
 
     // ====== QUOTE MODAL LOGIC ======
     const modalOverlay = document.getElementById('quote-modal-overlay');
-    const closeModalBtn = document.getElementById('close-modal-btn');
     const triggerButtons = document.querySelectorAll('.quote-modal-trigger');
 
-    const openModal = () => {
-        if (modalOverlay) {
-            modalOverlay.classList.add('active');
-            lenis.stop();
-        }
-    };
-    const closeModal = () => {
-        if (modalOverlay) {
-            modalOverlay.classList.remove('active');
-            lenis.start();
-        }
+    const toggleModal = (isActive) => {
+        if (modalOverlay) modalOverlay.classList.toggle('active', isActive);
+        isActive ? lenis.stop() : lenis.start();
     };
 
-    triggerButtons.forEach(button => button.addEventListener('click', openModal));
-    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-    if (modalOverlay) modalOverlay.addEventListener('click', (event) => {
-        if (event.target === modalOverlay) closeModal();
+    triggerButtons.forEach(button => button.addEventListener('click', () => toggleModal(true)));
+    document.getElementById('close-modal-btn')?.addEventListener('click', () => toggleModal(false));
+    modalOverlay?.addEventListener('click', (event) => {
+        if (event.target === modalOverlay) toggleModal(false);
     });
 
     // ====== SCROLL REVEAL ANIMATIONS ======
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
         });
-    }, {
-        threshold: 0.1
-    });
-
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el) => observer.observe(el));
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
     // ====== 3D TILT EFFECT ======
     if (window.VanillaTilt) {
