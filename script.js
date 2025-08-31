@@ -1,15 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ====== INITIALIZE LENIS SMOOTH SCROLL ======
+    // --- START: LENIS SMOOTH SCROLL SETUP (as per the guide) ---
     const lenis = new Lenis({
-        lerp: 0.15, // A balanced, responsive lerp value
-        smoothWheel: true,
+        lerp: 0.07, // The balanced, recommended "ease" factor
     });
+
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
+
     requestAnimationFrame(raf);
+    // --- END: LENIS SMOOTH SCROLL SETUP ---
+
 
     // ====== PRE-LOADER ======
     window.onload = function() {
@@ -19,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // ====== INITIALIZE PARTICLES.JS ======
+    // ====== PARTICLES.JS ======
     if (document.getElementById('particles-js')) {
         particlesJS.load('particles-js', 'particles.json', function() {
             console.log('Particles.js config loaded');
@@ -35,20 +38,13 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', () => {
             const isActive = mainNav.classList.toggle('active');
             hamburger.classList.toggle('active');
+            // Stop/start Lenis when the mobile menu is open/closed
             isActive ? lenis.stop() : lenis.start();
-        });
-        document.querySelectorAll('.main-nav a, .main-nav button').forEach(link => {
-            link.addEventListener('click', () => {
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    hamburger.classList.remove('active');
-                    lenis.start();
-                }
-            });
         });
     }
     
     if(header) {
+        // Use the Lenis scroll event for perfect sync
         lenis.on('scroll', (e) => {
             if (e.animatedScroll > 50) {
                 header.classList.add('scrolled');
@@ -99,10 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ====== 3D TILT EFFECT ======
     if (window.VanillaTilt) {
         VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.3
+            max: 15, speed: 400, glare: true, "max-glare": 0.3
         });
     }
 });
