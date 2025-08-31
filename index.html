@@ -6,7 +6,8 @@
     <title>Sunscape Vacations - All-Inclusive & Cruise Specialist</title>
     
     <link rel="icon" type="image/png" href="https://i.postimg.cc/136gFrJS/bd64a82ba898e9fe04e5cb56c2468fd9.png">
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +20,7 @@
     <header class="main-header">
         <div class="container">
             <a href="#home" class="logo"><img src="https://i.postimg.cc/VLcJjDPq/bd64a82ba898e9fe04e5cb56c2468fd9.png" alt="Sunscape Vacations Logo"></a>
-            <nav class="main-nav">
+            <nav class="main-nav" data-lenis-prevent>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -128,7 +129,7 @@
         </div>
     </footer>
 
-    <div id="quote-modal-overlay">
+    <div id="quote-modal-overlay" data-lenis-prevent>
         <div id="quote-modal-content">
             <button id="close-modal-btn">&times;</button>
             <h2 class="section-title">Request a Quote</h2>
@@ -140,7 +141,6 @@
         </div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
