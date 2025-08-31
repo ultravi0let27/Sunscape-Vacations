@@ -15,7 +15,20 @@
 </head>
 <body>
 
-    <div class="ocean-background"></div>
+    <!-- ====== NEW: THE LIVING SHORELINE ====== -->
+    <div class="shoreline-background">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="wave-container">
+                <use xlink:href="#gentle-wave" x="48" y="0" class="wave wave1" />
+                <use xlink:href="#gentle-wave" x="48" y="3" class="wave wave2" />
+                <use xlink:href="#gentle-wave" x="48" y="5" class="wave wave3" />
+            </g>
+        </svg>
+    </div>
+    <!-- ====== END OF SHORELINE ====== -->
 
     <div id="loader-wrapper"><img src="https://i.postimg.cc/136gFrJS/bd64a82ba898e9fe04e5cb56c2468fd9.png" alt="Sunscape Vacations Loading"></div>
 
