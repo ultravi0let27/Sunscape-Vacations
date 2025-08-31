@@ -104,8 +104,26 @@ a:hover { color: var(--accent-yellow); }
 
 /* --- HERO SECTION --- */
 .hero {
-    height: 100vh; position: relative; display: flex; align-items: center; text-align: center;
-    color: var(--white-color); background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--white-color);
+    background-color: var(--dark-text); /* Sets a dark base for particles */
+    overflow: hidden; /* Important for containing elements */
+}
+
+.hero-overlay { /* Add or replace this rule */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* New, more transparent gradient over a stunning image */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    z-index: 1; /* Sits ON TOP of the particles */
+    opacity: 0.8; /* Makes it slightly transparent to see particles through */
 }
 .hero-content { position: relative; z-index: 2; animation: fadeIn 1s .5s both; }
 .hero-title { font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
@@ -750,12 +768,12 @@ html {
 
 /* This is the canvas for our future particle effect */
 #particles-js {
-    position: absolute;
+    position: fixed; /* This is the key change */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Sits below the content */
+    z-index: 0; /* Pushes it to the very back */
 }
 
 /* Ensure hero content stays on top */
