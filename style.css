@@ -853,55 +853,60 @@ html {
 }
 
 /* =================================================================== */
-/* ====== FINAL: THE LIVING SHORELINE ENVIRONMENT ====== */
+/* ====== FINAL: THE LIVING SHORELINE (GUARANTEED) ====== */
 /* =================================================================== */
 
-.ocean-background {
+.shoreline-background {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 20vh; /* The ocean takes up the bottom 20% of the screen */
-    background: var(--accent-blue); /* The beautiful turquoise water */
+    height: 20vh;
+    min-height: 100px;
+    max-height: 250px;
     z-index: -1;
+    pointer-events: none;
 }
 
-/* We use pseudo-elements to create two layers of foam that wash ashore.
-   They are animated with different timings for a natural, non-repetitive effect. */
-
-.ocean-background::before,
-.ocean-background::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 99%; /* Sits perfectly on top of the "ocean" div */
+.waves {
+    position: relative;
     width: 100%;
-    height: 250%; /* The height of the "wave" shape itself */
-    background: var(--sand-color);
-    border-radius: 100%; /* Creates the curved shoreline shape */
-    transform: scaleX(1.5);
-    z-index: 10;
+    height: 100%;
 }
 
-/* This is the first, main wave */
-.ocean-background::before {
-    animation: wave-wash 10s ease-in-out infinite;
-    opacity: 1; /* The main wave is solid */
+.wave-container > .wave {
+    animation: move-wave 25s cubic-bezier(.55,.5,.45,.5) infinite;
 }
 
-/* This is a second, gentler echo of the wave */
-.ocean-background::after {
-    animation: wave-wash 14s ease-in-out infinite;
-    animation-delay: 2s; /* Starts a little later */
-    opacity: 0.5; /* This wave is semi-transparent */
+/* We style each wave with a color, position, and animation delay 
+   for a beautiful, natural, multi-layered effect */
+
+.wave1 {
+    animation-delay: -2s;
+    animation-duration: 10s;
+    fill: var(--accent-blue); /* The main turquoise wave */
+    opacity: 0.7;
 }
 
-/* The keyframe animation that makes the waves "breathe" */
-@keyframes wave-wash {
-    0%, 100% {
-        transform: translateY(0) scaleX(1.5);
+.wave2 {
+    animation-delay: -4s;
+    animation-duration: 12s;
+    fill: var(--accent-yellow); /* The subtle "sunset" wave */
+    opacity: 0.5;
+}
+
+.wave3 {
+    animation-delay: -3s;
+    animation-duration: 15s;
+    fill: var(--white-color); /* The white "seafoam" */
+    opacity: 0.3;
+}
+
+@keyframes move-wave {
+    0% {
+        transform: translate3d(-90px, 0, 0);
     }
-    50% {
-        transform: translateY(-40%) scaleX(1.5); /* The wave washes up the beach */
+    100% { 
+        transform: translate3d(85px, 0, 0);
     }
 }
