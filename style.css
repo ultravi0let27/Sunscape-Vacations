@@ -33,11 +33,12 @@ html.lenis {
 html { scroll-behavior: smooth; }
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--white-color);
     color: var(--dark-text);
     line-height: 1.7;
     overflow-x: hidden;
+    background-color: var(--dark-text); /* The dark base color now lives here */
 }
+
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
 p { margin-bottom: 1rem; color: var(--light-text); }
@@ -110,8 +111,8 @@ a:hover { color: var(--accent-yellow); }
     align-items: center;
     text-align: center;
     color: var(--white-color);
-    background-color: var(--dark-text); /* Sets a dark base for particles */
-    overflow: hidden; /* Important for containing elements */
+    background-color: transparent; /* Changed from dark-text */
+    overflow: hidden;
 }
 
 .hero-overlay { /* Add or replace this rule */
@@ -146,7 +147,7 @@ a:hover { color: var(--accent-yellow); }
 /* --- WELCOME SECTION --- */
 .welcome-section {
     padding: 120px 0;
-    background-color: var(--white-color); /* This line fixes the overlap */
+    background-color: transparent;
 }
 .welcome-container { display: flex; align-items: center; gap: 4rem; }
 .welcome-text { flex-basis: 50%; }
@@ -168,7 +169,7 @@ a:hover { color: var(--accent-yellow); }
 /* --- VACATION TYPES SECTION --- */
 .vacation-types-section {
     padding: 120px 0;
-    background-color: var(--sand-color);
+    background-color: transparent;
 }
 .vacation-types-section .section-title {
     color: var(--dark-text);
@@ -287,7 +288,7 @@ a:hover { color: var(--accent-yellow); }
 /* ====== ACCREDITATIONS SECTION (REDESIGNED) ====== */
 .accreditations-section {
     padding: 120px 0;
-    background-color: #fcf8ed; /* A much softer, more elegant cream background */
+    background-color: transparent; /* A much softer, more elegant cream background */
 }
 
 .accreditations-grid {
@@ -394,7 +395,7 @@ a:hover { color: var(--accent-yellow); }
 /* ====== RESORTS VISITED SECTION ====== */
 .resorts-visited-section {
     padding: 120px 0;
-    background-color: var(--sand-color);
+    background-color: transparent;
 }
 
 .resorts-accordion {
@@ -768,12 +769,12 @@ html {
 
 /* This is the canvas for our future particle effect */
 #particles-js {
-    position: fixed; /* This is the key change */
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Pushes it behind all content */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Pushes it to the very back */
 }
 
 /* Ensure hero content stays on top */
