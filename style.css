@@ -32,16 +32,16 @@ html.lenis {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 html {
-    height: 100%; /* Ensures the html element fills the page */
+    height: 100%;
 }
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--dark-text);
     line-height: 1.7;
     overflow-x: hidden;
-    background-color: var(--sand-color); /* The SAND background is now permanent */
-    position: relative; /* Crucial for z-index layering */
-    z-index: 1; /* Puts the body content on top of the background effect */
+    background-color: #f7f5f2; /* Direct Hex Code Fix for the sand color */
+    position: relative;
+    z-index: 1;
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -858,60 +858,63 @@ html {
 }
 
 /* =================================================================== */
-/* ====== FINAL MASTERPIECE: THE LIVING COASTLINE ====== */
+/* ====== FINAL MASTERPIECE: THE LIVING SHORELINE (GUARANTEED) ====== */
 /* =================================================================== */
 
-.coastal-environment {
+.shoreline {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 30vh; /* Increased height for a more epic feel */
+    height: 25vh; /* A nice, tall wave area */
     min-height: 150px;
     max-height: 300px;
-    z-index: -1; /* Sits behind everything */
+    z-index: -1;
     pointer-events: none;
-    background: #5ab1b8; /* A base "deep water" color */
 }
 
-/* We use two pseudo-elements to create three layers of flowing, organic color.
-   This technique creates the exact look from your reference image. */
+.waves {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
-/* This is the light green "shallow water" layer */
-.coastal-environment::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background-color: #a9d9c2; /* Light green */
-    border-radius: 45%;
-    animation: flow-animation 12s ease-in-out infinite;
+.wave-container > .wave {
+    /* The core back-and-forth animation */
+    animation: flow 20s cubic-bezier(.55,.5,.45,.5) infinite alternate;
+}
+
+/* We style each of the 3 wave layers with different colors, speeds,
+   and delays to create a complex, beautiful, and non-repetitive motion. */
+
+/* This is the main body of water */
+.wave-deep-water {
+    animation-duration: 20s;
+    fill: #5ab1b8; /* Deep turquoise water */
     opacity: 0.7;
 }
 
-/* This is the white "seafoam" layer */
-.coastal-environment::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background-color: #FFFFFF; /* White */
-    border-radius: 40%;
-    animation: flow-animation 10s ease-in-out infinite;
-    animation-delay: -1s;
-    opacity: 0.8;
+/* This is the shallower, light-green water near the "shore" */
+.wave-shallow-water {
+    animation-duration: 25s;
+    animation-delay: -3s;
+    fill: #a9d9c2; /* Light green shallows */
+    opacity: 0.6;
 }
 
-/* This is the animation that makes the "liquid" flow from side to side */
-@keyframes flow-animation {
-    0%, 100% {
-        transform: translate3d(-25%, -60%, 0);
+/* This is the white seafoam washing over the top */
+.wave-foam {
+    animation-duration: 30s;
+    animation-delay: -5s;
+    fill: #FFFFFF; /* White seafoam */
+    opacity: 0.5;
+}
+
+@keyframes flow {
+    0% {
+        transform: translate3d(-90px, 0, 0);
     }
-    50% {
-        transform: translate3d(25%, -60%, 0);
+    100% { 
+        transform: translate3d(85px, 0, 0);
     }
 }
