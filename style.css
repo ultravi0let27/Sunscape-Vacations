@@ -1,189 +1,929 @@
-/* =================================================================== */
-/* ====== SUNSCAPE VACATIONS - FINAL & COMPLETE STYLESHEET ====== */
-/* =================================================================== */
+/* --- GOOGLE FONTS --- */
+/* font-family: 'Poppins', sans-serif; */
+/* font-family: 'Playfair Display', serif; */
 
-/* --- ROOT VARIABLES --- */
-:root {
-    --white-color: #ffffff;
-    --sand-color: #f7f5f2; 
-    --dark-text: #2c3e50;
-    --light-text: #7f8c8d;
-    --accent-yellow: #fec544;
-    --accent-blue: #45c3d2;
-    --header-height: 100px;
-    --border-radius: 24px;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* --- DEFINITIVE BACKGROUND & RESET --- */
 html {
     height: 100%;
-    background-color: var(--sand-color); 
+    /* Apply the sand color to the root element to ensure it's always the base */
+    background-color: #f7f5f2; 
 }
+
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--dark-text);
     line-height: 1.7;
     overflow-x: hidden;
+    /* The body itself is now transparent, allowing the html background to show through */
     background-color: transparent; 
     position: relative;
     z-index: 1;
 }
+/* --- END OF DEFINITIVE BACKGROUND FIX --- */
+
+/* --- CSS VARIABLES --- */
+:root {
+    --white-color: #ffffff;
+    --sand-color: #f7f5f2;
+    --dark-text: #2c3e50;
+    --light-text: #7f8c8d;
+    --accent-yellow: #fec544;
+    --accent-blue: #45c3d2;
+    --header-height: 100px;
+    --border-radius: 12px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- LENIS SMOOTH SCROLL STYLES (as per the guide) --- */
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+/* --- END LENIS STYLES --- */
+
+/* --- RESET & GLOBAL STYLES --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-p { margin-bottom: 1rem; color: var(--light-text); }
+html { scroll-behavior: smooth; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+p { 
+    margin-bottom: 1rem; 
+    color: var(--light-text); /* Ensures all paragraphs are readable */
+}
 a { color: var(--accent-blue); text-decoration: none; transition: var(--transition); }
 a:hover { color: var(--accent-yellow); }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-.section-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; line-height: 1.2; margin-bottom: 1.5rem; color: var(--dark-text); }
+.section-title { font-size: 2.8rem; margin-bottom: 1.5rem; color: var(--dark-text); }
+.section-subtitle { max-width: 600px; margin: -1rem auto 3rem; }
 .text-center { text-align: center; }
 
-/* --- LENIS SMOOTH SCROLL STYLES --- */
-html.lenis { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-scrolling iframe { pointer-events: none; }
-
 /* --- HEADER / NAVIGATION --- */
-.main-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; height: var(--header-height); transition: var(--transition); }
-.main-header.scrolled { background: rgba(255, 255, 255, 0.95); box-shadow: 0 5px 20px rgba(0,0,0,0.05); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-.main-header .container { max-width: 100%; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; height: 100%; }
+.main-header {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    height: var(--header-height); transition: var(--transition);
+}
+.main-header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.main-header .container {
+    max-width: 100%;
+    padding: 0 40px;
+}
+.main-header .container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
+
 .logo img { height: 75px; transition: var(--transition); }
-.main-nav { z-index: 1001; }
 .main-nav ul { display: flex; align-items: center; list-style: none; }
-.main-nav ul li { margin-left: 30px; }
-.main-nav ul li a, .main-nav ul li button { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--white-color); position: relative; padding: 5px 0; transition: color 0.3s ease; }
-.main-header.scrolled .main-nav ul li a, .main-header.scrolled .main-nav ul li button { color: var(--dark-text); }
-.btn-nav-quote { background-color: var(--accent-yellow); color: var(--dark-text); padding: 15px 35px; border-radius: 50px; border: 2px solid transparent; text-transform: uppercase; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
-.btn-nav-quote:hover { background-color: var(--accent-blue); color: var(--white-color) !important; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-.hamburger { display: none; background: none; border: none; cursor: pointer; z-index: 1002; }
-.hamburger-bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--white-color); border-radius: 3px; transition: var(--transition); }
-.main-header.scrolled .hamburger-bar { background-color: var(--dark-text); }
+.main-nav ul li { margin-left: 25px; }
+.main-nav ul li a {
+    font-weight: 600;
+    color: var(--white-color);
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+.main-header.scrolled .main-nav ul li a {
+    color: var(--dark-text);
+}
+.main-nav ul li a::after {
+    content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 2px; background-color: var(--accent-yellow); transition: var(--transition);
+}
+.main-nav ul li a:hover::after { width: 100%; }
+
+.btn-nav-quote {
+    background-color: var(--accent-yellow); color: var(--dark-text);
+    padding: 15px 35px; border-radius: 50px; border: 2px solid transparent;
+    text-transform: uppercase; font-size: 0.9rem; font-weight: 700;
+}
+.btn-nav-quote:hover {
+    background-color: var(--accent-blue); color: var(--white-color) !important;
+    transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.btn-nav-quote:hover::after { display: none; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
+.hamburger-bar {
+    display: block; width: 25px; height: 3px; margin: 5px auto;
+    background-color: var(--white-color);
+    border-radius: 3px; transition: var(--transition);
+}
+.main-header.scrolled .hamburger-bar {
+    background-color: var(--dark-text);
+}
 
 /* --- HERO SECTION --- */
-.hero { height: 100vh; position: relative; display: flex; align-items: center; text-align: center; color: var(--white-color); overflow: hidden; }
-.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; z-index: 1; }
+.hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--white-color);
+    background-color: transparent; /* Changed from dark-text */
+    overflow: hidden;
+}
+
+.hero-overlay { /* Add or replace this rule */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* New, more transparent gradient over a stunning image */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    z-index: 1; /* Sits ON TOP of the particles */
+    opacity: 0.8; /* Makes it slightly transparent to see particles through */
+}
 .hero-content { position: relative; z-index: 2; animation: fadeIn 1s .5s both; }
 .hero-title { font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.hero-subtitle { font-size: 1.5rem; font-weight: 300; margin-bottom: 2.5rem; letter-spacing: 1px; color: rgba(255, 255, 255, 0.9); }
-.btn { padding: 15px 35px; border-radius: 50px; font-weight: 600; transition: var(--transition); border: 2px solid transparent; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-.btn:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.2); transform: translateY(-4px) scale(1.02); }
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.9);
+}
+.btn {
+    padding: 15px 35px; border-radius: 50px; font-weight: 600; transition: var(--transition);
+    border: 2px solid transparent; display: inline-block; margin: 5px; text-transform: uppercase; letter-spacing: 0.5px;
+}
 .btn-primary { background-color: var(--accent-yellow); color: var(--dark-text); }
+.btn-primary:hover { background-color: transparent; border-color: var(--accent-yellow); color: var(--accent-yellow); transform: translateY(-3px); }
 .btn-secondary { background-color: transparent; border: 2px solid var(--accent-blue); color: var(--white-color); }
-.hero::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 150px; background: var(--sand-color); z-index: 3; clip-path: polygon(0% 100%, 100% 100%, 100% 25%, 50% 75%, 0% 25%); }
+.btn-secondary:hover { background-color: var(--accent-blue); color: var(--white-color); transform: translateY(-3px); }
 
-/* --- ALL OTHER SECTIONS --- */
-.welcome-section { padding: 120px 0; background-color: transparent; }
+/* --- WELCOME SECTION --- */
+.welcome-section {
+    padding: 120px 0;
+    background-color: transparent;
+}
 .welcome-container { display: flex; align-items: center; gap: 4rem; }
 .welcome-text { flex-basis: 50%; }
-.welcome-image { flex-basis: 45%; height: 420px; }
-.welcome-image img { width: 100%; height: 100%; border-radius: var(--border-radius); box-shadow: var(--shadow); object-fit: cover; }
-.vacation-types-section { padding: 120px 0; background-color: transparent; }
-.types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
-.category-card { text-align: center; transition: var(--transition); }
-.category-card:hover { transform: translateY(-10px); }
-.category-card .card-image-container { background-color: var(--dark-text); border-radius: 24px; overflow: hidden; padding: 10px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); margin-bottom: 1.5rem; }
-.category-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 16px; }
-.category-card h3 { color: var(--dark-text); font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 600; }
-.accreditations-section { padding: 120px 0; background-color: transparent; }
-.accreditations-grid { display: grid; grid-template-columns: repeat(2, 1fr); align-items: center; gap: 4rem; }
-.accreditations-image-wrapper { position: relative; max-width: 360px; height: 460px; margin: 0 auto; }
-.accreditations-image-wrapper::before { content: ''; position: absolute; width: 100%; height: 100%; background-color: var(--accent-yellow); border-radius: 24px; transform: rotate(-6deg); transition: var(--transition); }
-.accreditations-image-wrapper img { position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: var(--transition); }
-.accreditations-image-wrapper:hover img { transform: scale(1.03); }
-.accreditations-image-wrapper:hover::before { transform: rotate(-8deg) scale(1.02); }
-.accreditations-content .section-title { text-align: left; }
-.logos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; align-items: center; margin-top: 2rem; }
-.logo-item img { max-height: 50px; width: auto; max-width: 150px; filter: grayscale(100%); opacity: 0.6; transition: var(--transition); }
-.logo-item img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.05); }
-.resorts-visited-section { padding: 120px 0; background-color: transparent; }
-.resorts-accordion { max-width: 800px; margin: 4rem auto 0; display: flex; flex-direction: column; gap: 1rem; }
-.accordion-item { background: var(--white-color); border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; transition: var(--transition); }
-.accordion-item:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateX(10px); }
-.accordion-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem; cursor: pointer; list-style: none; }
-.accordion-header::-webkit-details-marker { display: none; }
-.country-name { font-size: 1.5rem; }
-.chevron-icon { width: 10px; height: 10px; border-style: solid; border-color: var(--dark-text); border-width: 0 2px 2px 0; transform: rotate(45deg); transition: transform 0.3s ease; }
-.accordion-item[open] > .accordion-header .chevron-icon { transform: rotate(225deg); }
-.accordion-content { padding: 0 2rem 1.5rem; border-top: 1px solid #e0e0e0; }
-.accordion-content ul { list-style: none; padding: 0; }
-.accordion-content li { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-.accordion-content li:not(:last-child) { border-bottom: 1px solid #f0f0f0; }
-.resort-name { font-weight: 600; }
-.star-rating { display: flex; gap: 0.3rem; }
-.star-rating svg { width: 18px; height: 18px; fill: #d8d8d8; }
-.star-rating .star-filled { fill: var(--accent-yellow); }
-.contact-footer { padding: 120px 0 0; background-color: var(--accent-yellow); text-align: center; }
-.contact-card { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 2rem; margin-top: 4rem; text-align: left; }
-.contact-portrait { grid-column: 2 / 3; }
-.contact-portrait img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 5px solid var(--white-color); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-.contact-details { text-align: right; }
-.contact-details p { color: var(--dark-text); line-height: 1.6; font-weight: 500; }
-.affiliation-text { font-size: 0.8rem; opacity: 0.7; }
-.social-links { display: flex; gap: 1.5rem; }
-.social-icon { display: flex; justify-content: center; align-items: center; width: 50px; height: 50px; background-color: rgba(0,0,0,0.1); color: var(--dark-text); border-radius: 50%; transition: var(--transition); }
-.social-icon:hover { background-color: var(--dark-text); color: var(--white-color); transform: translateY(-5px) scale(1.1); }
-.tico-logo { margin-top: 3rem; opacity: 0.8; }
-.tico-logo img { max-height: 50px; }
-.tico-logo span { display: block; margin-top: 0.5rem; color: var(--dark-text); }
-.footer-bottom-line { border-top: 1px solid rgba(0,0,0,0.1); margin-top: 60px; padding: 20px 0; }
-.footer-bottom-line p { margin: 0; opacity: 0.7; }
+.welcome-image {
+    flex-basis: 45%;
+    /* We set a specific height for the container */
+    height: 420px; 
+}
+.welcome-image img {
+    width: 100%;
+    /* We make the image fill that container */
+    height: 100%; 
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    /* This is the key: it makes the image crop to fit, not stretch or squash */
+    object-fit: cover; 
+}
 
-/* --- INTERACTIVE & DYNAMIC EFFECTS --- */
-.reveal { opacity: 0; transform: translateY(60px); transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.tilt-card { transform-style: preserve-3d; will-change: transform; transform: perspective(1000px); }
-.tilt-card:hover .card-image-container { box-shadow: 0 0 25px 5px rgba(254, 197, 68, 0.3); }
-#loader-wrapper { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--white-color); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.7s ease; }
-#loader-wrapper.hidden { opacity: 0; pointer-events: none; }
-#loader-wrapper img { width: 120px; animation: pulse 1.5s infinite ease-in-out; }
-@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
-#quote-modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(44, 62, 80, 0.7); z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
-#quote-modal-overlay.active { opacity: 1; pointer-events: all; }
-#quote-modal-content { background: var(--white-color); padding: 3rem 4rem; border-radius: var(--border-radius); box-shadow: 0 15px 40px rgba(0,0,0,0.2); text-align: center; position: relative; max-width: 500px; width: 90%; transform: scale(0.9); transition: transform 0.4s ease; }
-#quote-modal-overlay.active #quote-modal-content { transform: scale(1); }
-#close-modal-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 2.5rem; color: #ccc; cursor: pointer; transition: color 0.3s ease; }
-#close-modal-btn:hover { color: var(--dark-text); }
-.modal-buttons { display: flex; flex-direction: column; gap: 1rem; }
-.modal-buttons .btn { width: 100%; padding: 1rem; font-size: 1.1rem; }
-#quote-modal-content .btn-secondary { color: var(--dark-text); }
-.shoreline { position: fixed; bottom: 0; left: 0; width: 100%; height: 25vh; min-height: 150px; max-height: 300px; z-index: 0; pointer-events: none; }
-.waves { position: relative; width: 100%; height: 100%; }
-.wave-container > .wave { animation: flow 20s cubic-bezier(.55,.5,.45,.5) infinite alternate; }
-.wave-deep-water { animation-duration: 20s; fill: #5ab1b8; opacity: 0.7; }
-.wave-shallow-water { animation-duration: 25s; animation-delay: -3s; fill: #a9d9c2; opacity: 0.6; }
-.wave-foam { animation-duration: 30s; animation-delay: -5s; fill: #FFFFFF; opacity: 0.5; }
-@keyframes flow { 0% { transform: translate3d(-90px, 0, 0); } 100% { transform: translate3d(85px, 0, 0); } }
+/* --- VACATION TYPES SECTION --- */
+.vacation-types-section {
+    padding: 120px 0;
+    background-color: transparent;
+}
+.vacation-types-section .section-title {
+    color: var(--dark-text);
+    margin-bottom: 4rem;
+}
+.types-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+.category-card {
+    text-align: center;
+    transition: var(--transition);
+}
+.category-card:hover {
+    transform: translateY(-10px);
+}
+.category-card .card-image-container {
+    background-color: var(--dark-text);
+    border-radius: 24px; /* The outer rounded frame */
+    overflow: hidden;
+    padding: 10px; /* The spacing that creates the "frame" effect */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    margin-bottom: 1.5rem;
+}
+.category-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px; /* The inner rounded corners for the image itself */
+}
+.category-card h3 {
+    color: var(--dark-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
 
-/* --- RESPONSIVE STYLES --- */
+
+/* --- FOOTER --- */
+.main-footer {
+    background-color: var(--dark-text); color: #bdc3c7;
+    padding: 40px 0; text-align: center; font-size: 0.9rem;
+}
+.main-footer p { color: #bdc3c7; }
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ======================================= */
+/* ---      RESPONSIVE STYLES      --- */
+/* ======================================= */
+
+/* --- TABLETS (Medium Devices) --- */
 @media (max-width: 992px) {
-    .main-header .container { padding: 0 20px; }
+    .main-header .container {
+        padding: 0 20px;
+    }
     .section-title { font-size: 2.5rem; }
     .hero-title { font-size: 4rem; }
-    .welcome-container, .accreditations-grid { flex-direction: column; text-align: center; }
-    .accreditations-content .section-title { text-align: center; }
-    .types-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    .welcome-container { flex-direction: column; text-align: center; }
+    
+    .types-grid {
+        grid-template-columns: 1fr; /* Stack on tablets and mobile */
+        gap: 3rem;
+        max-width: 400px; /* Constrain width on mobile for better aesthetics */
+        margin: 0 auto;
+    }
 }
+
+/* --- MOBILE PHONES (Small Devices) --- */
 @media (max-width: 768px) {
+    body { line-height: 1.6; }
     .logo img { height: 50px; }
-    .main-nav { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background-color: var(--white-color); transition: var(--transition); display: flex; justify-content: center; align-items: center; }
+    
+    .main-nav {
+        position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+        background-color: var(--white-color); transition: var(--transition);
+        display: flex; justify-content: center; align-items: center;
+    }
     .main-nav.active { right: 0; }
     .main-nav ul { flex-direction: column; text-align: center; }
     .main-nav ul li { margin: 20px 0; }
-    .main-nav ul li a, .main-nav ul li button { font-size: 1.5rem; color: var(--dark-text) !important; }
+    .main-nav ul li a,
+    .main-header.scrolled .main-nav ul li a {
+        font-size: 1.5rem;
+        color: var(--dark-text) !important;
+    }
+    .btn-nav-quote { display: none; }
+
     .hamburger { display: block; }
     .hamburger.active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .hamburger-bar:nth-child(2) { opacity: 0; }
     .hamburger.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
     .section-title { font-size: 2rem; }
-    .welcome-section, .vacation-types-section, .accreditations-section, .resorts-visited-section, .contact-footer { padding: 80px 0; }
+    .welcome-section, .vacation-types-section { padding: 80px 0; }
     .hero { height: 90vh; }
     .hero-title { font-size: 2.8rem; }
     .hero-subtitle { font-size: 1.2rem; }
     .hero-cta-buttons { display: flex; flex-direction: column; align-items: center; width: 100%; }
-    .btn { padding: 15px 25px; width: 80%; max-width: 300px; }
-    .accreditations-grid { grid-template-columns: 1fr; }
-    .logos-grid { grid-template-columns: repeat(2, 1fr); max-width: 400px; margin: 0 auto; }
-    .contact-card { grid-template-columns: 1fr; gap: 2.5rem; }
-    .contact-portrait, .contact-details, .social-links { grid-column: 1 / -1; text-align: center; }
-    .social-links { justify-content: center; }
+    
+    .btn {
+        text-align: center;
+        width: 85%;
+        max-width: 320px;
+    }
+    .hero-cta-buttons .btn {
+        padding: 16px 20px;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+    .hero-cta-buttons .btn:last-child { margin-bottom: 0; }
+}
+
+/* ====== ACCREDITATIONS SECTION (REDESIGNED) ====== */
+.accreditations-section {
+    padding: 120px 0;
+    background-color: transparent; /* A much softer, more elegant cream background */
+}
+
+.accreditations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* A perfect 50/50 column split */
+    align-items: center;
+    gap: 4rem;
+}
+
+.accreditations-image-wrapper {
+    position: relative;
+    max-width: 420px; /* Reduced from 400px to make it less long */
+    height: 420px;    /* Reduced from 500px to make it less high */
+    margin: 0 auto;   
+}
+
+.accreditations-image-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 100%;   /* The shape will now match the new container dimensions */
+    height: 100%;
+    background-color: var(--accent-yellow);
+    border-radius: 24px;
+    transform: rotate(-6deg);
+    transition: var(--transition);
+}
+
+.accreditations-image-wrapper img {
+    position: relative;
+    width: 100%;    /* The image will fill the container horizontally */
+    height: 100%;   /* The image will fill the container vertically */
+    object-fit: cover; /* This is the key: it crops the image to fit, not stretch */
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transition: var(--transition);
+}
+
+.accreditations-image-wrapper:hover img {
+    transform: scale(1.03); /* A subtle zoom on hover */
+}
+.accreditations-image-wrapper:hover::before {
+    transform: rotate(-8deg) scale(1.02);
+}
+
+
+.accreditations-content .section-title {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.accreditations-content p {
+    font-size: 1.1rem;
+    max-width: 550px;
+    margin-bottom: 2.5rem;
+}
+
+/* A clean grid layout for the logos */
+.logos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for logos */
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.logo-item {
+    text-align: left; /* Aligns logo content to the left */
+}
+
+.logo-item img {
+    max-height: 50px; /* Controls logo size */
+    width: auto;
+    max-width: 150px;
+    filter: grayscale(100%); /* Elegant grayscale look */
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.logo-item img:hover {
+    filter: grayscale(0%); /* Full color on hover */
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments for the new design */
+@media (max-width: 992px) {
+    .accreditations-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .accreditations-content .section-title {
+        text-align: center;
+    }
+    .accreditations-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .logos-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 logo columns on tablet/mobile */
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* ====== RESORTS VISITED SECTION ====== */
+.resorts-visited-section {
+    padding: 120px 0;
+    background-color: transparent;
+}
+
+.resorts-accordion {
+    max-width: 800px;
+    margin: 4rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.accordion-item {
+    background: var(--white-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    overflow: hidden; /* Important for the smooth open/close animation */
+    transition: var(--transition);
+}
+
+.accordion-item:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transform: translateY(-5px);
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    list-style: none; /* Removes default dropdown arrow */
+    width: 100%;
+}
+.accordion-header::-webkit-details-marker {
+    display: none; /* Hides default arrow in Safari */
+}
+
+.country-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--dark-text);
+}
+
+.chevron-icon {
+    width: 10px;
+    height: 10px;
+    border-style: solid;
+    border-color: var(--dark-text);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+.accordion-item[open] > .accordion-header .chevron-icon {
+    transform: rotate(225deg);
+}
+
+.accordion-content {
+    padding: 0 2rem 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+.accordion-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.accordion-content li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    font-size: 1rem;
+    color: var(--light-text);
+}
+.accordion-content li:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.resort-name {
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.star-rating {
+    display: flex;
+    gap: 0.3rem;
+}
+.star-rating svg {
+    width: 18px;
+    height: 18px;
+    fill: #d8d8d8; /* Default color for an empty star */
+}
+.star-rating .star-filled {
+    fill: var(--accent-yellow); /* Color for a filled star */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .accordion-header {
+        padding: 1.25rem 1.5rem;
+    }
+    .country-name {
+        font-size: 1.25rem;
+    }
+}
+
+/* ====== LETS CONNECT SECTION (CONTACT FOOTER) ====== */
+.contact-footer {
+    padding: 120px 0 0;
+    background-color: var(--accent-yellow); /* The warm yellow background */
+    text-align: center;
+}
+
+.contact-footer .section-title {
+    color: var(--dark-text);
+}
+
+.contact-card {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Left text | Middle image | Right icons */
+    align-items: center;
+    gap: 2rem;
+    margin-top: 4rem;
+    text-align: left;
+}
+
+.contact-portrait {
+    grid-column: 2 / 3; /* Places the portrait in the middle column */
+    grid-row: 1 / 2;
+    margin: 0 auto;
+}
+.contact-portrait img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%; /* Perfect circle */
+    border: 5px solid var(--white-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.contact-details {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    text-align: right;
+}
+.contact-details p {
+    color: var(--dark-text);
+    line-height: 1.6;
+    font-weight: 500;
+}
+.affiliation-text {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 1rem;
+}
+
+.social-links {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0,0,0,0.1);
+    color: var(--dark-text);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+.social-icon:hover {
+    background-color: var(--dark-text);
+    color: var(--white-color);
+    transform: translateY(-5px) scale(1.1);
+}
+
+.tico-logo {
+    margin-top: 3rem;
+    opacity: 0.8;
+}
+.tico-logo img {
+    max-height: 50px;
+}
+.tico-logo span {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--dark-text);
+}
+
+.footer-bottom-line {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    margin-top: 60px;
+    padding: 20px 0;
+}
+.footer-bottom-line p {
+    font-size: 0.9rem;
+    color: var(--dark-text);
+    opacity: 0.7;
+    margin: 0;
+}
+
+/* Responsive Adjustments for Footer */
+@media (max-width: 768px) {
+    .contact-card {
+        /* This is the key: stack everything into a single column on mobile */
+        grid-template-columns: 1fr; 
+        gap: 2.5rem; /* Adjusts the vertical space between the items */
+    }
+
+    /* We target all three grid items at once */
+    .contact-portrait, 
+    .contact-details, 
+    .social-links {
+        /* Force each item onto its own row and take up the full width */
+        grid-column: 1 / -1; 
+        text-align: center; /* Center-align all the text content */
+    }
+
+    /* We can explicitly set the order for a perfect mobile layout */
+    .contact-portrait {
+        grid-row: 1; /* Portrait image appears first */
+    }
+    .contact-details {
+        grid-row: 2; /* Contact text appears second */
+    }
+    .social-links {
+        grid-row: 3; /* Social icons appear third */
+        justify-content: center; /* Ensures the icons themselves are centered */
+    }
+}
+
+/* ====== PRE-LOADER STYLES ====== */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white-color); /* Uses the clean white background */
+    z-index: 9999; /* Ensures it's on top of all other content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.7s ease; /* Controls the fade-out animation */
+}
+
+/* The state when the loader is hidden */
+#loader-wrapper.hidden {
+    opacity: 0;
+    pointer-events: none; /* Allows clicks to go through to the page */
+}
+
+#loader-wrapper img {
+    width: 120px; /* Adjust size of logo as needed */
+    height: auto;
+    animation: pulse 1.5s infinite ease-in-out; /* The pulsing animation */
+}
+
+/* Defines the keyframes for the pulse animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* ====== QUOTE SELECTION MODAL ====== */
+#quote-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(44, 62, 80, 0.7); /* A dark, semi-transparent overlay */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+#quote-modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#quote-modal-content {
+    background: var(--white-color);
+    padding: 3rem 4rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+}
+#quote-modal-overlay.active #quote-modal-content {
+    transform: scale(1);
+}
+
+#close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+#close-modal-btn:hover {
+    color: var(--dark-text);
+}
+
+#quote-modal-content .section-title {
+    margin-bottom: 1rem;
+}
+#quote-modal-content p {
+    margin-bottom: 2rem;
+    color: var(--light-text);
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.modal-buttons .btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Add this new rule to fix the secondary button's text color inside the modal */
+#quote-modal-content .btn-secondary {
+    color: var(--dark-text);
+}
+
+/* =================================================================== */
+/* ====== PART 1: ALIVE & INTERACTIVE WEBSITE ENHANCEMENTS ====== */
+/* =================================================================== */
+
+/* --- 1. Silky Smooth Scrolling --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- 2. The Hero Gradient & Particle Canvas --- */
+.hero {
+    position: relative; /* Crucial for positioning the gradient and particles */
+}
+
+/* This is the canvas for our future particle effect */
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Pushes it behind all content */
+    top: 0;
+    left: 0;
+}
+
+/* Ensure hero content stays on top */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* The beautiful transparent-to-white gradient */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: var(--sand-color); /* The gradient is now a solid sand color */
+    z-index: 3;
+    /* This is the magic: it creates a beautiful, smooth wave cutout effect */
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%, 0 100%, 0 25%, 50% 75%, 100% 25%);
+    transition: all 0.5s ease;
+}
+
+
+/* --- 3. Scroll-Triggered Animation Foundation --- */
+/* This is the initial "hidden" state for elements that will animate in */
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+/* This is the "visible" state that our JS will toggle */
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- 4. Enhanced & Dynamic Button Interactions --- */
+/* Make all buttons have a more "physical" feel */
+.btn {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.btn:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    transform: translateY(-4px) scale(1.02);
+}
+
+
+/* --- 5. Invented Effect: Interactive Accordion Hover --- */
+/* Makes the "Resorts Visited" dropdowns more dynamic */
+.accordion-item {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.accordion-item:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transform: translateX(10px);
+}
+.accordion-item[open] {
+    transform: translateX(5px);
+}
+
+/* --- 6. Interactive 3D Tilt Effect --- */
+.tilt-card {
+    transform-style: preserve-3d; /* This enables the 3D effect */
+    will-change: transform; /* Optimizes performance */
+    transform: perspective(1000px); /* Sets the 3D "depth" */
+}
+.tilt-card .card-image-container {
+    /* Adds a subtle, glowing border on hover that matches the brand */
+    box-shadow: 0 0 0px 0px rgba(254, 197, 68, 0); 
+    transition: box-shadow 0.4s ease;
+}
+.tilt-card:hover .card-image-container {
+    box-shadow: 0 0 25px 5px rgba(254, 197, 68, 0.3);
+}
+
+/* =================================================================== */
+/* ====== FINAL MASTERPIECE: THE LIVING SHORELINE (GUARANTEED) ====== */
+/* =================================================================== */
+
+.shoreline {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25vh; /* A nice, tall wave area */
+    min-height: 150px;
+    max-height: 300px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.wave-container > .wave {
+    /* The core back-and-forth animation */
+    animation: flow 20s cubic-bezier(.55,.5,.45,.5) infinite alternate;
+}
+
+/* We style each of the 3 wave layers with different colors, speeds,
+   and delays to create a complex, beautiful, and non-repetitive motion. */
+
+/* This is the main body of water */
+.wave-deep-water {
+    animation-duration: 20s;
+    fill: #5ab1b8; /* Deep turquoise water */
+    opacity: 0.7;
+}
+
+/* This is the shallower, light-green water near the "shore" */
+.wave-shallow-water {
+    animation-duration: 25s;
+    animation-delay: -3s;
+    fill: #a9d9c2; /* Light green shallows */
+    opacity: 0.6;
+}
+
+/* This is the white seafoam washing over the top */
+.wave-foam {
+    animation-duration: 30s;
+    animation-delay: -5s;
+    fill: #FFFFFF; /* White seafoam */
+    opacity: 0.5;
+}
+
+@keyframes flow {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% { 
+        transform: translate3d(85px, 0, 0);
+    }
 }
