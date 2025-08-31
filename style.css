@@ -853,70 +853,55 @@ html {
 }
 
 /* =================================================================== */
-/* ====== PART 4: LIVING ENVIRONMENT (ANIMATED WAVES) ====== */
+/* ====== FINAL: THE LIVING SHORELINE ENVIRONMENT ====== */
 /* =================================================================== */
 
-#animated-waves {
+.ocean-background {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 15vh; 
-    min-height: 100px;
-    max-height: 250px;
-    z-index: 0; /* Sits behind content, just on top of particles */
-    pointer-events: none;
+    height: 20vh; /* The ocean takes up the bottom 20% of the screen */
+    background: var(--accent-blue); /* The beautiful turquoise water */
+    z-index: -1;
 }
 
-.wave {
+/* We use pseudo-elements to create two layers of foam that wash ashore.
+   They are animated with different timings for a natural, non-repetitive effect. */
+
+.ocean-background::before,
+.ocean-background::after {
+    content: '';
     position: absolute;
-    bottom: 0;
     left: 0;
+    bottom: 99%; /* Sits perfectly on top of the "ocean" div */
     width: 100%;
-    height: 100px;
-    /* This uses an embedded, self-contained SVG shape that will never break */
-    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 100' preserveAspectRatio='none'%3e%3cpath class='wave-path' d='M0,60 C300,120 700,-20 1000,60 L1000,100 L0,100 Z'%3e%3c/path%3e%3c/svg%3e");
-    background-size: 1000px 100px;
-    background-repeat: repeat-x;
-}
-
-/* We create 3 layers of waves, each with a different color, opacity, and speed
-   for a beautiful, non-repeating, parallax ocean effect. */
-
-#wave1 {
-    animation: move-wave 25s linear infinite;
-    fill: #45c3d2; /* Brand turquoise color */
-    opacity: 0.7;
+    height: 250%; /* The height of the "wave" shape itself */
+    background: var(--sand-color);
+    border-radius: 100%; /* Creates the curved shoreline shape */
+    transform: scaleX(1.5);
     z-index: 10;
 }
 
-#wave2 {
-    animation: move-wave-back 15s linear infinite;
-    fill: #fec544; /* Brand yellow for a "sunset" feel */
-    opacity: 0.5;
-    z-index: 9;
+/* This is the first, main wave */
+.ocean-background::before {
+    animation: wave-wash 10s ease-in-out infinite;
+    opacity: 1; /* The main wave is solid */
 }
 
-#wave3 {
-    animation: move-wave 30s linear infinite;
-    animation-delay: -2s;
-    fill: #FFFFFF; /* White for "seafoam" */
-    opacity: 0.3;
-    z-index: 8;
+/* This is a second, gentler echo of the wave */
+.ocean-background::after {
+    animation: wave-wash 14s ease-in-out infinite;
+    animation-delay: 2s; /* Starts a little later */
+    opacity: 0.5; /* This wave is semi-transparent */
 }
 
-@keyframes move-wave {
-    0% { background-position-x: 0; }
-    100% { background-position-x: 1000px; }
-}
-
-@keyframes move-wave-back {
-    0% { background-position-x: 1000px; }
-    100% { background-position-x: 0; }
-}
-
-/* This final piece of JS-controlled CSS allows the color of the SVG to be set */
-/* It must be placed here at the end of the file. */
-#animated-waves .wave path {
-    fill: inherit;
+/* The keyframe animation that makes the waves "breathe" */
+@keyframes wave-wash {
+    0%, 100% {
+        transform: translateY(0) scaleX(1.5);
+    }
+    50% {
+        transform: translateY(-40%) scaleX(1.5); /* The wave washes up the beach */
+    }
 }
