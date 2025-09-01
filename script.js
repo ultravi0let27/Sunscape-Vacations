@@ -56,24 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target === modalOverlay) toggleModal(false);
     });
 
-    // ====== INTERACTIVE BEACH BACKGROUND ======
-    const seaElement = document.querySelector('.sea');
-    const rippleElement = document.getElementById('cursor-ripple');
-    
-    if (seaElement && rippleElement) {
-        seaElement.addEventListener('mousemove', function(e) {
-            // Get the position of the sea container relative to the viewport
-            const rect = seaElement.getBoundingClientRect();
-    
-            // Calculate the cursor's position *inside* the sea container
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-    
-            // Update the ripple's position
-            rippleElement.style.left = `${x}px`;
-            rippleElement.style.top = `${y}px`;
-        });
-    }
 
     // ====== SCROLL REVEAL ANIMATIONS ======
     const observer = new IntersectionObserver((entries) => {
