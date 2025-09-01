@@ -4,8 +4,8 @@
 
 html {
     height: 100%;
-    /* Apply the sand color to the root element to ensure it's always the base */
-    background-color: #f7f5f2; 
+    /* This MUST be transparent to see the new beach background */
+    background-color: transparent; 
 }
 
 body {
@@ -13,12 +13,11 @@ body {
     color: var(--dark-text);
     line-height: 1.7;
     overflow-x: hidden;
-    /* The body itself is now transparent, allowing the html background to show through */
+    /* This allows the html element (now transparent) to show through */
     background-color: transparent; 
     position: relative;
     z-index: 1;
 }
-/* --- END OF DEFINITIVE BACKGROUND FIX --- */
 
 /* --- CSS VARIABLES --- */
 :root {
