@@ -864,3 +864,82 @@ html {
 .tilt-card:hover .card-image-container {
     box-shadow: 0 0 25px 5px rgba(254, 197, 68, 0.3);
 }
+
+/* ============================================== */
+/* ====== INTERACTIVE BEACH BACKGROUND ====== */
+/* ============================================== */
+
+.beach-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Sits behind ALL other content */
+    overflow: hidden; /* Prevents animations from spilling */
+}
+
+.sand {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35%; /* The beach takes up the bottom 35% of the screen */
+    background-color: #f7f3e9; /* A slightly warmer sand color */
+}
+
+.sea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65%; /* The sea takes up the top 65% */
+    background: linear-gradient(to bottom, #89d8e6, #45c3d2); /* From light to brand-blue */
+    
+    /* This creates the curved shoreline where the sea meets the sand */
+    -webkit-mask-image: radial-gradient(120% 60% at 50% 100%, transparent 49.5%, #fff 50%);
+            mask-image: radial-gradient(120% 60% at 50% 100%, transparent 49.5%, #fff 50%);
+}
+
+/* --- The Animated Waves --- */
+.sea-foam {
+    position: absolute;
+    bottom: -15px; /* Sits right on the shoreline */
+    left: -20%;
+    width: 140%;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    opacity: 0;
+    animation: wave-animation 10s infinite;
+}
+
+.sea-foam.foam-2 { animation-delay: 2.5s; }
+.sea-foam.foam-3 { animation-delay: 5s; }
+.sea-foam.foam-4 { animation-delay: 7.5s; }
+
+@keyframes wave-animation {
+    0% { transform: translateX(-5%) scaleX(1); opacity: 0; }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.6; }
+    100% { transform: translateX(5%) scaleX(1.1); opacity: 0; }
+}
+
+/* --- The Cursor Ripple Effect --- */
+#cursor-ripple {
+    position: absolute; /* We control position with JS */
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Start invisible */
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    opacity: 0;
+    pointer-events: none; /* Ripple can't be clicked */
+    z-index: 10;
+}
+
+.sea:hover #cursor-ripple {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
