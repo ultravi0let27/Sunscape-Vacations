@@ -797,18 +797,17 @@ html {
     z-index: 2;
 }
 
-/* The beautiful transparent-to-white gradient */
+/* The beautiful transparent-to-sand gradient */
 .hero::after {
     content: '';
     position: absolute;
-    bottom: -1px;
+    bottom: 0; /* Aligns the gradient to the very bottom */
     left: 0;
     width: 100%;
-    height: 200px;
-    background: var(--sand-color); /* The gradient is now a solid sand color */
+    height: 250px; /* Increased height for a smoother fade */
+    /* This is the magic: a gradient from transparent to the sand color */
+    background: linear-gradient(to bottom, rgba(247, 245, 242, 0), var(--sand-color));
     z-index: 3;
-    /* This is the magic: it creates a beautiful, smooth wave cutout effect */
-    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%, 0 100%, 0 25%, 50% 75%, 100% 25%);
     transition: all 0.5s ease;
 }
 
