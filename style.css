@@ -865,7 +865,7 @@ html {
 }
 
 /* ============================================== */
-/* ====== INTERACTIVE SVG BEACH BACKGROUND ====== */
+/* ====== ADVANCED SVG BEACH BACKGROUND ====== */
 /* ============================================== */
 
 #animated-beach-background {
@@ -875,5 +875,12 @@ html {
     width: 100vw;
     height: 100vh;
     z-index: -1; /* Sits behind ALL other content */
-    background-color: #f7f3e9; /* Fallback color */
+    background-color: #f4f0e8; /* Ensures the correct sand color as a fallback */
+}
+
+.foam-path {
+    fill: none;
+    stroke: white;
+    opacity: 0.5;
+    filter: url(#foam-filter);
 }
