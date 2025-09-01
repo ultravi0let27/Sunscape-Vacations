@@ -15,60 +15,93 @@
 </head>
 <body>
 
-    <!-- ===== INTERACTIVE SVG BEACH BACKGROUND ===== -->
+    <!-- ===== ADVANCED SVG BEACH BACKGROUND ===== -->
     <svg id="animated-beach-background" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
         <defs>
-            <!-- This filter creates the soft, turbulent "foam" texture -->
-            <filter id="foam-filter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.04" numOctaves="2" seed="2" result="turbulence" />
-                <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G" result="displacement"/>
-                <feGaussianBlur in="displacement" stdDeviation="8" />
+            <!-- FILTER 1: Creates a subtle, shimmering water texture -->
+            <filter id="water-texture-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.005 0.005" numOctaves="2" seed="5" result="turbulence"/>
+                <feColorMatrix type="saturate" values="0.2" in="turbulence" result="desaturatedTurbulence"/>
+                <feComponentTransfer in="desaturatedTurbulence" result="adjustedTurbulence">
+                    <feFuncA type="linear" slope="0.3"/>
+                </feComponentTransfer>
+                <feBlend in="SourceGraphic" in2="adjustedTurbulence" mode="multiply" />
             </filter>
     
-            <!-- This clip-path is the animated "mask" that makes the water move -->
-            <clipPath id="wave-mask">
-                <path d="M 0 650 C 960 550, 960 750, 1920 650 L 1920 0 L 0 0 Z">
-                    <!-- Animate the path 'd' attribute from receded to flowed up, and back again -->
-                    <animate 
-                        attributeName="d" 
-                        dur="8s" 
-                        repeatCount="indefinite"
-                        values="
-                            M 0 650 C 960 550, 960 750, 1920 650 L 1920 0 L 0 0 Z;
-                            M 0 800 C 960 700, 960 900, 1920 800 L 1920 0 L 0 0 Z;
-                            M 0 650 C 960 550, 960 750, 1920 650 L 1920 0 L 0 0 Z
-                        "
-                    />
+            <!-- FILTER 2: Creates the soft, distorted "foam" texture -->
+            <filter id="foam-filter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.04" numOctaves="2" seed="2" result="turbulence" />
+                <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="25" xChannelSelector="R" yChannelSelector="G" result="displacement"/>
+                <feGaussianBlur in="displacement" stdDeviation="10" />
+            </filter>
+    
+            <!-- Wave Animation Paths -->
+            <!-- Each wave has its own clip-path to control the water shape -->
+            <clipPath id="wave-mask-1">
+                <path d="M 0 700 C 960 600, 960 800, 1920 700 L 1920 0 L 0 0 Z">
+                    <animate attributeName="d" dur="14s" repeatCount="indefinite"
+                        calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+                        values="M 0 700 C 960 600, 960 800, 1920 700 L 1920 0 L 0 0 Z; M 0 820 C 960 720, 960 920, 1920 820 L 1920 0 L 0 0 Z; M 0 700 C 960 600, 960 800, 1920 700 L 1920 0 L 0 0 Z" />
                 </path>
             </clipPath>
+            <clipPath id="wave-mask-2">
+                <path d="M 0 720 C 960 640, 960 790, 1920 710 L 1920 0 L 0 0 Z">
+                    <animate attributeName="d" dur="12s" begin="-3s" repeatCount="indefinite"
+                        calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+                        values="M 0 720 C 960 640, 960 790, 1920 710 L 1920 0 L 0 0 Z; M 0 830 C 960 750, 960 900, 1920 820 L 1920 0 L 0 0 Z; M 0 720 C 960 640, 960 790, 1920 710 L 1920 0 L 0 0 Z" />
+                </path>
+            </clipPath>
+            <clipPath id="wave-mask-3">
+                 <path d="M 0 680 C 960 590, 960 770, 1920 690 L 1920 0 L 0 0 Z">
+                    <animate attributeName="d" dur="16s" begin="-7s" repeatCount="indefinite"
+                        calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+                        values="M 0 680 C 960 590, 960 770, 1920 690 L 1920 0 L 0 0 Z; M 0 810 C 960 720, 960 890, 1920 800 L 1920 0 L 0 0 Z; M 0 680 C 960 590, 960 770, 1920 690 L 1920 0 L 0 0 Z" />
+                </path>
+            </clipPath>
+    
+            <!-- Gradient for the sea -->
+            <linearGradient id="sea-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#7bcde0" />
+                <stop offset="100%" style="stop-color:#45b5c5" />
+            </linearGradient>
         </defs>
     
-        <!-- The Sand Layer (bottom) -->
-        <rect class="sand" x="0" y="0" width="1920" height="1080" fill="#f7f3e9" />
+        <!-- Layer 1: The Sand (bottom-most layer) -->
+        <rect class="sand" x="0" y="0" width="1920" height="1080" fill="#f4f0e8" />
     
-        <!-- The Sea Layer (top) -->
-        <rect class="sea" x="0" y="0" width="1920" height="1080" fill="url(#sea-gradient)" clip-path="url(#wave-mask)" />
+        <!-- Layer 2: Main Sea Color with Animated Waves -->
+        <g class="sea-layers">
+            <rect x="0" y="0" width="1920" height="1080" fill="url(#sea-gradient)" clip-path="url(#wave-mask-3)" opacity="0.6"/>
+            <rect x="0" y="0" width="1920" height="1080" fill="url(#sea-gradient)" clip-path="url(#wave-mask-2)" opacity="0.6"/>
+            <rect x="0" y="0" width="1920" height="1080" fill="url(#sea-gradient)" clip-path="url(#wave-mask-1)" opacity="0.6"/>
+        </g>
     
-        <!-- The Animated Foam Line (sits on top of the sea) -->
-        <path class="foam" d="M 0 650 C 960 550, 960 750, 1920 650" fill="none" stroke="white" stroke-width="15" opacity="0.6" filter="url(#foam-filter)">
-            <!-- This animation is identical to the clip-path's animation, so the foam follows the wave edge -->
-            <animate 
-                attributeName="d" 
-                dur="8s" 
-                repeatCount="indefinite"
-                values="
-                    M 0 650 C 960 550, 960 750, 1920 650;
-                    M 0 800 C 960 700, 960 900, 1920 800;
-                    M 0 650 C 960 550, 960 750, 1920 650
-                "
-            />
-        </path>
+        <!-- Layer 3: Subtle Water Texture (sits on top of the color) -->
+        <rect class="sea-texture" x="0" y="0" width="1920" height="1080" fill="url(#sea-gradient)" clip-path="url(#wave-mask-1)" filter="url(#water-texture-filter)" opacity="0.8" />
     
-        <!-- Define the gradient for the sea fill -->
-        <linearGradient id="sea-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#89d8e6" />
-            <stop offset="100%" style="stop-color:#45c3d2" />
-        </linearGradient>
+        <!-- Layer 4: The Animated Foam Lines (top-most layer) -->
+        <g class="foam-layers">
+            <path d="M 0 680 C 960 590, 960 770, 1920 690" class="foam-path" stroke-width="20" clip-path="url(#wave-mask-3)"><!-- Copied animation from mask-3 --></path>
+            <path d="M 0 720 C 960 640, 960 790, 1920 710" class="foam-path" stroke-width="20" clip-path="url(#wave-mask-2)"><!-- Copied animation from mask-2 --></path>
+            <path d="M 0 700 C 960 600, 960 800, 1920 700" class="foam-path" stroke-width="25" clip-path="url(#wave-mask-1)"><!-- Copied animation from mask-1 --></path>
+        </g>
+    
+        <!-- SCRIPT to duplicate animation paths to keep foam in sync -->
+        <script type="text/javascript">
+            <![CDATA[
+                const waveMasks = document.querySelectorAll('#animated-beach-background clipPath');
+                const foamPaths = document.querySelectorAll('.foam-path');
+    
+                if (waveMasks.length === foamPaths.length) {
+                    foamPaths.forEach((foamPath, index) => {
+                        const animationNode = waveMasks[index].querySelector('animate');
+                        if (animationNode) {
+                            foamPath.appendChild(animationNode.cloneNode(true));
+                        }
+                    });
+                }
+            ]]>
+        </script>
     </svg>
     <!-- ======================================= -->
 
