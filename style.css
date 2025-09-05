@@ -13,10 +13,14 @@ body {
     color: var(--dark-text);
     line-height: 1.7;
     overflow-x: hidden;
-    /* This allows the html element (now transparent) to show through */
     background-color: transparent; 
+    /* The position and z-index properties have been removed */
+}
+
+.page-content {
     position: relative;
     z-index: 1;
+    background-color: transparent;
 }
 
 /* --- CSS VARIABLES --- */
