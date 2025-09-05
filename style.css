@@ -5,7 +5,7 @@
 html {
     height: 100%;
     /* This MUST be transparent to see the new beach background */
-    background-color: transparent; 
+    background-color: #f4f0e8; 
 }
 
 body {
