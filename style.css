@@ -5,7 +5,7 @@
 html {
     height: 100%;
     /* This MUST be transparent to see the new beach background */
-    background-color: #f4f0e8; 
+    background-color: transparent; 
 }
 
 body {
@@ -865,17 +865,27 @@ html {
 }
 
 /* ============================================== */
-/* ====== BOTTOM WAVE SVG BACKGROUND ====== */
+/* ====== DEFINITIVE BACKGROUND CONTAINER ====== */
 /* ============================================== */
 
-#animated-beach-background {
+#page-background {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2; /* Puts it behind EVERYTHING else */
+    background-color: #f4f0e8; /* The solid sand color is now applied here */
+}
+
+#animated-beach-background {
+    /* The SVG is now positioned relative to its container div */
+    position: absolute; 
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 220px; /* Controls how much space the wave takes up */
-    z-index: 0; /* Sits above the HTML background but below content */
-    pointer-events: none; /* Allows clicks to go through to content behind it */
+    height: 220px;
+    pointer-events: none; /* Allows clicks to go through */
 }
 
 .foam-path {
