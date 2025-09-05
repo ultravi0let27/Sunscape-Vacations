@@ -865,17 +865,17 @@ html {
 }
 
 /* ============================================== */
-/* ====== ADVANCED SVG BEACH BACKGROUND ====== */
+/* ====== BOTTOM WAVE SVG BACKGROUND ====== */
 /* ============================================== */
 
 #animated-beach-background {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Sits behind ALL other content */
-    background-color: #f4f0e8; /* Ensures the correct sand color as a fallback */
+    width: 100%;
+    height: 220px; /* Controls how much space the wave takes up */
+    z-index: 0; /* Sits above the HTML background but below content */
+    pointer-events: none; /* Allows clicks to go through to content behind it */
 }
 
 .foam-path {
