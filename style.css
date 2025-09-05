@@ -879,7 +879,7 @@ html {
     width: 100vw;
     height: 100vh;
     z-index: -2; /* Puts it behind EVERYTHING else */
-    background-color: #f4f0e8; /* The solid sand color */
+    background-color: #f2d2a9; /* The solid sand color */
     pointer-events: none; /* The CRITICAL FIX: Makes the entire container invisible to clicks and scrolls */
 }
 
