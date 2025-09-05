@@ -17,73 +17,73 @@
     <!-- ===== DEFINITIVE BACKGROUND CONTAINER ===== -->
     <div id="page-background">
 
-    <!-- ===== BOTTOM WAVE SVG BACKGROUND ===== -->
-    <svg id="animated-beach-background" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 220" preserveAspectRatio="xMidYMin slice">
-        <defs>
-            <filter id="foam-filter">
-                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.04" numOctaves="2" seed="2" result="turbulence" />
-                <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="25" xChannelSelector="R" yChannelSelector="G" result="displacement"/>
-                <feGaussianBlur in="displacement" stdDeviation="10" />
-            </filter>
-    
-            <!-- Wave Masks - The coordinates are now inverted for a bottom-up effect -->
-            <clipPath id="wave-mask-1">
-                <path d="M 0 120 C 960 70, 960 170, 1920 120 L 1920 220 L 0 220 Z">
-                    <animate attributeName="d" dur="14s" repeatCount="indefinite"
-                        calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
-                        values="M 0 120 C 960 70, 960 170, 1920 120 L 1920 220 L 0 220 Z; M 0 60 C 960 10, 960 110, 1920 60 L 1920 220 L 0 220 Z; M 0 120 C 960 70, 960 170, 1920 120 L 1920 220 L 0 220 Z" />
-                </path>
-            </clipPath>
-            <clipPath id="wave-mask-2">
-                <path d="M 0 130 C 960 90, 960 180, 1920 140 L 1920 220 L 0 220 Z">
-                    <animate attributeName="d" dur="12s" begin="-3s" repeatCount="indefinite"
-                        calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
-                        values="M 0 130 C 960 90, 960 180, 1920 140 L 1920 220 L 0 220 Z; M 0 70 C 960 30, 960 120, 1920 80 L 1920 220 L 0 220 Z; M 0 130 C 960 90, 960 180, 1920 140 L 1920 220 L 0 220 Z" />
-                </path>
-            </clipPath>
-             <clipPath id="wave-mask-3">
-                 <path d="M 0 110 C 960 50, 960 160, 1920 100 L 1920 220 L 0 220 Z">
-                    <animate attributeName="d" dur="16s" begin="-7s" repeatCount="indefinite"
-                        calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
-                        values="M 0 110 C 960 50, 960 160, 1920 100 L 1920 220 L 0 220 Z; M 0 50 C 960 0, 960 100, 1920 50 L 1920 220 L 0 220 Z; M 0 110 C 960 50, 960 160, 1920 100 L 1920 220 L 0 220 Z" />
-                </path>
-            </clipPath>
-    
-            <linearGradient id="sea-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color:#7bcde0" />
-                <stop offset="100%" style="stop-color:#45b5c5" />
-            </linearGradient>
-        </defs>
-    
-        <!-- Water Layers - The <rect> is now clipped to show water at the bottom -->
-        <g class="sea-layers">
-            <rect x="0" y="0" width="1920" height="220" fill="url(#sea-gradient)" clip-path="url(#wave-mask-3)" opacity="0.6"/>
-            <rect x="0" y="0" width="1920" height="220" fill="url(#sea-gradient)" clip-path="url(#wave-mask-2)" opacity="0.6"/>
-            <rect x="0" y="0" width="1920" height="220" fill="url(#sea-gradient)" clip-path="url(#wave-mask-1)" opacity="0.6"/>
-        </g>
-    
-        <!-- Foam Layers - Path coordinates are also inverted -->
-        <g class="foam-layers">
-            <path d="M 0 110 C 960 50, 960 160, 1920 100" class="foam-path" stroke-width="20" ><!-- Animation will be added by script --></path>
-            <path d="M 0 130 C 960 90, 960 180, 1920 140" class="foam-path" stroke-width="20" ><!-- Animation will be added by script --></path>
-            <path d="M 0 120 C 960 70, 960 170, 1920 120" class="foam-path" stroke-width="25" ><!-- Animation will be added by script --></path>
-        </g>
+        <!-- ===== BOTTOM WAVE SVG BACKGROUND ===== -->
+        <svg id="animated-beach-background" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 220" preserveAspectRatio="xMidYMin slice">
+            <defs>
+                <filter id="foam-filter">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.01 0.04" numOctaves="2" seed="2" result="turbulence" />
+                    <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="25" xChannelSelector="R" yChannelSelector="G" result="displacement"/>
+                    <feGaussianBlur in="displacement" stdDeviation="10" />
+                </filter>
         
-        <script type="text/javascript">
-            <![CDATA[
-                // This script ensures foam animations stay synced with the wave masks
-                const waveMasks = document.querySelectorAll('#animated-beach-background clipPath');
-                const foamPaths = document.querySelectorAll('.foam-path');
-                if (waveMasks.length === foamPaths.length) {
-                    foamPaths.forEach((foamPath, index) => {
-                        const animationNode = waveMasks[index].querySelector('animate');
-                        if (animationNode) foamPath.appendChild(animationNode.cloneNode(true));
-                    });
-                }
-            ]]>
-        </script>
-    </svg>
-    <!-- ======================================= -->
+                <!-- Wave Masks - The coordinates are now inverted for a bottom-up effect -->
+                <clipPath id="wave-mask-1">
+                    <path d="M 0 120 C 960 70, 960 170, 1920 120 L 1920 220 L 0 220 Z">
+                        <animate attributeName="d" dur="14s" repeatCount="indefinite"
+                            calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+                            values="M 0 120 C 960 70, 960 170, 1920 120 L 1920 220 L 0 220 Z; M 0 60 C 960 10, 960 110, 1920 60 L 1920 220 L 0 220 Z; M 0 120 C 960 70, 960 170, 1920 120 L 1920 220 L 0 220 Z" />
+                    </path>
+                </clipPath>
+                <clipPath id="wave-mask-2">
+                    <path d="M 0 130 C 960 90, 960 180, 1920 140 L 1920 220 L 0 220 Z">
+                        <animate attributeName="d" dur="12s" begin="-3s" repeatCount="indefinite"
+                            calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+                            values="M 0 130 C 960 90, 960 180, 1920 140 L 1920 220 L 0 220 Z; M 0 70 C 960 30, 960 120, 1920 80 L 1920 220 L 0 220 Z; M 0 130 C 960 90, 960 180, 1920 140 L 1920 220 L 0 220 Z" />
+                    </path>
+                </clipPath>
+                 <clipPath id="wave-mask-3">
+                     <path d="M 0 110 C 960 50, 960 160, 1920 100 L 1920 220 L 0 220 Z">
+                        <animate attributeName="d" dur="16s" begin="-7s" repeatCount="indefinite"
+                            calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+                            values="M 0 110 C 960 50, 960 160, 1920 100 L 1920 220 L 0 220 Z; M 0 50 C 960 0, 960 100, 1920 50 L 1920 220 L 0 220 Z; M 0 110 C 960 50, 960 160, 1920 100 L 1920 220 L 0 220 Z" />
+                    </path>
+                </clipPath>
+        
+                <linearGradient id="sea-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#7bcde0" />
+                    <stop offset="100%" style="stop-color:#45b5c5" />
+                </linearGradient>
+            </defs>
+        
+            <!-- Water Layers - The <rect> is now clipped to show water at the bottom -->
+            <g class="sea-layers">
+                <rect x="0" y="0" width="1920" height="220" fill="url(#sea-gradient)" clip-path="url(#wave-mask-3)" opacity="0.6"/>
+                <rect x="0" y="0" width="1920" height="220" fill="url(#sea-gradient)" clip-path="url(#wave-mask-2)" opacity="0.6"/>
+                <rect x="0" y="0" width="1920" height="220" fill="url(#sea-gradient)" clip-path="url(#wave-mask-1)" opacity="0.6"/>
+            </g>
+        
+            <!-- Foam Layers - Path coordinates are also inverted -->
+            <g class="foam-layers">
+                <path d="M 0 110 C 960 50, 960 160, 1920 100" class="foam-path" stroke-width="20" ><!-- Animation will be added by script --></path>
+                <path d="M 0 130 C 960 90, 960 180, 1920 140" class="foam-path" stroke-width="20" ><!-- Animation will be added by script --></path>
+                <path d="M 0 120 C 960 70, 960 170, 1920 120" class="foam-path" stroke-width="25" ><!-- Animation will be added by script --></path>
+            </g>
+            
+            <script type="text/javascript">
+                <![CDATA[
+                    // This script ensures foam animations stay synced with the wave masks
+                    const waveMasks = document.querySelectorAll('#animated-beach-background clipPath');
+                    const foamPaths = document.querySelectorAll('.foam-path');
+                    if (waveMasks.length === foamPaths.length) {
+                        foamPaths.forEach((foamPath, index) => {
+                            const animationNode = waveMasks[index].querySelector('animate');
+                            if (animationNode) foamPath.appendChild(animationNode.cloneNode(true));
+                        });
+                    }
+                ]]>
+            </script>
+        </svg>
+        <!-- ======================================= -->
 
     <div id="loader-wrapper"><img src="https://i.postimg.cc/136gFrJS/bd64a82ba898e9fe04e5cb56c2468fd9.png" alt="Sunscape Vacations Loading"></div>
 
