@@ -23,12 +23,17 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.toggle('scrolled', scroll > 50);
         }
 
-        // Water Level Rise Logic - This will now work correctly.
+        // ===== SCROLL-REVEAL WATER EFFECT =====
+        const waterContainer = document.getElementById('animated-water-container');
         if (waterContainer) {
-            const initialHeight = 200; // This must match the height in your CSS
-            const growthFactor = 0.5;  // This controls how fast the water rises
+            const scroll = e.animatedScroll;
+            const initialHeight = 150; // This must match the new CSS height
+            const growthFactor = 0.5; // Controls how fast the water rises
+        
+            // The logic remains the same: we just increase the window's height.
             waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
         }
+        // ===================================
     });
 
     // ====== 4. MOBILE MENU LOGIC ======
