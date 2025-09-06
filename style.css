@@ -884,15 +884,24 @@ html {
     pointer-events: none;
 }
 
-#animated-beach-background {
-    /* Change position from 'absolute' to 'fixed' */
-    position: fixed; 
+/* This is the new "window" that reveals the animation */
+#animated-water-container {
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 600px;
+    height: 200px; /* The initial, visible height of the water */
+    overflow: hidden; /* This is what creates the clipping mask effect */
     pointer-events: none;
-    transform-origin: bottom center;
+}
+
+/* This styles the very tall SVG that sits inside the container */
+#animated-beach-background {
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1200px; /* The SVG is much taller than its container */
 }
 
 .foam-path {
