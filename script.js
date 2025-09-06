@@ -38,6 +38,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if(header) {
         lenis.on('scroll', (e) => {
             header.classList.toggle('scrolled', e.animatedScroll > 50);
+            // ===== ADD THIS NEW CODE FOR PARALLAX EFFECT =====
+            const beachSvg = document.getElementById('animated-beach-background');
+            if (beachSvg) {
+                // We move the SVG up (negative Y) at 20% of the scroll speed.
+                // This makes it appear to scroll slower than the content.
+                beachSvg.style.transform = `translateY(-${e.animatedScroll * 0.2}px)`;
+            }
+            // ===============================================
         });
     }
 
