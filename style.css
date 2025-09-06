@@ -878,19 +878,20 @@ html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -2; /* Puts it behind EVERYTHING else */
-    background-color: #f2d2a9; /* The solid sand color */
-    pointer-events: none; /* The CRITICAL FIX: Makes the entire container invisible to clicks and scrolls */
+    z-index: -2;
+    /* 1. This is the new sand color you requested */
+    background-color: #f2d2a9; 
+    pointer-events: none;
 }
 
 #animated-beach-background {
-    /* The SVG is now positioned relative to its container div */
     position: absolute; 
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 220px;
-    pointer-events: none; /* Allows clicks to go through */
+    /* 2. Increased height to make the wave animation taller */
+    height: 350px;
+    pointer-events: none;
 }
 
 .foam-path {
