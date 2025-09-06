@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const triggerButtons = document.querySelectorAll('.quote-modal-trigger');
 
     // ====== 3. SCROLL-BASED ANIMATIONS ======
-    // This single event listener handles all effects that react to scrolling.
     lenis.on('scroll', (e) => {
         const scroll = e.animatedScroll;
     
@@ -23,17 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.toggle('scrolled', scroll > 50);
         }
     
-        // ===== SCROLL-REVEAL WATER EFFECT (Corrected) =====
-        // The 'if' statement now correctly uses the 'waterContainer' variable 
-        // that was defined once at the top of the script.
+        // ===== SCROLL-REVEAL WATER EFFECT (Adjusted) =====
         if (waterContainer) {
-            const initialHeight = 150; // This must match the new CSS height
-            const growthFactor = 0.5; // Controls how fast the water rises
-    
-            // The logic remains the same: we just increase the window's height.
+            const initialHeight = 150; 
+            const growthFactor = 0.2; // A smaller value makes the water rise much slower.
+            
             waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
         }
-        // ===================================================
+        // ===============================================
     });
 
     // ====== 4. MOBILE MENU LOGIC ======
