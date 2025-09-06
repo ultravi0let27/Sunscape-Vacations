@@ -885,13 +885,13 @@ html {
 }
 
 #animated-beach-background {
-    position: absolute; 
+    /* Change position from 'absolute' to 'fixed' */
+    position: fixed; 
     bottom: 0;
     left: 0;
     width: 100%;
     height: 600px;
     pointer-events: none;
-    /* Add this critical line: */
     transform-origin: bottom center;
 }
 
