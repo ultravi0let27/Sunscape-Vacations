@@ -19,7 +19,7 @@
 
         <div id="animated-water-container">
 
-            <!-- ===== "ZOOMED OUT" MULTI-WAVE SVG ===== -->
+            <!-- ===== REVEAL-ON-SCROLL WAVE SVG ===== -->
             <svg id="animated-beach-background" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1200" preserveAspectRatio="xMidYMin slice">
                 <defs>
                     <filter id="foam-filter">
@@ -27,29 +27,21 @@
                         <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="15" xChannelSelector="R" yChannelSelector="G" result="displacement"/>
                         <feGaussianBlur in="displacement" stdDeviation="5" />
                     </filter>
-            
-                    <!-- Animation paths for 4 distinct, smaller waves -->
-                    <clipPath id="wave-mask-1"><path d="M 0 1080 C 960 1030, 960 1130, 1920 1080 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="18s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1080 C 960 1030, 960 1130, 1920 1080 L 1920 1200 L 0 1200 Z; M 0 900 C 960 800, 960 1000, 1920 900 L 1920 1200 L 0 1200 Z; M 0 1080 C 960 1030, 960 1130, 1920 1080 L 1920 1200 L 0 1200 Z" /></path></clipPath>
-                    <clipPath id="wave-mask-2"><path d="M 0 1100 C 960 1060, 960 1140, 1920 1110 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="15s" begin="-4s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1100 C 960 1060, 960 1140, 1920 1110 L 1920 1200 L 0 1200 Z; M 0 930 C 960 850, 960 1000, 1920 920 L 1920 1200 L 0 1200 Z; M 0 1100 C 960 1060, 960 1140, 1920 1110 L 1920 1200 L 0 1200 Z" /></path></clipPath>
-                    <clipPath id="wave-mask-3"><path d="M 0 1060 C 960 1010, 960 1110, 1920 1070 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="12s" begin="-2s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1060 C 960 1010, 960 1110, 1920 1070 L 1920 1200 L 0 1200 Z; M 0 880 C 960 800, 960 960, 1920 890 L 1920 1200 L 0 1200 Z; M 0 1060 C 960 1010, 960 1110, 1920 1070 L 1920 1200 L 0 1200 Z" /></path></clipPath>
-                    <clipPath id="wave-mask-4"><path d="M 0 1120 C 960 1080, 960 1160, 1920 1130 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="20s" begin="-8s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1120 C 960 1080, 960 1160, 1920 1130 L 1920 1200 L 0 1200 Z; M 0 950 C 960 880, 960 1020, 1920 960 L 1920 1200 L 0 1200 Z; M 0 1120 C 960 1080, 960 1160, 1920 1130 L 1920 1200 L 0 1200 Z" /></path></clipPath>
+                    
+                    <!-- The clip-paths now animate a much taller shape -->
+                    <clipPath id="wave-mask-1"><path d="M 0 200 C 960 150, 960 250, 1920 200 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="18s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 200 C 960 150, 960 250, 1920 200 L 1920 1200 L 0 1200 Z; M 0 50 C 960 -50, 960 150, 1920 50 L 1920 1200 L 0 1200 Z; M 0 200 C 960 150, 960 250, 1920 200 L 1920 1200 L 0 1200 Z" /></path></clipPath>
+                    <clipPath id="wave-mask-2"><path d="M 0 220 C 960 180, 960 260, 1920 230 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="15s" begin="-4s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 220 C 960 180, 960 260, 1920 230 L 1920 1200 L 0 1200 Z; M 0 80 C 960 0, 960 150, 1920 70 L 1920 1200 L 0 1200 Z; M 0 220 C 960 180, 960 260, 1920 230 L 1920 1200 L 0 1200 Z" /></path></clipPath>
                     
                     <linearGradient id="sea-gradient" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#7bcde0" /><stop offset="100%" style="stop-color:#45b5c5" /></linearGradient>
                 </defs>
             
-                <!-- Layer 1: The "Wet Sand" Effect (the furthest wave) -->
+                <!-- The "Wet Sand" effect -->
                 <rect x="0" y="0" width="1920" height="1200" fill="#000" opacity="0.08" clip-path="url(#wave-mask-1)" />
             
-                <!-- Layers 2, 3, 4: The visible water and foam -->
-                <g class="water-and-foam">
-                    <rect x="0" y="0" width="1920" height="1200" fill="url(#sea-gradient)" clip-path="url(#wave-mask-4)" opacity="0.5"/>
-                    <path class="foam-path" d="M 0 1120 C 960 1080, 960 1160, 1920 1130" stroke-width="15"><animate attributeName="d" dur="20s" begin="-8s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1120 C 960 1080, 960 1160, 1920 1130; M 0 950 C 960 880, 960 1020, 1920 960; M 0 1120 C 960 1080, 960 1160, 1920 1130" /></path>
-                    
-                    <rect x="0" y="0" width="1920" height="1200" fill="url(#sea-gradient)" clip-path="url(#wave-mask-3)" opacity="0.5"/>
-                    <path class="foam-path" d="M 0 1060 C 960 1010, 960 1110, 1920 1070" stroke-width="15"><animate attributeName="d" dur="12s" begin="-2s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1060 C 960 1010, 960 1110, 1920 1070; M 0 880 C 960 800, 960 960, 1920 890; M 0 1060 C 960 1010, 960 1110, 1920 1070" /></path>
-                    
-                    <rect x="0" y="0" width="1920" height="1200" fill="url(#sea-gradient)" clip-path="url(#wave-mask-2)" opacity="0.5"/>
-                    <path class="foam-path" d="M 0 1100 C 960 1060, 960 1140, 1920 1110" stroke-width="15"><animate attributeName="d" dur="15s" begin="-4s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1100 C 960 1060, 960 1140, 1920 1110; M 0 930 C 960 850, 960 1000, 1920 920; M 0 1100 C 960 1060, 960 1140, 1920 1110" /></path>
+                <!-- The visible water and foam -->
+                <g clip-path="url(#wave-mask-2)">
+                    <rect x="0" y="0" width="1920" height="1200" fill="url(#sea-gradient)" />
+                    <path class="foam-path" d="M 0 220 C 960 180, 960 260, 1920 230" stroke-width="15"><animate attributeName="d" dur="15s" begin="-4s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 220 C 960 180, 960 260, 1920 230; M 0 80 C 960 0, 960 150, 1920 70; M 0 220 C 960 180, 960 260, 1920 230" /></path>
                 </g>
             </svg>
             <!-- ======================================= -->
