@@ -1,32 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ====== INITIALIZE LENIS SMOOTH SCROLL ======
+    // ====== 1. LENIS SMOOTH SCROLL INITIALIZATION ======
     const lenis = new Lenis({ lerp: 0.15, smoothWheel: true });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
 
-    // ====== PRE-LOADER ======
-    window.onload = function() {
-        const loader = document.getElementById('loader-wrapper');
-        if (loader) loader.classList.add('hidden');
-    };
-
-    // ====== PARTICLES.JS ======
-    if (document.getElementById('particles-js')) {
-        particlesJS.load('particles-js', 'particles.json', console.log.bind(console, 'Particles.js config loaded'));
-    }
-
-    // ====== NEW: SVG WAVE COLOR INITIALIZER ======
-    // This makes our new wave colors work
-    document.querySelectorAll('.wave').forEach(wave => {
-        wave.style.fill = getComputedStyle(wave).getPropertyValue('fill');
-    });
-
-    // ====== HEADER SHADOW & MOBILE MENU ======
+    // ====== 2. ELEMENT SELECTORS (DEFINED ONCE) ======
+    const header = document.querySelector('.main-header');
+    const waterContainer = document.getElementById('animated-water-container');
     const hamburger = document.getElementById('hamburger-menu');
     const mainNav = document.querySelector('.main-nav');
-    const header = document.querySelector('.main-header');
+    const modalOverlay = document.getElementById('quote-modal-overlay');
+    const triggerButtons = document.querySelectorAll('.quote-modal-trigger');
 
+    // ====== 3. SCROLL-BASED ANIMATIONS ======
+    // This single event listener handles all effects that react to scrolling.
+    lenis.on('scroll', (e) => {
+        const scroll = e.animatedScroll;
+
+        // Header Shadow Logic
+        if (header) {
+            header.classList.toggle('scrolled', scroll > 50);
+        }
+
+        // Water Level Rise Logic - This will now work correctly.
+        if (waterContainer) {
+            const initialHeight = 200; // This must match the height in your CSS
+            const growthFactor = 0.5;  // This controls how fast the water rises
+            waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
+        }
+    });
+
+    // ====== 4. MOBILE MENU LOGIC ======
     if (hamburger && mainNav) {
         hamburger.addEventListener('click', () => {
             const isActive = mainNav.classList.toggle('active');
@@ -35,43 +40,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ====== SCROLL-BASED ANIMATIONS ======
-    // This event listener now handles ALL scroll effects independently.
-    lenis.on('scroll', (e) => {
-        const scroll = e.animatedScroll;
-
-        // 1. Header Shadow Logic
-        if (header) {
-            header.classList.toggle('scrolled', scroll > 50);
-        }
-
-        // 2. Water Level Rise Logic
-        const waterContainer = document.getElementById('animated-water-container');
-        if (waterContainer) {
-            const initialHeight = 200; // Must match the CSS height
-            const growthFactor = 0.5;  // Controls how fast the water rises
-
-            waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
-        }
-    });
-
-    // ====== QUOTE MODAL LOGIC ======
-    const modalOverlay = document.getElementById('quote-modal-overlay');
-    const triggerButtons = document.querySelectorAll('.quote-modal-trigger');
-
+    // ====== 5. QUOTE MODAL LOGIC ======
     const toggleModal = (isActive) => {
         if (modalOverlay) modalOverlay.classList.toggle('active', isActive);
         isActive ? lenis.stop() : lenis.start();
     };
-
     triggerButtons.forEach(button => button.addEventListener('click', () => toggleModal(true)));
     document.getElementById('close-modal-btn')?.addEventListener('click', () => toggleModal(false));
     modalOverlay?.addEventListener('click', (event) => {
         if (event.target === modalOverlay) toggleModal(false);
     });
 
-
-    // ====== SCROLL REVEAL ANIMATIONS ======
+    // ====== 6. SCROLL REVEAL ANIMATIONS ======
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -79,10 +59,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    // ====== 3D TILT EFFECT ======
+    // ====== 7. 3D TILT EFFECT ======
     if (window.VanillaTilt) {
         VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
             max: 15, speed: 400, glare: true, "max-glare": 0.3
         });
     }
 });
+
+// ====== 8. PRE-LOADER (USES window.onload FOR RELIABILITY) ======
+window.onload = function() {
+    const loader = document.getElementById('loader-wrapper');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+};
