@@ -38,16 +38,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if(header) {
         lenis.on('scroll', (e) => {
             header.classList.toggle('scrolled', e.animatedScroll > 50);
-            // ===== WATER LEVEL RISE EFFECT =====
-            const beachSvg = document.getElementById('animated-beach-background');
-            if (beachSvg) {
+            // ===== SCROLL-REVEAL WATER EFFECT =====
+            const waterContainer = document.getElementById('animated-water-container');
+            if (waterContainer) {
                 const scroll = e.animatedScroll;
-                
-                // Calculate the growth factor. Starts at 100% and grows as you scroll.
-                const scaleFactor = 1 + scroll / 800;
+                const initialHeight = 200; // This must match the CSS height
+                const growthFactor = 0.5; // Controls how fast the water rises
             
-                // Apply ONLY the vertical scale transform.
-                beachSvg.style.transform = `scaleY(${scaleFactor})`;
+                // Calculate the new height and apply it directly to the container
+                waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
             }
             // ===================================
         });
