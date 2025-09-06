@@ -17,23 +17,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // This single event listener handles all effects that react to scrolling.
     lenis.on('scroll', (e) => {
         const scroll = e.animatedScroll;
-
+    
         // Header Shadow Logic
         if (header) {
             header.classList.toggle('scrolled', scroll > 50);
         }
-
-        // ===== SCROLL-REVEAL WATER EFFECT =====
-        const waterContainer = document.getElementById('animated-water-container');
+    
+        // ===== SCROLL-REVEAL WATER EFFECT (Corrected) =====
+        // The 'if' statement now correctly uses the 'waterContainer' variable 
+        // that was defined once at the top of the script.
         if (waterContainer) {
-            const scroll = e.animatedScroll;
             const initialHeight = 150; // This must match the new CSS height
             const growthFactor = 0.5; // Controls how fast the water rises
-        
+    
             // The logic remains the same: we just increase the window's height.
             waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
         }
-        // ===================================
+        // ===================================================
     });
 
     // ====== 4. MOBILE MENU LOGIC ======
