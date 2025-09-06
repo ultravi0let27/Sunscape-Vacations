@@ -38,23 +38,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if(header) {
         lenis.on('scroll', (e) => {
             header.classList.toggle('scrolled', e.animatedScroll > 50);
-            // ===== ENHANCED PARALLAX & WATER LEVEL RISE EFFECT =====
+            // ===== WATER LEVEL RISE EFFECT =====
             const beachSvg = document.getElementById('animated-beach-background');
             if (beachSvg) {
                 const scroll = e.animatedScroll;
+                
+                // Calculate the growth factor. Starts at 100% and grows as you scroll.
+                const scaleFactor = 1 + scroll / 800;
             
-                // 1. Parallax Effect: The water still moves up, but at a slower rate.
-                const parallaxOffset = -scroll * 0.1;
-            
-                // 2. Water Level Rise: The water scales vertically as you scroll down.
-                // It starts at 1 (100% height) and grows up to a maximum of 2 (200% height)
-                // over the first 800px of scrolling.
-                const scaleFactor = Math.min(2, 1 + scroll / 800);
-            
-                // 3. Apply both transforms together.
-                beachSvg.style.transform = `translateY(${parallaxOffset}px) scaleY(${scaleFactor})`;
+                // Apply ONLY the vertical scale transform.
+                beachSvg.style.transform = `scaleY(${scaleFactor})`;
             }
-            // ========================================================
+            // ===================================
         });
     }
 
