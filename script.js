@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         wave.style.fill = getComputedStyle(wave).getPropertyValue('fill');
     });
 
-    // --- HEADER SHADOW & MOBILE MENU ---
+    // ====== HEADER SHADOW & MOBILE MENU ======
     const hamburger = document.getElementById('hamburger-menu');
     const mainNav = document.querySelector('.main-nav');
     const header = document.querySelector('.main-header');
@@ -35,22 +35,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    if(header) {
-        lenis.on('scroll', (e) => {
-            header.classList.toggle('scrolled', e.animatedScroll > 50);
-            // ===== SCROLL-REVEAL WATER EFFECT =====
-            const waterContainer = document.getElementById('animated-water-container');
-            if (waterContainer) {
-                const scroll = e.animatedScroll;
-                const initialHeight = 200; // This must match the CSS height
-                const growthFactor = 0.5; // Controls how fast the water rises
-            
-                // Calculate the new height and apply it directly to the container
-                waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
-            }
-            // ===================================
-        });
-    }
+    // ====== SCROLL-BASED ANIMATIONS ======
+    // This event listener now handles ALL scroll effects independently.
+    lenis.on('scroll', (e) => {
+        const scroll = e.animatedScroll;
+
+        // 1. Header Shadow Logic
+        if (header) {
+            header.classList.toggle('scrolled', scroll > 50);
+        }
+
+        // 2. Water Level Rise Logic
+        const waterContainer = document.getElementById('animated-water-container');
+        if (waterContainer) {
+            const initialHeight = 200; // Must match the CSS height
+            const growthFactor = 0.5;  // Controls how fast the water rises
+
+            waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
+        }
+    });
 
     // ====== QUOTE MODAL LOGIC ======
     const modalOverlay = document.getElementById('quote-modal-overlay');
