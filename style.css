@@ -890,7 +890,7 @@ html {
     left: 0;
     width: 100%;
     /* 2. Increased height to make the wave animation taller */
-    height: 350px;
+    height: 600px;
     pointer-events: none;
 }
 
