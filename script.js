@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger-menu');
     const mainNav = document.querySelector('.main-nav');
     const modalOverlay = document.getElementById('quote-modal-overlay');
-    const triggerButtons = document.querySelectorAll('.quote-modal-trigger, #mobile-hero-quote-button');
+    const triggerButtons = document.querySelectorAll('.quote-modal-trigger');
 
     lenis.on('scroll', (e) => {
         const scroll = e.animatedScroll;
