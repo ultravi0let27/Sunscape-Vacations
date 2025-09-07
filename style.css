@@ -27,8 +27,8 @@ body {
 :root {
     --white-color: #ffffff;
     --sand-color: #f7f5f2;
-    --dark-text: #2c3e50;
-    --light-text: #7f8c8d;
+    --dark-text: #2c3e50, text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    --light-text: #7f8c8d, text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     --accent-yellow: #fec544;
     --accent-blue: #45c3d2;
     --header-height: 100px;
@@ -779,9 +779,9 @@ html {
     scroll-behavior: smooth;
 }
 
-/* --- 2. The Hero Gradient & Particle Canvas --- */
+/* --- 2. The Hero  & Particle Canvas --- */
 .hero {
-    position: relative; /* Crucial for positioning the gradient and particles */
+    position: relative; /* Crucial for positioning the  and particles */
 }
 
 /* This is the canvas for our future particle effect */
@@ -800,11 +800,11 @@ html {
     z-index: 2;
 }
 
-/* The beautiful transparent-to-sand gradient */
+/* The beautiful transparent-to-sand  */
 .hero::after {
     content: '';
     position: absolute;
-    bottom: 0; /* Aligns the gradient to the very bottom */
+    bottom: 0; /* Aligns the  to the very bottom */
     left: 0;
     width: 100%;
     height: 250px; /* Increased height for a smoother fade */
