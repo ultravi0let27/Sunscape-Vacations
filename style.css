@@ -918,12 +918,11 @@ html {
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    /* A soft white light that fades to transparent */
     background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
-    pointer-events: none; /* Crucial: allows clicks to pass through */
-    transition: opacity 0.3s ease-out;
-    opacity: 0; /* Hidden by default */
-    transform: translate(-50%, -50%); /* Centers the light on the cursor */
+    pointer-events: none;
+    transition: opacity 0.5s ease-out; /* Slower fade for a smoother effect */
+    opacity: 0; /* Still hidden by default */
+    transform: translate(-50%, -50%);
 }
 
 /* We use the main page content wrapper to detect the hover state */
