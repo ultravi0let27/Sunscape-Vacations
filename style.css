@@ -917,18 +917,18 @@ html {
     opacity: 1;
 }
 
-/* This overlay now generates a fine, dark brown grain texture */
+/* This overlay uses an advanced SVG to create a fine, soft, dark brown grain */
 #sand-texture-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* NEW: This SVG generates a noise pattern and colorizes it to a dark brown */
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="30" result="noiseAlpha"/><feColorMatrix in="noiseAlpha" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0 0.14  0 0 0 0.4 0"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
-    /* This blend mode makes the dark grain blend naturally with the light sand */
+    /* FINAL VERSION: This SVG generates a higher-resolution, blurred noise for a non-pixelated effect */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" seed="30" result="noise"/><feGaussianBlur in="noise" stdDeviation="1" result="blurredNoise"/><feColorMatrix in="blurredNoise" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0 0.14  0 0 0 0.3 0"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
+    /* These properties are unchanged and blend the texture perfectly */
     mix-blend-mode: multiply;
-    opacity: 0.6; /* Controls the overall intensity of the grain */
+    opacity: 0.6;
     z-index: -1;
 }
 
