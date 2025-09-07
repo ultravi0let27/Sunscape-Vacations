@@ -110,6 +110,10 @@ a:hover { color: var(--accent-yellow); }
     background-color: var(--accent-blue); color: var(--white-color) !important;
     transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
+/* --- Desktop/Mobile Button Swap --- */
+.btn-mobile {
+    display: none;
+}
 .btn-nav-quote:hover::after { display: none; }
 .hamburger { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
 .hamburger-bar {
@@ -1017,6 +1021,14 @@ html {
 
 /* --- Applies only to mobile phones (screens smaller than 768px) --- */
 @media (max-width: 768px) {
+
+    /* --- Desktop/Mobile Button Swap --- */
+    .btn-desktop {
+        display: none; /* Hide the desktop version */
+    }
+    .btn-mobile {
+        display: inline-block; /* Show the mobile version */
+    }
     /* --- PERFORMANCE: Disable heavy background effects on small screens --- */
     #animated-water-container, #sand-texture-overlay, #sand-cursor-light {
         display: none;
