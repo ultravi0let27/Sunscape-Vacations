@@ -27,6 +27,14 @@
                         <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="25" xChannelSelector="R" yChannelSelector="G" result="displacement"/>
                         <feGaussianBlur in="displacement" stdDeviation="10" />
                     </filter>
+
+                    <filter id="water-texture-filter">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.005 0.009" numOctaves="2" seed="10" result="turbulence"/>
+                        <feComponentTransfer in="turbulence" result="subtle-turbulence">
+                            <feFuncA type="linear" slope="0.2"/>
+                        </feComponentTransfer>
+                        <feBlend in="SourceGraphic" in2="subtle-turbulence" mode="color-burn" />
+                    </filter>
             
                     <!-- Mask for the "Wet Sand" layer -->
                     <clipPath id="wet-sand-mask">
@@ -56,7 +64,7 @@
                 <rect x="0" y="0" width="1920" height="600" fill="#000" opacity="0.08" clip-path="url(#wet-sand-mask)" />
             
                 <!-- Layer 2: The Water and Foam (rendered on top) -->
-                <g clip-path="url(#water-foam-mask)">
+                <g clip-path="url(#water-foam-mask)" filter="url(#water-texture-filter)">
                     <rect x="0" y="0" width="1920" height="600" fill="url(#sea-gradient)" />
                     <path class="foam-path" d="M 0 490 C 960 450, 960 540, 1920 500" stroke-width="25">
                         <animate attributeName="d" dur="12s" begin="-0.5s" repeatCount="indefinite"
