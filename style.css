@@ -911,32 +911,36 @@ html {
     filter: url(#foam-filter);
 }
 
-/* Styling for the interactive sand cursor light */
-#sand-cursor-light {
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
-    pointer-events: none;
-    transition: opacity 0.5s ease-out; /* Slower fade for a smoother effect */
-    opacity: 0; /* Still hidden by default */
-    transform: translate(-50%, -50%);
-}
 
 /* We use the main page content wrapper to detect the hover state */
 .page-content:hover ~ #page-background > #sand-cursor-light {
     opacity: 1;
 }
 
-/* This overlay uses a CSS-generated noise pattern for a reliable sand texture */
+/* This overlay uses an improved SVG for a more visible sand texture */
 #sand-texture-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* This creates a very subtle, semi-transparent noise pattern */
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="1" seed="30"/></filter><rect width="100%" height="100%" filter="url(%23f)" opacity="0.05"/></svg>');
-    z-index: -1; /* Sits on top of the sand color, but below the water */
+    /* UPDATED: baseFrequency is lower (larger grains) and opacity is higher (more visible) */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.3" numOctaves="1" seed="30"/></filter><rect width="100%" height="100%" filter="url(%23f)" opacity="0.12"/></svg>');
+    z-index: -1;
+}
+
+/* This light is now brighter and uses a blend mode to interact with the texture */
+#sand-cursor-light {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    /* UPDATED: The center of the light is now 3x brighter */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 60%);
+    pointer-events: none;
+    transition: opacity 0.5s ease-out;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    /* NEW: This blend mode makes the light interact with the texture underneath */
+    mix-blend-mode: soft-light;
 }
