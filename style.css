@@ -1075,4 +1075,33 @@ html {
         text-align: center;
         width: auto;
     }
+    /* --- DEFINITIVE MOBILE BUTTON FIX --- */
+
+    /* First, completely hide the original, non-working buttons inside the hero */
+    .hero-cta-buttons {
+        display: none !important;
+    }
+
+    /* Now, show and style our new, independent button */
+    #mobile-hero-quote-button {
+        display: block; /* Make it visible */
+        position: fixed; /* Lifts it above ALL other layers */
+        z-index: 1001; /* Places it on a very high layer, just below the modal */
+        
+        /* These values position it perfectly in the center of the hero section */
+        left: 50%;
+        top: 55%;
+        transform: translate(-50%, -50%);
+
+        /* Match the existing button style */
+        width: 85%;
+        max-width: 320px;
+        text-align: center;
+        padding: 16px 20px;
+        font-size: 0.95rem;
+    }
+}
+
+#mobile-hero-quote-button {
+    display: none;
 }
