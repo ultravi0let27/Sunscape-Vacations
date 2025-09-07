@@ -881,8 +881,7 @@ html {
     z-index: -2;
     background-color: #f2d2a9;
     pointer-events: none;
-    /* ADD THIS LINE to apply the sand texture */
-    filter: url(#sand-texture-filter);
+    /* The broken filter line is now gone */
 }
 /* This is the "window" that is fixed to the bottom and reveals the animation */
 #animated-water-container {
@@ -928,4 +927,16 @@ html {
 /* We use the main page content wrapper to detect the hover state */
 .page-content:hover ~ #page-background > #sand-cursor-light {
     opacity: 1;
+}
+
+/* This overlay uses a CSS-generated noise pattern for a reliable sand texture */
+#sand-texture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* This creates a very subtle, semi-transparent noise pattern */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="1" seed="30"/></filter><rect width="100%" height="100%" filter="url(%23f)" opacity="0.05"/></svg>');
+    z-index: -1; /* Sits on top of the sand color, but below the water */
 }
