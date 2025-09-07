@@ -133,16 +133,16 @@ a:hover { color: var(--accent-yellow); }
     text-shadow: var(--text-shadow);
 }
 
-/* --- HERO SECTION --- */
 .hero {
     height: 100vh;
-    position: relative;
+    position: relative; 
     display: flex;
     align-items: center;
     text-align: center;
     color: var(--white-color);
-    background-color: transparent; /* Changed from dark-text */
+    background-color: transparent; 
     overflow: hidden;
+    pointer-events: none; /* This tells the entire container to ignore clicks/taps */
 }
 
 /* This is the NEW background image layer */
@@ -189,10 +189,12 @@ a:hover { color: var(--accent-yellow); }
         linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
         url('https://i.postimg.cc/BZwZs1Rb/image3549-1.jpg') no-repeat center center/cover;
 }
+/* Find your existing .hero-content rule and add pointer-events: auto; */
 .hero-content {
-    position: relative; /* This is the key to activating z-index */
-    z-index: 6; /* This places it on top of the ::before (z-index: -2) and ::after (z-index: -1) */
+    position: relative;
+    z-index: 2;
     animation: fadeIn 1s .5s both;
+    pointer-events: auto; /* This RE-ENABLES clicks/taps only for this container and its children */
 }
 .hero-title { font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
 .hero-subtitle {
