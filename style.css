@@ -163,7 +163,7 @@ a:hover { color: var(--accent-yellow); }
         linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         
         /* Layer 3: The background image itself */
-        url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        url('https://i.postimg.cc/BZwZs1Rb/image3549-1.jpg') no-repeat center center/cover;
     
     /* CRITICAL: Ensure there is NO 'opacity' property on this rule. */
 }
