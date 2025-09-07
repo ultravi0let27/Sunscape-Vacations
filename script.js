@@ -21,12 +21,15 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.toggle('scrolled', scroll > 50);
         }
     
-        // ===== WATER LEVEL RISE EFFECT =====
-        const beachSvg = document.getElementById('animated-beach-background');
-        if (beachSvg) {
-            const growthFactor = 0.2; // The slower growth factor
-            const scaleFactor = 1 + scroll * (growthFactor / 100); // Corrected formula
-            beachSvg.style.transform = `scaleY(${scaleFactor})`;
+        // ===== SCROLL-REVEAL WATER EFFECT =====
+        const waterContainer = document.getElementById('animated-water-container');
+        if (waterContainer) {
+            const scroll = e.animatedScroll;
+            const initialHeight = 150; // Must match the CSS height
+            const growthFactor = 0.2;  // The slower growth rate
+        
+            // We only change the height of the container, revealing the SVG inside.
+            waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
         }
         // ===================================
     });
