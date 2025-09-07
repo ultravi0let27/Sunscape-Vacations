@@ -36,17 +36,11 @@
                         <feComponentTransfer in="turbulence" result="subtle-turbulence"><feFuncA type="linear" slope="0.2"/></feComponentTransfer>
                         <feBlend in="SourceGraphic" in2="subtle-turbulence" mode="color-burn" />
                     </filter>
-                    <!-- FINAL SAND TEXTURE FILTER (softer, less noisy) -->
+                    <!-- FINAL, SYNTACTICALLY CORRECT SAND TEXTURE FILTER -->
                     <filter id="sand-texture-filter">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" seed="30" result="turbulence"/>
-                        <feComponentTransfer in="turbulence" result="mono-turbulence">
-                            <feFuncA type="linear" slope="0.05"/>
-                        </feComponentTransfer>
-                        <feColorMatrix in="mono-turbulence" type="matrix"
-                            values="0 0 0 0 0.95
-                                    0 0 0 0 0.82
-                                    0 0 0 0 0.66
-                                    0 0 0 1 0" />
+                        <feTurbulence type="fractalNoise" baseFrequency="0.2" numOctaves="1" seed="30" result="noiseAlpha"/>
+                        <feColorMatrix in="noiseAlpha" type="matrix"
+                            values="0 0 0 0.95 0  0 0 0 0.82 0  0 0 0 0.66 0  0 0 0 0.15 0" />
                     </filter>
             
                     <!-- Animation paths are now at the TOP of the 1200px canvas -->
