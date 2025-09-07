@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalOverlay = document.getElementById('quote-modal-overlay');
     const triggerButtons = document.querySelectorAll('.quote-modal-trigger');
 
-    // ====== 3. SCROLL-BASED ANIMATIONS ======
     lenis.on('scroll', (e) => {
         const scroll = e.animatedScroll;
     
@@ -22,14 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.toggle('scrolled', scroll > 50);
         }
     
-        // ===== SCROLL-REVEAL WATER EFFECT (Adjusted) =====
-        if (waterContainer) {
-            const initialHeight = 150; 
-            const growthFactor = 0.2; // A smaller value makes the water rise much slower.
-            
-            waterContainer.style.height = `${initialHeight + scroll * growthFactor}px`;
+        // ===== WATER LEVEL RISE EFFECT =====
+        const beachSvg = document.getElementById('animated-beach-background');
+        if (beachSvg) {
+            const growthFactor = 0.2; // The slower growth factor
+            const scaleFactor = 1 + scroll * (growthFactor / 100); // Corrected formula
+            beachSvg.style.transform = `scaleY(${scaleFactor})`;
         }
-        // ===============================================
+        // ===================================
     });
 
     // ====== 4. MOBILE MENU LOGIC ======
