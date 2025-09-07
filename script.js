@@ -54,18 +54,30 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target === modalOverlay) toggleModal(false);
     });
 
-    // ====== 5a. SAND CURSOR INTERACTION ======
+    // ====== 5a. SAND CURSOR INTERACTION (Corrected) ======
     const sandCursorLight = document.getElementById('sand-cursor-light');
-    if (sandCursorLight) {
+    const pageContent = document.querySelector('.page-content');
+    
+    if (sandCursorLight && pageContent) {
+        // Logic to move the light with the cursor
         document.addEventListener('mousemove', (e) => {
-            // We use requestAnimationFrame to make the movement extra smooth
             requestAnimationFrame(() => {
                 sandCursorLight.style.left = `${e.clientX}px`;
                 sandCursorLight.style.top = `${e.clientY}px`;
             });
         });
+    
+        // New logic to fade the light in
+        pageContent.addEventListener('mouseenter', () => {
+            sandCursorLight.style.opacity = '1';
+        });
+    
+        // New logic to fade the light out
+        pageContent.addEventListener('mouseleave', () => {
+            sandCursorLight.style.opacity = '0';
+        });
     }
-
+    
     // ====== 6. SCROLL REVEAL ANIMATIONS ======
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
