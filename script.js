@@ -42,6 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
             isActive ? lenis.stop() : lenis.start();
         });
     }
+
+    // ====== FIX: Close Mobile Menu on Link Click ======
+    const mobileNavLinks = document.querySelectorAll('.main-nav a, .main-nav .btn-nav-quote');
+    if (hamburger && mainNav) {
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Check if the menu is actually active before trying to close it
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    lenis.start(); // Re-enable smooth scrolling
+                }
+            });
+        });
+    }
     
     // ====== 5. QUOTE MODAL LOGIC ======
     const toggleModal = (isActive) => {
