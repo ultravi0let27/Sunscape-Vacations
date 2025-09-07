@@ -141,7 +141,6 @@ a:hover { color: var(--accent-yellow); }
     overflow: hidden;
 }
 
-/* This is the final, corrected hero overlay for a smooth transition */
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -150,22 +149,13 @@ a:hover { color: var(--accent-yellow); }
     height: 100%;
     z-index: 1;
     
-    /* This multi-layered background is designed for a smoother fade */
+    /* THE DEFINITIVE FIX: This makes the overlay completely "invisible" to clicks and touches. */
+    pointer-events: none;
+
     background: 
-        /* Layer 1: A much longer, more gradual gradient to the EXACT sand color */
-        linear-gradient(
-            to bottom, 
-            transparent 60%, 
-            var(--sand-color) 100%
-        ),
-        
-        /* Layer 2: The dark tint for image readability */
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        
-        /* Layer 3: The background image itself */
+        linear-gradient(to bottom, transparent 60%, var(--sand-color) 100%),
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
         url('https://i.postimg.cc/BZwZs1Rb/image3549-1.jpg') no-repeat center center/cover;
-    
-    /* CRITICAL: Ensure there is NO 'opacity' property on this rule. */
 }
 .hero-content { position: relative; z-index: 2; animation: fadeIn 1s .5s both; }
 .hero-title { font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
