@@ -881,8 +881,9 @@ html {
     z-index: -2;
     background-color: #f2d2a9;
     pointer-events: none;
+    /* ADD THIS LINE to apply the sand texture */
+    filter: url(#sand-texture-filter);
 }
-
 /* This is the "window" that is fixed to the bottom and reveals the animation */
 #animated-water-container {
     position: fixed;
@@ -909,4 +910,23 @@ html {
     stroke: white;
     opacity: 0.5;
     filter: url(#foam-filter);
+}
+
+/* Styling for the interactive sand cursor light */
+#sand-cursor-light {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    /* A soft white light that fades to transparent */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
+    pointer-events: none; /* Crucial: allows clicks to pass through */
+    transition: opacity 0.3s ease-out;
+    opacity: 0; /* Hidden by default */
+    transform: translate(-50%, -50%); /* Centers the light on the cursor */
+}
+
+/* We use the main page content wrapper to detect the hover state */
+.page-content:hover ~ #page-background > #sand-cursor-light {
+    opacity: 1;
 }
