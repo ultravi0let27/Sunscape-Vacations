@@ -54,6 +54,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target === modalOverlay) toggleModal(false);
     });
 
+    // ====== 5a. SAND CURSOR INTERACTION ======
+    const sandCursorLight = document.getElementById('sand-cursor-light');
+    if (sandCursorLight) {
+        document.addEventListener('mousemove', (e) => {
+            // We use requestAnimationFrame to make the movement extra smooth
+            requestAnimationFrame(() => {
+                sandCursorLight.style.left = `${e.clientX}px`;
+                sandCursorLight.style.top = `${e.clientY}px`;
+            });
+        });
+    }
+
     // ====== 6. SCROLL REVEAL ANIMATIONS ======
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
