@@ -26,15 +26,16 @@ body {
 /* --- CSS VARIABLES --- */
 :root {
     --white-color: #ffffff;
-    --sand-color: #f7f5f2;
-    --dark-text: #2c3e50, text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    --light-text: #7f8c8d, text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    --sand-color: #f2d2a9;
+    --dark-text: #2c3e50;
+    --light-text: #7f8c8d;
     --accent-yellow: #fec544;
     --accent-blue: #45c3d2;
     --header-height: 100px;
     --border-radius: 12px;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
 }
 
 /* --- LENIS SMOOTH SCROLL STYLES (as per the guide) --- */
@@ -120,6 +121,14 @@ a:hover { color: var(--accent-yellow); }
     background-color: var(--dark-text);
 }
 
+/* --- TEXT SHADOWS for better readability --- */
+.hero-title,
+.hero-subtitle,
+.section-title,
+.country-name {
+    text-shadow: var(--text-shadow);
+}
+
 /* --- HERO SECTION --- */
 .hero {
     height: 100vh;
@@ -132,16 +141,24 @@ a:hover { color: var(--accent-yellow); }
     overflow: hidden;
 }
 
-.hero-overlay { /* Add or replace this rule */
+.hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* New, more transparent gradient over a stunning image */
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-    z-index: 1; /* Sits ON TOP of the particles */
-    opacity: 1; /* Makes it slightly transparent to see particles through */
+    z-index: 1;
+    
+    /* This multi-layered background creates the perfect effect */
+    background: 
+        /* Layer 1: The new gradient from transparent to sand color at the bottom */
+        linear-gradient(to bottom, transparent 70%, var(--sand-color) 100%),
+        
+        /* Layer 2: The original dark tint */
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        
+        /* Layer 3: The background image */
+        url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
 }
 .hero-content { position: relative; z-index: 2; animation: fadeIn 1s .5s both; }
 .hero-title { font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 4px 15px rgba(0,0,0,0.2); }
