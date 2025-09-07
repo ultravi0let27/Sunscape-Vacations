@@ -19,17 +19,15 @@
 
         <div id="animated-water-container">
 
-            <!-- ===== "ZOOMED OUT" MULTI-WAVE SVG (WITH ENHANCED DETAIL) ===== -->
+            <!-- ===== FINAL CORRECTED SVG STRUCTURE ===== -->
             <svg id="animated-beach-background" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1200" preserveAspectRatio="xMidYMin slice">
                 <defs>
-                    <!-- FILTER 1: The original foam filter, now slightly softer -->
+                    <!-- The filters are correct and do not need to change -->
                     <filter id="foam-filter">
                         <feTurbulence type="fractalNoise" baseFrequency="0.01 0.04" numOctaves="2" seed="2" result="turbulence" />
                         <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="20" xChannelSelector="R" yChannelSelector="G" result="displacement"/>
                         <feGaussianBlur in="displacement" stdDeviation="7" />
                     </filter>
-            
-                    <!-- NEW FILTER: Creates a subtle, shimmering water surface texture -->
                     <filter id="water-texture-filter">
                         <feTurbulence type="fractalNoise" baseFrequency="0.005 0.009" numOctaves="2" seed="10" result="turbulence"/>
                         <feComponentTransfer in="turbulence" result="subtle-turbulence">
@@ -38,7 +36,7 @@
                         <feBlend in="SourceGraphic" in2="subtle-turbulence" mode="color-burn" />
                     </filter>
             
-                    <!-- The animation paths are unchanged -->
+                    <!-- The animation paths are also correct and do not need to change -->
                     <clipPath id="wave-mask-1"><path d="M 0 1080 C 960 1030, 960 1130, 1920 1080 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="18s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1080 C 960 1030, 960 1130, 1920 1080 L 1920 1200 L 0 1200 Z; M 0 900 C 960 800, 960 1000, 1920 900 L 1920 1200 L 0 1200 Z; M 0 1080 C 960 1030, 960 1130, 1920 1080 L 1920 1200 L 0 1200 Z" /></path></clipPath>
                     <clipPath id="wave-mask-2"><path d="M 0 1100 C 960 1060, 960 1140, 1920 1110 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="15s" begin="-4s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1100 C 960 1060, 960 1140, 1920 1110 L 1920 1200 L 0 1200 Z; M 0 930 C 960 850, 960 1000, 1920 920 L 1920 1200 L 0 1200 Z; M 0 1100 C 960 1060, 960 1140, 1920 1110 L 1920 1200 L 0 1200 Z" /></path></clipPath>
                     <clipPath id="wave-mask-3"><path d="M 0 1060 C 960 1010, 960 1110, 1920 1070 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="12s" begin="-2s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1060 C 960 1010, 960 1110, 1920 1070 L 1920 1200 L 0 1200 Z; M 0 880 C 960 800, 960 960, 1920 890 L 1920 1200 L 0 1200 Z; M 0 1060 C 960 1010, 960 1110, 1920 1070 L 1920 1200 L 0 1200 Z" /></path></clipPath>
@@ -47,10 +45,9 @@
                     <linearGradient id="sea-gradient" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#7bcde0" /><stop offset="100%" style="stop-color:#45b5c5" /></linearGradient>
                 </defs>
             
-                <!-- The "Wet Sand" layer is unchanged -->
-                <rect x="0" y="0" width="1920" height="1200" fill="#000" opacity="0.08" clip-path="url(#wave-mask-1)" />
-            
-                <!-- The water and foam layers now have the texture filter applied -->
+                <!-- CRITICAL FIX: The water layers are now first, and the wet sand is last. -->
+                
+                <!-- Layers 1, 2, 3: The visible water and foam -->
                 <g class="water-and-foam" filter="url(#water-texture-filter)">
                     <rect x="0" y="0" width="1920" height="1200" fill="url(#sea-gradient)" clip-path="url(#wave-mask-4)" opacity="0.5"/>
                     <path class="foam-path" d="M 0 1120 C 960 1080, 960 1160, 1920 1130" stroke-width="15"><animate attributeName="d" dur="20s" begin="-8s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1120 C 960 1080, 960 1160, 1920 1130; M 0 950 C 960 880, 960 1020, 1920 960; M 0 1120 C 960 1080, 960 1160, 1920 1130" /></path>
@@ -61,6 +58,10 @@
                     <rect x="0" y="0" width="1920" height="1200" fill="url(#sea-gradient)" clip-path="url(#wave-mask-2)" opacity="0.5"/>
                     <path class="foam-path" d="M 0 1100 C 960 1060, 960 1140, 1920 1110" stroke-width="15"><animate attributeName="d" dur="15s" begin="-4s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 1100 C 960 1060, 960 1140, 1920 1110; M 0 930 C 960 850, 960 1000, 1920 920; M 0 1100 C 960 1060, 960 1140, 1920 1110" /></path>
                 </g>
+            
+                <!-- Layer 4: The "Wet Sand" Effect (now rendered last/on top of the water) -->
+                <rect x="0" y="0" width="1920" height="1200" fill="#000" opacity="0.08" clip-path="url(#wave-mask-1)" />
+            
             </svg>
             <!-- ======================================= -->
         </div>
