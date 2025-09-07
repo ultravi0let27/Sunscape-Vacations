@@ -58,12 +58,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ====== 5. QUOTE MODAL LOGIC ======
+    // ====== 5. QUOTE MODAL LOGIC (with Mobile Fix) ======
     const toggleModal = (isActive) => {
         if (modalOverlay) modalOverlay.classList.toggle('active', isActive);
         isActive ? lenis.stop() : lenis.start();
     };
-    triggerButtons.forEach(button => button.addEventListener('click', () => toggleModal(true)));
+    
+    const openModal = (event) => {
+        // preventDefault stops the browser from trying to process a "ghost click" after the touch event
+        event.preventDefault();
+        toggleModal(true);
+    };
+    
+    // Check if it's a touch device (we can reuse the function from the last fix)
+    const isTouchDeviceForModal = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const eventType = isTouchDeviceForModal() ? 'touchstart' : 'click';
+    
+    triggerButtons.forEach(button => {
+        button.addEventListener(eventType, openModal);
+    });
+    
     document.getElementById('close-modal-btn')?.addEventListener('click', () => toggleModal(false));
     modalOverlay?.addEventListener('click', (event) => {
         if (event.target === modalOverlay) toggleModal(false);
