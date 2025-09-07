@@ -1045,6 +1045,29 @@ html {
     #animated-water-container {
         display: none;
     }
+    /* --- ADJUSTMENT: Make "Next Vacation" section smaller on mobile --- */
+    
+    /* Reduce the vertical space above the title */
+    .vacation-types-section {
+        padding-top: 40px;
+    }
+
+    /* Change the layout from a tall stack to a compact horizontal grid */
+    .types-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns side-by-side */
+        gap: 1rem;                             /* Reduce the space between cards */
+        max-width: none;                       /* Allow the grid to use the full screen width */
+    }
+
+    /* Reduce the size of the images, which is the biggest space saver */
+    .category-card img {
+        height: 120px;
+    }
+
+    /* Make the title text under the images smaller */
+    .category-card h3 {
+        font-size: 0.9rem;
+    }
 }
 
 #mobile-hero-quote-button {
