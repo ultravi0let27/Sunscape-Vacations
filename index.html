@@ -17,6 +17,9 @@
     <!-- ===== DEFINITIVE BACKGROUND CONTAINER ===== -->
     <div id="page-background">
 
+        <!-- ADD THIS NEW DIV for the cursor light -->
+        <div id="sand-cursor-light"></div>
+
         <div id="animated-water-container">
 
             <!-- ===== TALL REVEAL-ON-SCROLL SVG ===== -->
@@ -32,6 +35,17 @@
                         <feTurbulence type="fractalNoise" baseFrequency="0.005 0.009" numOctaves="2" seed="10" result="turbulence"/>
                         <feComponentTransfer in="turbulence" result="subtle-turbulence"><feFuncA type="linear" slope="0.2"/></feComponentTransfer>
                         <feBlend in="SourceGraphic" in2="subtle-turbulence" mode="color-burn" />
+                    </filter>
+                    <!-- ADD THIS NEW FILTER for the sand texture -->
+                    <filter id="sand-texture-filter">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="20" result="turbulence"/>
+                        <feComponentTransfer in="turbulence" result="mono-turbulence">
+                            <feFuncR type="linear" slope="0.1" intercept="0"/>
+                            <feFuncG type="linear" slope="0.1" intercept="0"/>
+                            <feFuncB type="linear" slope="0.1" intercept="0"/>
+                            <feFuncA type="linear" slope="0.3" intercept="0"/>
+                        </feComponentTransfer>
+                        <feBlend in="SourceGraphic" in2="mono-turbulence" mode="multiply"/>
                     </filter>
             
                     <!-- Animation paths are now at the TOP of the 1200px canvas -->
