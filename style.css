@@ -917,15 +917,18 @@ html {
     opacity: 1;
 }
 
-/* This overlay uses an improved SVG for a more visible sand texture */
+/* This overlay now generates a fine, dark brown grain texture */
 #sand-texture-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* UPDATED: baseFrequency is lower (larger grains) and opacity is higher (more visible) */
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.3" numOctaves="1" seed="30"/></filter><rect width="100%" height="100%" filter="url(%23f)" opacity="0.12"/></svg>');
+    /* NEW: This SVG generates a noise pattern and colorizes it to a dark brown */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="30" result="noiseAlpha"/><feColorMatrix in="noiseAlpha" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0 0.14  0 0 0 0.4 0"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
+    /* This blend mode makes the dark grain blend naturally with the light sand */
+    mix-blend-mode: multiply;
+    opacity: 0.6; /* Controls the overall intensity of the grain */
     z-index: -1;
 }
 
