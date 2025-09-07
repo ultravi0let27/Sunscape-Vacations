@@ -1028,4 +1028,17 @@ html {
     .hamburger.active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .hamburger-bar:nth-child(2) { opacity: 0; }
     .hamburger.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    /* --- FIX: Make the "X" visible on the open menu --- */
+    .hamburger.active .hamburger-bar {
+        background-color: var(--dark-text) !important;
+    }
+
+    /* --- FIX: Make "Get a Quote" button visible and styled in the mobile menu --- */
+    .main-nav .btn-nav-quote {
+        display: inline-block; /* Overrides the 'display: none' */
+        padding: 15px 40px;
+        margin-top: 20px;
+        text-align: center;
+        width: auto;
+    }
 }
