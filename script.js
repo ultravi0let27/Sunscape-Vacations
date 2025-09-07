@@ -54,12 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (event.target === modalOverlay) toggleModal(false);
     });
 
-    // ====== 5a. SAND CURSOR INTERACTION (Corrected) ======
+    // ====== 5a. SAND CURSOR INTERACTION (with Mobile Check) ======
     const sandCursorLight = document.getElementById('sand-cursor-light');
     const pageContent = document.querySelector('.page-content');
     
-    if (sandCursorLight && pageContent) {
-        // Logic to move the light with the cursor
+    // This check prevents the cursor logic from running on touch devices
+    const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (sandCursorLight && pageContent && !isTouchDevice()) {
         document.addEventListener('mousemove', (e) => {
             requestAnimationFrame(() => {
                 sandCursorLight.style.left = `${e.clientX}px`;
@@ -67,12 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     
-        // New logic to fade the light in
         pageContent.addEventListener('mouseenter', () => {
             sandCursorLight.style.opacity = '1';
         });
     
-        // New logic to fade the light out
         pageContent.addEventListener('mouseleave', () => {
             sandCursorLight.style.opacity = '0';
         });
