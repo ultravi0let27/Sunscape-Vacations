@@ -1016,3 +1016,65 @@ body {
     top: 0;
     left: 0;
 }
+
+/* ======================================= */
+/* ====== FINAL DESIGN REFINEMENTS ====== */
+/* ======================================= */
+
+/* --- 1. New Color Variable --- */
+:root {
+    --accent-teal: #5CD0D0;
+}
+
+/* --- 2. Update Button and Card Colors --- */
+.btn-primary,
+.btn-nav-quote {
+    background-color: var(--accent-teal);
+    color: var(--dark-text);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    border-color: var(--accent-teal);
+    color: var(--accent-teal);
+}
+
+.tilt-card:hover .card-image-container {
+    /* #5CD0D0 with 60% opacity */
+    box-shadow: 0 0 25px 5px rgba(92, 208, 208, 0.6);
+}
+
+/* --- 3. New Desktop Navbar Layout (for screens wider than 992px) --- */
+@media (min-width: 993px) {
+    .main-header .container {
+        position: relative; /* Required for absolute positioning */
+    }
+
+    /* Center the logo and make it bigger */
+    .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100; /* Ensures it sits on top of other nav elements */
+    }
+    .logo img {
+        height: 110px; /* Increased logo size */
+    }
+
+    /* Stretch the navigation bar to create space for the centered logo */
+    .main-nav {
+        width: 100%;
+    }
+    .main-nav ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* This makes our invisible spacer create a gap for the logo */
+    .nav-logo-spacer {
+        width: 140px; /* Adjust this value if the logo overlaps */
+    }
+}
