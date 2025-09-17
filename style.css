@@ -999,3 +999,20 @@ html {
 #mobile-hero-quote-button {
     display: none;
 }
+
+/* --- BACKGROUND & PARTICLES --- */
+
+/* This is the solid sand-colored background for the whole site */
+body {
+    background-color: var(--sand-color);
+}
+
+/* This is the canvas for our floating particle effect */
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Sits behind the content but on top of the body color */
+    top: 0;
+    left: 0;
+}
