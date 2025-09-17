@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "line_linked": { "enable": false },
         "move": {
           "enable": true,
-          "speed": 1.5,
+          "speed": 0.8,
           "direction": "top",
           "random": true,
           "straight": false,
