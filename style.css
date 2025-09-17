@@ -1078,3 +1078,36 @@ body {
         width: 140px; /* Adjust this value if the logo overlaps */
     }
 }
+
+/* ======================================= */
+/* ====== NAVBAR LAYOUT REFINEMENTS ====== */
+/* ======================================= */
+
+/* --- 1. Restore the original yellow color to the top-right "Get a Quote" button --- */
+.btn-nav-quote {
+    background-color: var(--accent-yellow);
+    color: var(--dark-text); /* Ensure text remains readable */
+}
+
+/* This media query ensures these layout changes only apply to desktop screens */
+@media (min-width: 993px) {
+
+    /* --- 2. Move the logo further down --- */
+    .logo {
+        /* By increasing the 'top' value, we push the logo down slightly */
+        top: 58%;
+    }
+
+    /* --- 3. Bring the navigation links closer to the logo --- */
+    .main-nav ul {
+        /* This changes the spacing logic from the edges to the center */
+        justify-content: center;
+        /* This adds a consistent gap between all navigation items */
+        gap: 2rem;
+    }
+
+    /* We need to make the spacer a little wider to compensate */
+    .nav-logo-spacer {
+        width: 160px;
+    }
+}
