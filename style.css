@@ -1092,22 +1092,36 @@ body {
 /* This media query ensures these layout changes only apply to desktop screens */
 @media (min-width: 993px) {
 
-    /* --- 2. Move the logo further down --- */
+    /* --- 2. Position the logo correctly --- */
     .logo {
-        /* By increasing the 'top' value, we push the logo down slightly */
         top: 58%;
     }
 
-    /* --- 3. Bring the navigation links closer to the logo --- */
+    /* --- 3. DEFINITIVE FIX for Symmetrical Layout --- */
     .main-nav ul {
-        /* This changes the spacing logic from the edges to the center */
-        justify-content: center;
-        /* This adds a consistent gap between all navigation items */
-        gap: 2rem;
+        display: flex;
+        width: 100%;
+        /* This is the key: it creates two equal-sized groups on either side */
+        justify-content: space-between;
     }
 
-    /* We need to make the spacer a little wider to compensate */
+    /* We use flexbox to group the links on each side */
+    .main-nav ul > li:nth-child(-n+3) { /* Selects the first 3 items */
+        flex-grow: 1; /* These items belong to the left group */
+    }
+
+    .main-nav ul > li:nth-child(n+5) { /* Selects items from the 5th onwards */
+       flex-grow: 1; /* These items belong to the right group */
+    }
+
+    /* This forces the button to the far right of its group */
+    .main-nav ul > li:last-child {
+       text-align: right;
+    }
+    
+    /* We still need the spacer to create the gap for the logo */
     .nav-logo-spacer {
-        width: 160px;
+        width: 200px; /* A slightly wider spacer for better balance */
+        flex-shrink: 0; /* Prevents the spacer from shrinking */
     }
 }
