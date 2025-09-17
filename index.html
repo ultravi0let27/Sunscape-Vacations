@@ -14,48 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- ===== DEFINITIVE BACKGROUND CONTAINER ===== -->
-    <div id="page-background">
-
-        <div id="sand-texture-overlay"></div>
-
-        <!-- ADD THIS NEW DIV for the cursor light -->
-        <div id="sand-cursor-light"></div>
-
-        <div id="animated-water-container">
-
-            <!-- ===== DEFINITIVE, STRUCTURALLY CORRECT SVG ===== -->
-            <svg id="animated-beach-background" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1200" preserveAspectRatio="xMidYMin slice">
-                <defs>
-                    <!-- The filters and animation paths are all correct -->
-                    <filter id="foam-filter"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.04" numOctaves="2" seed="2" result="turbulence"/><feDisplacementMap in2="turbulence" in="SourceGraphic" scale="25" xChannelSelector="R" yChannelSelector="G" result="displacement"/><feGaussianBlur in="displacement" stdDeviation="10" /></filter>
-                    <filter id="water-texture-filter"><feTurbulence type="fractalNoise" baseFrequency="0.005 0.009" numOctaves="2" seed="10" result="turbulence"/><feComponentTransfer in="turbulence" result="subtle-turbulence"><feFuncA type="linear" slope="0.2"/></feComponentTransfer><feBlend in="SourceGraphic" in2="subtle-turbulence" mode="color-burn" /></filter>
-                    <clipPath id="wet-sand-mask-primary"><path d="M 0 170 C 960 120, 960 220, 1920 170 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 170 C 960 120, 960 220, 1920 170 L 1920 1200 L 0 1200 Z; M 0 50 C 960 -50, 960 150, 1920 50 L 1920 1200 L 0 1200 Z; M 0 170 C 960 120, 960 220, 1920 170 L 1920 1200 L 0 1200 Z" /></path></clipPath>
-                    <clipPath id="water-foam-mask-primary"><path d="M 0 190 C 960 150, 960 240, 1920 200 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="14s" begin="-0.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 190 C 960 150, 960 240, 1920 200 L 1920 1200 L 0 1200 Z; M 0 70 C 960 -10, 960 170, 1920 80 L 1920 1200 L 0 1200 Z; M 0 190 C 960 150, 960 240, 1920 200 L 1920 1200 L 0 1200 Z" /></path></clipPath>
-                    <clipPath id="wet-sand-mask-secondary"><path d="M 0 140 C 960 100, 960 180, 1920 150 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="18s" begin="-5s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 140 C 960 100, 960 180, 1920 150 L 1920 1200 L 0 1200 Z; M 0 40 C 960 -40, 960 120, 1920 50 L 1920 1200 L 0 1200 Z; M 0 140 C 960 100, 960 180, 1920 150 L 1920 1200 L 0 1200 Z" /></path></clipPath>
-                    <clipPath id="water-foam-mask-secondary"><path d="M 0 160 C 960 120, 960 200, 1920 170 L 1920 1200 L 0 1200 Z"><animate attributeName="d" dur="18s" begin="-5.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 160 C 960 120, 960 200, 1920 170 L 1920 1200 L 0 1200 Z; M 0 60 C 960 -20, 960 140, 1920 70 L 1920 1200 L 0 1200 Z; M 0 160 C 960 120, 960 200, 1920 170 L 1920 1200 L 0 1200 Z" /></path></clipPath>
-                    <linearGradient id="sea-gradient" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#7bcde0" /><stop offset="100%" style="stop-color:#45b5c5" /></linearGradient>
-                </defs>
-            
-                <!-- Correct Rendering Order -->
-            
-                <!-- Secondary Wave (in the background) -->
-                <rect class="wet-sand-secondary" x="0" y="0" width="1920" height="1200" fill="#000" opacity="0.06" clip-path="url(#wet-sand-mask-secondary)" />
-                <g class="water-and-foam" filter="url(#water-texture-filter)">
-                    <rect x="0" y="0" width="1920" height="1200" fill="url(#sea-gradient)" clip-path="url(#water-foam-mask-secondary)" opacity="1"/>
-                    <path class="foam-path" d="M 0 160 C 960 120, 960 200, 1920 170" stroke-width="15"><animate attributeName="d" dur="18s" begin="-5.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 160 C 960 120, 960 200, 1920 170; M 0 60 C 960 -20, 960 140, 1920 70; M 0 160 C 960 120, 960 200, 1920 170" /></path>
-                </g>
-            
-                <!-- Primary Wave (in the foreground) -->
-                <rect class="wet-sand-primary" x="0" y="0" width="1920" height="1200" fill="#000" opacity="0.08" clip-path="url(#wet-sand-mask-primary)" />
-                <g class="water-and-foam" filter="url(#water-texture-filter)">
-                    <rect x="0" y="0" width="1920" height="1200" fill="url(#sea-gradient)" clip-path="url(#water-foam-mask-primary)" opacity="1"/>
-                    <path class="foam-path" d="M 0 190 C 960 150, 960 240, 1920 200" stroke-width="20"><animate attributeName="d" dur="14s" begin="-0.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0; 0.5; 1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1" values="M 0 190 C 960 150, 960 240, 1920 200; M 0 70 C 960 -10, 960 170, 1920 80; M 0 190 C 960 150, 960 240, 1920 200" /></path>
-                </g>
-            </svg>
-            <!-- ======================================= -->
-        </div>
-    </div>
     
     <div id="loader-wrapper"><img src="https://i.postimg.cc/136gFrJS/bd64a82ba898e9fe04e5cb56c2468fd9.png" alt="Sunscape Vacations Loading"></div>
     
