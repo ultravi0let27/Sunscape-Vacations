@@ -1052,52 +1052,44 @@ body {
 /* This media query ensures these layout changes only apply to desktop screens */
 @media (min-width: 993px) {
 
-    /* Base for positioning */
+    /* --- Base for positioning --- */
     .main-header .container {
         position: relative;
     }
     
-    /* Position the logo in the center and slightly down */
+    /* --- Position the logo correctly --- */
     .logo {
         position: absolute;
         left: 50%;
-        top: 58%; /* Pushes the logo down */
+        top: 58%;
         transform: translate(-50%, -50%);
         z-index: 100;
     }
-
-    /* Increase the logo size */
     .logo img {
         height: 110px;
     }
 
-    /* Flexbox setup for the main navigation container */
+    /* --- Definitive Centered Navigation Layout --- */
     .main-nav {
         width: 100%;
     }
     .main-nav ul {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        /* This is the key: it clusters all nav items in the center */
+        justify-content: center;
         align-items: center;
     }
 
-    /* Create the left and right groups for perfect symmetry */
+    /* Style the left and right groups of links */
     .nav-group-left, .nav-group-right {
         display: flex;
         align-items: center;
-        flex: 1; /* This is the key: forces both groups to be the same size */
-        gap: 1.5rem; /* Adds some space between links */
+        gap: 2rem; /* This controls the space BETWEEN the links themselves */
     }
 
-    /* Align items within the right-side group */
-    .nav-group-right {
-        justify-content: flex-end; /* Pushes all items to the right edge */
-    }
-
-    /* The spacer simply creates the gap for the logo */
+    /* The spacer now controls the distance of the links FROM the logo */
     .nav-logo-spacer {
-        width: 180px;
-        flex-shrink: 0; /* Prevents the spacer from shrinking */
+        width: 100px; /* A smaller spacer brings the link groups closer to the logo */
     }
 }
