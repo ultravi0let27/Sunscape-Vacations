@@ -1022,6 +1022,26 @@ html {
     .category-card h3 {
         font-size: 1.1rem; /* Slightly larger text to match the larger cards */
     }
+    /* --- NEW Mobile Centered-Logo Header --- */
+
+    /* Make the header a positioning container and push its contents to the right */
+    .main-header .container {
+        position: relative;
+        justify-content: flex-end;
+    }
+
+    /* Lift the logo out of the flow and center it */
+    .logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Increase the logo size for mobile */
+    .logo img {
+        height: 85px; 
+    }
 }
 
 #mobile-hero-quote-button {
