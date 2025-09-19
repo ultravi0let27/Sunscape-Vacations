@@ -27,13 +27,22 @@
                 <a href="#home" class="logo"><img src="https://i.postimg.cc/VLcJjDPq/bd64a82ba898e9fe04e5cb56c2468fd9.png" alt="Sunscape Vacations Logo"></a>
                 <nav class="main-nav" data-lenis-prevent>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#destinations">Destinations</a></li>
+                        <!-- This is the new wrapper for the left-side links -->
+                        <div class="nav-group-left">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#destinations">Destinations</a></li>
+                        </div>
+                        
+                        <!-- The spacer remains in the middle -->
                         <li class="nav-logo-spacer"></li>
-                        <li><a href="#resorts">Experience</a></li>
-                        <li><a href="#accreditations">Credentials</a></li>
-                        <li><button class="btn btn-nav-quote quote-modal-trigger">Get a Quote</button></li>
+                
+                        <!-- This is the new wrapper for the right-side links and button -->
+                        <div class="nav-group-right">
+                            <li><a href="#resorts">Experience</a></li>
+                            <li><a href="#accreditations">Credentials</a></li>
+                            <li><button class="btn btn-nav-quote quote-modal-trigger">Get a Quote</button></li>
+                        </div>
                     </ul>
                 </nav>
                 <button class="hamburger" id="hamburger-menu"><span class="hamburger-bar"></span><span class="hamburger-bar"></span><span class="hamburger-bar"></span></button>
