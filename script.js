@@ -72,28 +72,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ====== 8. NEW: PARTICLE BACKGROUND INITIALIZATION (ENHANCED) ======
+    // ====== 8. NEW: PARTICLE BACKGROUND INITIALIZATION (REFINED) ======
     // This is the configuration for your "piece of art" particle background
     particlesJS('particles-js', {
       "particles": {
         "number": {
-          "value": 100, // INCREASED: More particles on screen
+          "value": 50, // REDUCED: A cleaner, more minimalist amount of particles
           "density": { "enable": true, "value_area": 800 }
         },
         "color": {
-          "value": ["#5CD0D0", "#FEDD58"] // NEW: Your requested teal and yellow colors
+          "value": ["#94C7C7", "#E0D5A6"] // NEW: Muted teal and a soft, desaturated gold
         },
         "shape": { "type": "circle" },
         "opacity": { "value": 0.8, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.2, "sync": false } },
-        "size": {
-          "value": 6, // INCREASED: Larger particles
-          "random": true,
-          "anim": { "enable": false }
-        },
+        "size": { "value": 6, "random": true, "anim": { "enable": false } },
         "line_linked": { "enable": false },
         "move": {
           "enable": true,
-          "speed": 0.8, // Kept the slower speed for an elegant feel
+          "speed": 0.4, // SLOWER: A much gentler, more ambient floating speed
           "direction": "top",
           "random": true,
           "straight": false,
