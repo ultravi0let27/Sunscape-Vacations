@@ -17,6 +17,7 @@ body {
     overflow-x: hidden;
 }
 
+
 .page-content {
     position: relative;
     z-index: 1;
@@ -791,36 +792,38 @@ html {
     position: relative; /* Crucial for positioning the  and particles */
 }
 
-/* The particle canvas is now ALSO the gradient container */
-#particles-js {
+#interactive-gradient-bg {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0; /* Sits behind the content */
     top: 0;
     left: 0;
-
-    /* The multi-layered, interactive gradient is now applied here */
-    background: 
-        radial-gradient(
-            40vw circle at var(--gradient-x, 50%) var(--gradient-y, 50%),
-            rgba(148, 199, 199, 0.5), /* Muted Teal */
-            transparent 80%
-        ),
-        radial-gradient(
-            30vw circle at 10% 90%,
-            rgba(224, 213, 166, 0.4), /* Muted Gold */
-            transparent 70%
-        ),
-        radial-gradient(
-            30vw circle at 90% 20%,
-            rgba(163, 153, 186, 0.4), /* Muted Lavender */
-            transparent 70%
-        );
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Sits at the very back */
     
-    /* This makes the gradient colors blend and glow */
+    background: 
+        radial-gradient(40vw circle at var(--gradient-x, 50%) var(--gradient-y, 50%), rgba(148, 199, 199, 0.5), transparent 80%),
+        radial-gradient(30vw circle at 10% 90%, rgba(224, 213, 166, 0.4), transparent 70%),
+        radial-gradient(30vw circle at 90% 20%, rgba(163, 153, 186, 0.4), transparent 70%);
+        
     mix-blend-mode: screen;
     opacity: 0.8;
+}
+
+/* 3. Style the particle canvas layer */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Sits on top of the gradient, but behind the content */
+}
+
+/* 4. CRUCIAL: Ensure the main content is on top */
+.page-content {
+    position: relative;
+    z-index: 1; /* This brings all your content to the front */
+    background-color: transparent; /* Must be transparent to see the background */
 }
 
 /* Ensure hero content stays on top */
@@ -1020,44 +1023,6 @@ html {
 
 #mobile-hero-quote-button {
     display: none;
-}
-
-/* --- FINAL INTERACTIVE GRADIENT BACKGROUND --- */
-#interactive-gradient-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-
-    /* 
-    This is the core of the effect: three layered gradients.
-    Two are static, and one moves with the cursor's X and Y.
-    */
-    background: 
-        /* Layer 1: The interactive cursor "light" */
-        radial-gradient(
-            40vw circle at var(--gradient-x, 50%) var(--gradient-y, 50%),
-            rgba(148, 199, 199, 0.5), /* Muted Teal */
-            transparent 80%
-        ),
-        /* Layer 2: A static "bottom-left" color blob */
-        radial-gradient(
-            30vw circle at 10% 90%,
-            rgba(224, 213, 166, 0.4), /* Muted Gold */
-            transparent 70%
-        ),
-        /* Layer 3: A static "top-right" color blob */
-        radial-gradient(
-            30vw circle at 90% 20%,
-            rgba(163, 153, 186, 0.4), /* A new muted lavender for depth */
-            transparent 70%
-        );
-    
-    /* This blend mode makes the gradients "glow" and mix together beautifully */
-    mix-blend-mode: screen;
-    opacity: 0.8; /* A final touch to soften the whole effect */
 }
 
 /* --- BACKGROUND & PARTICLES --- */
