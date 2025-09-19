@@ -73,14 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ====== 7a. INTERACTIVE GRADIENT LOGIC (Corrected) ======
-    const particleCanvas = document.getElementById('particles-js'); // Target the particle canvas
+    const gradientBg = document.getElementById('interactive-gradient-bg'); // Target the correct gradient div
     const isNotTouchDevice = () => !('ontouchstart' in window) && navigator.maxTouchPoints <= 0;
     
-    if (particleCanvas && isNotTouchDevice()) {
+    if (gradientBg && isNotTouchDevice()) {
+        // We are now updating the variables on the root again for smoother performance
         document.addEventListener('mousemove', (e) => {
-            // We now update the CSS variables directly on the particle canvas
-            particleCanvas.style.setProperty('--gradient-x', `${e.clientX}px`);
-            particleCanvas.style.setProperty('--gradient-y', `${e.clientY}px`);
+            document.documentElement.style.setProperty('--gradient-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--gradient-y', `${e.clientY}px`);
         });
     }
 
