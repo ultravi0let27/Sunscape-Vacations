@@ -1018,51 +1018,60 @@ body {
 }
 
 /* ======================================= */
-/* ====== FINAL DESIGN REFINEMENTS ====== */
+/* ====== FINAL DESIGN & NAVBAR ====== */
 /* ======================================= */
 
-/* --- 1. New Color Variable --- */
+/* --- 1. New and Updated Colors --- */
 :root {
     --accent-teal: #5CD0D0;
 }
 
-/* --- 2. Update Button and Card Colors --- */
-.btn-primary,
-.btn-nav-quote {
+/* Set the teal color for the main hero button */
+.btn-primary {
     background-color: var(--accent-teal);
     color: var(--dark-text);
 }
-
 .btn-primary:hover {
     background-color: transparent;
     border-color: var(--accent-teal);
     color: var(--accent-teal);
 }
 
+/* Restore the yellow color to the top-right nav button, overriding the teal */
+.btn-nav-quote {
+    background-color: var(--accent-yellow) !important;
+    color: var(--dark-text) !important;
+}
+
+/* Set the teal hover outline for the vacation cards */
 .tilt-card:hover .card-image-container {
-    /* #5CD0D0 with 60% opacity */
     box-shadow: 0 0 25px 5px rgba(92, 208, 208, 0.6);
 }
 
-/* --- 3. New Desktop Navbar Layout (for screens wider than 992px) --- */
+/* --- 2. Definitive Symmetrical Desktop Navbar Layout --- */
+/* This media query ensures these layout changes only apply to desktop screens */
 @media (min-width: 993px) {
-    .main-header .container {
-        position: relative; /* Required for absolute positioning */
-    }
 
-    /* Center the logo and make it bigger */
+    /* Base for positioning */
+    .main-header .container {
+        position: relative;
+    }
+    
+    /* Position the logo in the center and slightly down */
     .logo {
         position: absolute;
-        top: 50%;
         left: 50%;
+        top: 58%; /* Pushes the logo down */
         transform: translate(-50%, -50%);
-        z-index: 100; /* Ensures it sits on top of other nav elements */
-    }
-    .logo img {
-        height: 110px; /* Increased logo size */
+        z-index: 100;
     }
 
-    /* Stretch the navigation bar to create space for the centered logo */
+    /* Increase the logo size */
+    .logo img {
+        height: 110px;
+    }
+
+    /* Flexbox setup for the main navigation container */
     .main-nav {
         width: 100%;
     }
@@ -1073,55 +1082,22 @@ body {
         align-items: center;
     }
 
-    /* This makes our invisible spacer create a gap for the logo */
-    .nav-logo-spacer {
-        width: 140px; /* Adjust this value if the logo overlaps */
-    }
-}
-
-/* ======================================= */
-/* ====== NAVBAR LAYOUT REFINEMENTS ====== */
-/* ======================================= */
-
-/* --- 1. Restore the original yellow color to the top-right "Get a Quote" button --- */
-.btn-nav-quote {
-    background-color: var(--accent-yellow);
-    color: var(--dark-text); /* Ensure text remains readable */
-}
-
-/* This media query ensures these layout changes only apply to desktop screens */
-@media (min-width: 993px) {
-
-    /* --- 2. Position the logo correctly --- */
-    .logo {
-        top: 58%;
-    }
-
-    /* --- 3. DEFINITIVE FIX for Symmetrical Layout --- */
-    .main-nav ul {
+    /* Create the left and right groups for perfect symmetry */
+    .nav-group-left, .nav-group-right {
         display: flex;
-        width: 100%;
-        /* This is the key: it creates two equal-sized groups on either side */
-        justify-content: space-between;
+        align-items: center;
+        flex: 1; /* This is the key: forces both groups to be the same size */
+        gap: 1.5rem; /* Adds some space between links */
     }
 
-    /* We use flexbox to group the links on each side */
-    .main-nav ul > li:nth-child(-n+3) { /* Selects the first 3 items */
-        flex-grow: 1; /* These items belong to the left group */
+    /* Align items within the right-side group */
+    .nav-group-right {
+        justify-content: flex-end; /* Pushes all items to the right edge */
     }
 
-    .main-nav ul > li:nth-child(n+5) { /* Selects items from the 5th onwards */
-       flex-grow: 1; /* These items belong to the right group */
-    }
-
-    /* This forces the button to the far right of its group */
-    .main-nav ul > li:last-child {
-       text-align: right;
-    }
-    
-    /* We still need the spacer to create the gap for the logo */
+    /* The spacer simply creates the gap for the logo */
     .nav-logo-spacer {
-        width: 200px; /* A slightly wider spacer for better balance */
+        width: 180px;
         flex-shrink: 0; /* Prevents the spacer from shrinking */
     }
 }
