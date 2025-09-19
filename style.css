@@ -1093,7 +1093,7 @@ body {
     .nav-logo-spacer {
         width: 220px; 
     }
-    /* --- This new pseudo-element creates the "cutout" effect --- */
+    /* --- This is the new BASE style for the logo's outline --- */
     .logo::after {
         content: '';
         position: absolute;
@@ -1101,20 +1101,29 @@ body {
         left: 50%;
         transform: translate(-50%, -50%);
         
-        /* Make it slightly larger than the logo to create the outline */
-        width: calc(100% + 20px);
-        height: calc(100% + 20px);
+        /* 1. MAKE THE OUTLINE BIGGER */
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
 
-        /* Style it to EXACTLY match the scrolled navbar */
+        /* Make it a perfect circle */
+        border-radius: 50%;
+        
+        /* Start invisible and prepare for a smooth fade-in */
+        opacity: 0;
+        transition: var(--transition); /* Use the site's standard transition */
+        
+        z-index: -1;
+    }
+
+    /* --- This new rule makes the outline VISIBLE ONLY WHEN SCROLLED --- */
+    .main-header.scrolled .logo::after {
+        /* These styles are copied EXACTLY from your .main-header.scrolled rule */
         background: rgba(255, 255, 255, 0.95);
         box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         
-        /* Make it a perfect circle */
-        border-radius: 50%;
-
-        /* This is the key: place it BEHIND the logo's image */
-        z-index: -1; 
+        /* Fade it in */
+        opacity: 1;
     }
 }
