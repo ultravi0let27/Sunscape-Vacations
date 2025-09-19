@@ -258,18 +258,18 @@ a:hover { color: var(--accent-yellow); }
     transform: translateY(-10px);
 }
 .category-card .card-image-container {
-    background-color: var(--dark-text);
-    border-radius: 24px; /* The outer rounded frame */
+    border-radius: 24px;
     overflow: hidden;
-    padding: 10px; /* The spacing that creates the "frame" effect */
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    padding: 0; /* REMOVES THE FRAME */
+    background-color: transparent; /* REMOVES THE FRAME COLOR */
+    box-shadow: var(--shadow); /* Applies a cleaner, softer shadow */
     margin-bottom: 1.5rem;
 }
 .category-card img {
     width: 100%;
-    height: 300px;
+    height: 250px; /* A slightly more compact height for desktop */
     object-fit: cover;
-    border-radius: 16px; /* The inner rounded corners for the image itself */
+    border-radius: 24px; /* Match the container's radius for a clean look */
 }
 .category-card h3 {
     color: var(--dark-text);
@@ -1150,36 +1150,5 @@ body {
         
         /* Fade it in */
         opacity: 1;
-    }
-}
-
-/* ======================================= */
-/* ====== "NEXT VACATION" REFINEMENTS ====== */
-/* ======================================= */
-
-/* This targets the section only on desktop and larger screens */
-@media (min-width: 769px) {
-
-    /* --- Make the entire section more compact --- */
-    .vacation-types-section {
-        padding-top: 60px; /* Reduces the empty space above */
-    }
-    
-    .types-grid {
-        max-width: 1000px; /* Constrain the width for a cleaner look */
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* --- Apply the mobile-style frameless look --- */
-    .category-card .card-image-container {
-        padding: 0;
-        background-color: transparent;
-        box-shadow: var(--shadow);
-    }
-
-    /* --- Adjust image height for desktop --- */
-    .category-card img {
-        height: 250px; /* A good size for desktop that isn't too tall */
     }
 }
