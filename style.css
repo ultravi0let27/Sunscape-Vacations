@@ -10,8 +10,7 @@ html {
 
 /* Update this rule */
 body {
-    /* A deep, dark navy base for the gradient to blend with */
-    background-color: #0d1a26; 
+    background-color: #0d1a26;
     font-family: 'Poppins', sans-serif;
     color: var(--dark-text);
     line-height: 1.7;
@@ -792,14 +791,36 @@ html {
     position: relative; /* Crucial for positioning the  and particles */
 }
 
-/* This is the canvas for our future particle effect */
+/* The particle canvas is now ALSO the gradient container */
 #particles-js {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    z-index: -1; /* Pushes it behind all content */
+    z-index: 0; /* Sits behind the content */
     top: 0;
     left: 0;
+
+    /* The multi-layered, interactive gradient is now applied here */
+    background: 
+        radial-gradient(
+            40vw circle at var(--gradient-x, 50%) var(--gradient-y, 50%),
+            rgba(148, 199, 199, 0.5), /* Muted Teal */
+            transparent 80%
+        ),
+        radial-gradient(
+            30vw circle at 10% 90%,
+            rgba(224, 213, 166, 0.4), /* Muted Gold */
+            transparent 70%
+        ),
+        radial-gradient(
+            30vw circle at 90% 20%,
+            rgba(163, 153, 186, 0.4), /* Muted Lavender */
+            transparent 70%
+        );
+    
+    /* This makes the gradient colors blend and glow */
+    mix-blend-mode: screen;
+    opacity: 0.8;
 }
 
 /* Ensure hero content stays on top */
