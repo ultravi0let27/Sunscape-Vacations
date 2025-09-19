@@ -1052,48 +1052,46 @@ body {
 /* This media query ensures these layout changes only apply to desktop screens */
 @media (min-width: 993px) {
 
-    /* --- Base for positioning --- */
-    .main-header .container {
-        position: relative;
+    /* --- 1. Increase the height of the navbar --- */
+    .main-header {
+        height: 120px; /* Increased from 100px */
     }
-    
-    /* --- Position the logo correctly --- */
+
+    /* --- 2. Make the logo bigger and create the "seal" effect --- */
     .logo {
         position: absolute;
         left: 50%;
         top: 58%;
         transform: translate(-50%, -50%);
         z-index: 100;
+        /* This creates a soft shadow around the logo for a premium feel */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 50%; /* Ensures the shadow is circular */
     }
     .logo img {
-        height: 110px;
+        height: 150px; /* Much larger than the navbar height, creating the overlap */
+        display: block; /* Important for clean rendering of the shadow */
     }
 
-    /* --- Definitive Symmetrical Layout --- */
+    /* --- 3. The symmetrical layout logic remains the same --- */
     .main-nav {
         width: 100%;
     }
     .main-nav ul {
         width: 100%;
         display: flex;
-        /* This pushes the left and right groups to the edges */
         justify-content: space-between;
         align-items: center;
     }
-
-    /* This is the key to perfect symmetry */
     .nav-group-left, .nav-group-right {
-        /* This forces both groups to be the exact same width */
         flex: 1; 
         display: flex;
         align-items: center;
-        /* This forces the items INSIDE each group to space out evenly */
         justify-content: space-around;
     }
 
-    /* The spacer simply creates the empty gap for the logo */
+    /* --- 4. Widen the spacer to accommodate the larger logo --- */
     .nav-logo-spacer {
-        /* Adjust width to control the distance from the links to the logo */
-        width: 150px; 
+        width: 220px; 
     }
 }
