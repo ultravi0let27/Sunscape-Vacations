@@ -257,19 +257,26 @@ a:hover { color: var(--accent-yellow); }
 .category-card:hover {
     transform: translateY(-10px);
 }
+/* This container is now a perfect square */
 .category-card .card-image-container {
+    position: relative; /* This is essential for the image positioning */
+    width: 100%;
+    aspect-ratio: 1 / 1; /* The key to the square shape */
     border-radius: 24px;
     overflow: hidden;
-    padding: 0; /* REMOVES THE FRAME */
-    background-color: transparent; /* REMOVES THE FRAME COLOR */
-    box-shadow: var(--shadow); /* Applies a cleaner, softer shadow */
+    box-shadow: var(--shadow);
     margin-bottom: 1.5rem;
 }
+
+/* This makes the image fill the square container perfectly */
 .category-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 250px; /* A slightly more compact height for desktop */
-    object-fit: cover;
-    border-radius: 24px; /* Match the container's radius for a clean look */
+    height: 100%; /* Fills the container */
+    object-fit: cover; /* Prevents the image from being distorted */
+    border-radius: 24px;
 }
 .category-card h3 {
     color: var(--dark-text);
@@ -990,34 +997,30 @@ html {
     #animated-water-container {
         display: none;
     }
-    /* --- ADJUSTMENT: Make "Next Vacation" section smaller on mobile --- */
+    /* --- "Next Vacation" Section Mobile Layout --- */
     
-    /* Reduce the vertical space above the title */
-    .vacation-types-section {
-        padding-top: 40px;
-    }
-
-    /* Change the layout from a tall stack to a compact horizontal grid */
+    /* Revert the grid to a single vertical column */
     .types-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns side-by-side */
-        gap: 1rem;                             /* Reduce the space between cards */
-        max-width: none;                       /* Allow the grid to use the full screen width */
+        grid-template-columns: 1fr;
+        gap: 2.5rem; /* A bit more space for a vertical stack */
+        max-width: 400px; /* Constrain width for a clean look */
+        margin: 0 auto;
     }
 
-    /* Reduce the size of the images, which is the biggest space saver */
-    .category-card img {
-        height: 120px;
-    }
-
-    /* Make the title text under the images smaller */
-    .category-card h3 {
-        font-size: 0.9rem;
-    }
-    /* --- FIX: Remove the thick frame from vacation cards on mobile --- */
+    /* Undo the desktop "square" styling */
     .category-card .card-image-container {
-        padding: 0;
-        background-color: transparent; /* Remove the dark background */
-        box-shadow: var(--shadow);     /* Keep a subtle shadow for depth */
+        position: static; /* Revert positioning context */
+        aspect-ratio: auto; /* Revert to natural aspect ratio */
+    }
+
+    /* Re-establish a rectangular shape for the mobile images */
+    .category-card img {
+        position: static; /* Revert positioning */
+        height: 250px; /* A good, large height for a vertical stack */
+    }
+    
+    .category-card h3 {
+        font-size: 1.1rem; /* Slightly larger text to match the larger cards */
     }
 }
 
