@@ -1069,27 +1069,31 @@ body {
         height: 110px;
     }
 
-    /* --- Definitive Centered Navigation Layout --- */
+    /* --- Definitive Symmetrical Layout --- */
     .main-nav {
         width: 100%;
     }
     .main-nav ul {
         width: 100%;
         display: flex;
-        /* This is the key: it clusters all nav items in the center */
-        justify-content: center;
+        /* This pushes the left and right groups to the edges */
+        justify-content: space-between;
         align-items: center;
     }
 
-    /* Style the left and right groups of links */
+    /* This is the key to perfect symmetry */
     .nav-group-left, .nav-group-right {
+        /* This forces both groups to be the exact same width */
+        flex: 1; 
         display: flex;
         align-items: center;
-        gap: 2rem; /* This controls the space BETWEEN the links themselves */
+        /* This forces the items INSIDE each group to space out evenly */
+        justify-content: space-around;
     }
 
-    /* The spacer now controls the distance of the links FROM the logo */
+    /* The spacer simply creates the empty gap for the logo */
     .nav-logo-spacer {
-        width: 100px; /* A smaller spacer brings the link groups closer to the logo */
+        /* Adjust width to control the distance from the links to the logo */
+        width: 150px; 
     }
 }
