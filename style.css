@@ -1057,16 +1057,15 @@ body {
         height: 120px; /* Increased from 100px */
     }
 
-    /* --- 2. Make the logo bigger and create the "seal" effect --- */
+    /* --- 2. Position the logo correctly --- */
     .logo {
         position: absolute;
         left: 50%;
-        top: 58%;
+        top: 65%; /* <-- Increased value pushes the logo down */
         transform: translate(-50%, -50%);
         z-index: 100;
-        /* This creates a soft shadow around the logo for a premium feel */
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        border-radius: 50%; /* Ensures the shadow is circular */
+        border-radius: 50%;
     }
     .logo img {
         height: 150px; /* Much larger than the navbar height, creating the overlap */
