@@ -72,16 +72,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ====== 7a. NEW: INTERACTIVE GRADIENT LOGIC ======
-    const gradientBg = document.getElementById('interactive-gradient-bg');
-    // This check prevents the code from running on mobile, where there is no cursor
+    // ====== 7a. INTERACTIVE GRADIENT LOGIC (Corrected) ======
+    const particleCanvas = document.getElementById('particles-js'); // Target the particle canvas
     const isNotTouchDevice = () => !('ontouchstart' in window) && navigator.maxTouchPoints <= 0;
     
-    if (gradientBg && isNotTouchDevice()) {
+    if (particleCanvas && isNotTouchDevice()) {
         document.addEventListener('mousemove', (e) => {
-            // We update the CSS variables on the root for smooth animation
-            document.documentElement.style.setProperty('--gradient-x', `${e.clientX}px`);
-            document.documentElement.style.setProperty('--gradient-y', `${e.clientY}px`);
+            // We now update the CSS variables directly on the particle canvas
+            particleCanvas.style.setProperty('--gradient-x', `${e.clientX}px`);
+            particleCanvas.style.setProperty('--gradient-y', `${e.clientY}px`);
         });
     }
 
