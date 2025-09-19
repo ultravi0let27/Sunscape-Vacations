@@ -72,24 +72,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ====== 8. NEW: PARTICLE BACKGROUND INITIALIZATION (REFINED) ======
-    // This is the configuration for your "piece of art" particle background
+    // ====== 7a. NEW: INTERACTIVE GRADIENT LOGIC ======
+    const gradientBg = document.getElementById('interactive-gradient-bg');
+    // This check prevents the code from running on mobile, where there is no cursor
+    const isNotTouchDevice = () => !('ontouchstart' in window) && navigator.maxTouchPoints <= 0;
+    
+    if (gradientBg && isNotTouchDevice()) {
+        document.addEventListener('mousemove', (e) => {
+            // We update the CSS variables on the root for smooth animation
+            document.documentElement.style.setProperty('--gradient-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--gradient-y', `${e.clientY}px`);
+        });
+    }
+
+    // ====== 8. PARTICLE BACKGROUND INITIALIZATION (REFINED) ======
     particlesJS('particles-js', {
       "particles": {
-        "number": {
-          "value": 50, // REDUCED: A cleaner, more minimalist amount of particles
-          "density": { "enable": true, "value_area": 800 }
-        },
-        "color": {
-          "value": ["#94C7C7", "#E0D5A6"] // NEW: Muted teal and a soft, desaturated gold
-        },
+        "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#94C7C7", "#E0D5A6"] },
         "shape": { "type": "circle" },
         "opacity": { "value": 0.8, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.2, "sync": false } },
-        "size": { "value": 6, "random": true, "anim": { "enable": false } },
+        "size": {
+          "value": 3, // REDUCED: Smaller, more star-like particles
+          "random": true,
+          "anim": { "enable": false }
+        },
         "line_linked": { "enable": false },
         "move": {
           "enable": true,
-          "speed": 0.4, // SLOWER: A much gentler, more ambient floating speed
+          "speed": 0.4,
           "direction": "top",
           "random": true,
           "straight": false,
