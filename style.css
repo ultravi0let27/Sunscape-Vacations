@@ -1061,7 +1061,7 @@ body {
     .logo {
         position: absolute;
         left: 50%;
-        top: 65%; /* <-- Increased value pushes the logo down */
+        top: 100%; /* <-- This aligns the logo's center with the bottom of the header */
         transform: translate(-50%, -50%);
         z-index: 100;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
