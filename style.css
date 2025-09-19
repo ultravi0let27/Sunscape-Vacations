@@ -1152,3 +1152,34 @@ body {
         opacity: 1;
     }
 }
+
+/* ======================================= */
+/* ====== "NEXT VACATION" REFINEMENTS ====== */
+/* ======================================= */
+
+/* This targets the section only on desktop and larger screens */
+@media (min-width: 769px) {
+
+    /* --- Make the entire section more compact --- */
+    .vacation-types-section {
+        padding-top: 60px; /* Reduces the empty space above */
+    }
+    
+    .types-grid {
+        max-width: 1000px; /* Constrain the width for a cleaner look */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* --- Apply the mobile-style frameless look --- */
+    .category-card .card-image-container {
+        padding: 0;
+        background-color: transparent;
+        box-shadow: var(--shadow);
+    }
+
+    /* --- Adjust image height for desktop --- */
+    .category-card img {
+        height: 250px; /* A good size for desktop that isn't too tall */
+    }
+}
