@@ -930,118 +930,81 @@ html {
 
 /* --- MOBILE PHONES (Small Devices) --- */
 @media (max-width: 768px) {
+    /* --- 1. Base Mobile Styles --- */
     body { line-height: 1.6; }
-    .logo img { height: 50px; }
-    
-    .main-nav {
-        position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-        background-color: var(--white-color); transition: var(--transition);
-        display: flex; justify-content: center; align-items: center;
-    }
-    .main-nav.active { right: 0; }
-    .main-nav ul { flex-direction: column; text-align: center; }
-    .main-nav ul li { margin: 20px 0; }
-    .main-nav ul li a,
-    .main-header.scrolled .main-nav ul li a {
-        font-size: 1.5rem;
-        color: var(--dark-text) !important;
-    }
-    /* This rule correctly hides the quote button that is part of the TOP navigation bar */
-    .btn-nav-quote { display: none; }
+    .main-header .container { padding: 0 20px; }
+    .welcome-section, .vacation-types-section, .accreditations-section, .resorts-visited-section { padding: 80px 0; }
 
-    .hamburger { display: block; }
-    .hamburger.active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger.active .hamburger-bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-    .section-title { font-size: 2rem; }
-    .welcome-section, .vacation-types-section { padding: 80px 0; }
-    .hero { height: 90vh; }
-    .hero-title { font-size: 2.8rem; }
-    .hero-subtitle { font-size: 1.2rem; }
-
-    /* DEFINITIVE FIX: This rule ensures the HERO button container is visible */
-    .hero-cta-buttons {
-        display: flex !important; /* The !important ensures this overrides any conflicting styles */
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+    /* --- 2. Mobile Header and Logo "Seal" Effect --- */
+    /* Adjust the header height to accommodate the larger logo */
+    .main-header {
+        height: 90px;
     }
-    
-    .btn {
-        text-align: center;
-        width: 85%;
-        max-width: 320px;
-    }
-    .hero-cta-buttons .btn {
-        padding: 16px 20px;
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
-    }
-    .hero-cta-buttons .btn:last-child { margin-bottom: 0; }
-
-    /* FIX for the invisible "X" in the mobile menu */
-    .hamburger.active .hamburger-bar {
-        background-color: var(--dark-text) !important;
-    }
-
-    /* FIX for making the "Get a Quote" button appear in the mobile menu */
-    .main-nav .btn-nav-quote {
-        display: inline-block;
-        padding: 15px 40px;
-        margin-top: 20px;
-        text-align: center;
-        width: auto;
-    }
-    /* --- PERFORMANCE: Disable heavy water animation on mobile --- */
-    #animated-water-container {
-        display: none;
-    }
-    /* --- "Next Vacation" Section Mobile Layout --- */
-    
-    /* Revert the grid to a single vertical column */
-    .types-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem; /* A bit more space for a vertical stack */
-        max-width: 400px; /* Constrain width for a clean look */
-        margin: 0 auto;
-    }
-
-    /* Undo the desktop "square" styling */
-    .category-card .card-image-container {
-        position: static; /* Revert positioning context */
-        aspect-ratio: auto; /* Revert to natural aspect ratio */
-    }
-
-    /* Re-establish a rectangular shape for the mobile images */
-    .category-card img {
-        position: static; /* Revert positioning */
-        height: 250px; /* A good, large height for a vertical stack */
-    }
-    
-    .category-card h3 {
-        font-size: 1.1rem; /* Slightly larger text to match the larger cards */
-    }
-    /* --- NEW Mobile Centered-Logo Header --- */
-
-    /* Make the header a positioning container and push its contents to the right */
     .main-header .container {
         position: relative;
         justify-content: flex-end;
     }
-
-    /* Lift the logo out of the flow and center it */
     .logo {
         position: absolute;
         left: 50%;
-        top: 60%;
+        top: 100%; /* Aligns the logo's center with the bottom of the header */
         transform: translate(-50%, -50%);
+        z-index: 100;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+    }
+    .logo img {
+        height: 110px; /* Larger than the header to create the overlap */
+        display: block;
     }
 
-    /* Increase the logo size for mobile */
-    .logo img {
-        height: 85px; 
+    /* --- 3. Mobile "Cutout" Outline for the Logo --- */
+    .logo::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% + 20px); /* A proportional outline for mobile */
+        height: calc(100% + 20px);
+        border-radius: 50%;
+        opacity: 0;
+        transition: var(--transition);
+        z-index: -1;
     }
+    .main-header.scrolled .logo::after {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 1;
+    }
+
+    /* --- 4. Mobile Navigation Menu --- */
+    .main-nav { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background-color: var(--white-color); transition: var(--transition); display: flex; justify-content: center; align-items: center; }
+    .main-nav.active { right: 0; }
+    .main-nav ul { flex-direction: column; text-align: center; }
+    .main-nav ul li { margin: 20px 0; }
+    .main-nav ul li a,
+    .main-header.scrolled .main-nav ul li a { font-size: 1.5rem; color: var(--dark-text) !important; }
+    .main-nav .btn-nav-quote { display: inline-block; padding: 15px 40px; margin-top: 20px; text-align: center; width: auto; }
+    
+    .hamburger { display: block; }
+    .hamburger.active .hamburger-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .hamburger-bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .hamburger-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .hamburger.active .hamburger-bar { background-color: var(--dark-text) !important; }
+
+    /* --- 5. Other Mobile Styles (unchanged) --- */
+    .section-title { font-size: 2rem; }
+    .hero { height: 90vh; }
+    .hero-title { font-size: 2.8rem; }
+    .hero-subtitle { font-size: 1.2rem; }
+    #animated-water-container { display: none; }
+    .types-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 400px; margin: 0 auto; }
+    .category-card .card-image-container { position: static; aspect-ratio: auto; }
+    .category-card img { position: static; height: 250px; }
+    .category-card h3 { font-size: 1.1rem; }
 }
 
 #mobile-hero-quote-button {
